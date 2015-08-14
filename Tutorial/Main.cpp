@@ -8,8 +8,9 @@
 #define GLEW_STATIC
 #include <thread>
 #include <iostream>
-#include "GL/glew.h"
-#include "GLFW/glfw3.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <SOIL.h>
 
 #include "ShaderUtil.h"
 
@@ -74,15 +75,16 @@ int main()
 	glGenBuffers(1, &vbo);
 	// Define vertices. Move to seperate function later
 	float vertices[] = {
-		//-0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // Top-left
-		//0.5f, 0.5f, 0.0f, 1.0f, 0.0f, // Top-right
-		//0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
-		//-0.5f, -0.5f, 1.0f, 1.0f, 1.0f  // Bottom-left
+		//  Position      Color             Texcoords
+		-0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
+		0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
+		-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
 
 		//up-right triangle
-		0.0f, 0.5f, 1.0f, 0.0f, 0.0f, // Vertex 1: Red
-		0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // Vertex 2: Green
-		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f  // Vertex 3: Blue
+		//0.0f, 0.5f, 1.0f, 0.0f, 0.0f, // Vertex 1: Red
+		//0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // Vertex 2: Green
+		//-0.5f, -0.5f, 0.0f, 0.0f, 1.0f  // Vertex 3: Blue
 	};
 	// Make the vbo active object
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -91,8 +93,8 @@ int main()
 
 	// Define elements
 	GLuint elements[] = {
-		0, 1, 2
-		//2, 3, 0
+		0, 1, 2,
+		2, 3, 0
 	};
 	GLuint ebo;
 	glGenBuffers(1, &ebo);
@@ -136,15 +138,65 @@ int main()
 	
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), 0);
 
 	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(2 * sizeof(float)));
+
+	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(5 * sizeof(float)));
 
 	// Varying Triangle Color
-	GLint uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
-	glUniform3f(uniColor, 0.0f, 0.0f, 0.0f);
+	//GLint uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
+	//glUniform3f(uniColor, 0.0f, 0.0f, 0.0f);
+	//auto t_start = std::chrono::high_resolution_clock::now();
+
+
+	// Textures
+	//GLuint tex;
+	//glGenTextures(1, &tex);
+	//glBindTexture(GL_TEXTURE_2D, tex);
+			//float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };							// set border to red
+			//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);	// set border to red
+			//float pixels[] = {
+			//	0.0f, 0.0f, 0.0f,	1.0f, 1.0f, 1.0f,							// Black/White checterboard
+			//	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, 0.0f
+			//};
+			//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, pixels);
+	// Use SOIL lib to load image as texture
+	GLuint textures[2];
+	glGenTextures(2, textures);
+	int width, height;
+	unsigned char* image;
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textures[0]);
+	image = SOIL_load_image("image/kitten.png", &width, &height, 0, SOIL_LOAD_RGB);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+	glUniform1i(glGetUniformLocation(shaderProgram, "texKitten"), 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, textures[1]);
+	image = SOIL_load_image("image/puppy.png", &width, &height, 0, SOIL_LOAD_RGB);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	SOIL_free_image_data(image);
+	glUniform1i(glGetUniformLocation(shaderProgram, "texPuppy"), 1);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+	// Blending set timer
+	GLint blendRatio = glGetUniformLocation(shaderProgram, "blendRatio");
+	glUniform1f(blendRatio, 0.0f);
 	auto t_start = std::chrono::high_resolution_clock::now();
 
 	while (!glfwWindowShouldClose(window))
@@ -154,12 +206,17 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		// Draw a triangle from the 3 vertices
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		// Triangle color keep varying
+		//auto t_now = std::chrono::high_resolution_clock::now();
+		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
+		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
+
+		// Blending
 		auto t_now = std::chrono::high_resolution_clock::now();
 		float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
-		glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
+		glUniform1f(blendRatio, sin(time*4.0f) / 2.0f + 0.5f);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
