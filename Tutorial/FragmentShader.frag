@@ -14,7 +14,9 @@ void main()
 {
 	//outColor = vec4(triangleColor, 1.0);
 	//outColor = texture(tex, Texcoord) * vec4(Color, 1.0);
-	vec4 colKitten = texture(texKitten, Texcoord);
+	vec2 texcoord = Texcoord;
+	if(texcoord.y > 0.5)		texcoord.y = 1-texcoord.y;
+	vec4 colKitten = texture(texKitten, texcoord);
 	vec4 colPuppy = texture(texPuppy, Texcoord);
 	outColor = mix(colKitten, colPuppy, blendRatio);
 }
