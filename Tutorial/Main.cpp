@@ -12,6 +12,10 @@
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "ShaderUtil.h"
 
 void glfw_error_callback(int error, const char* description)
@@ -155,17 +159,6 @@ int main()
 
 
 	// Textures
-	//GLuint tex;
-	//glGenTextures(1, &tex);
-	//glBindTexture(GL_TEXTURE_2D, tex);
-			//float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };							// set border to red
-			//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);	// set border to red
-			//float pixels[] = {
-			//	0.0f, 0.0f, 0.0f,	1.0f, 1.0f, 1.0f,							// Black/White checterboard
-			//	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, 0.0f
-			//};
-			//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, pixels);
-	// Use SOIL lib to load image as texture
 	GLuint textures[2];
 	glGenTextures(2, textures);
 	int width, height;
@@ -201,6 +194,39 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
+		// Blending
+		auto t_now = std::chrono::high_resolution_clock::now();
+		float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
+		glUniform1f(blendRatio, sin(time*4.0f) / 2.0f + 0.5f);
+
+		// keep rotate with time
+		glm::mat4 model;
+		GLint uniTrans = glGetUniformLocation(shaderProgram, "model");
+	//	model = glm::scale(
+	//		model,
+	//		glm::vec3(sin(time*2.0)+1, sin(time*2.0)+1, 1.0f)
+	//	);
+		model = glm::rotate(
+			model,
+			time * glm::radians(180.0f) ,
+			glm::vec3(0.0f, 0.0f, 1.0f)
+		);
+		glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
+
+		// View transformation
+		glm::mat4 view = glm::lookAt(
+			glm::vec3(1.2f, 1.2f, 1.2f),
+			glm::vec3(0.0f, 0.0f, 0.0f),
+			glm::vec3(0.0f, 0.0f, 1.0f)
+		);
+		GLint uniView = glGetUniformLocation(shaderProgram, "view");
+		glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
+
+		// Projection transform
+		glm::mat4 proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 1.0f, 10.0f);	//FOV, aspect ratio of screen, near, far clipping plane
+		GLint uniProj = glGetUniformLocation(shaderProgram, "proj");
+		glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
+
 		// Clear the screen to black
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -212,11 +238,6 @@ int main()
 		//auto t_now = std::chrono::high_resolution_clock::now();
 		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
 		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
-
-		// Blending
-		auto t_now = std::chrono::high_resolution_clock::now();
-		float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
-		glUniform1f(blendRatio, sin(time*4.0f) / 2.0f + 0.5f);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
