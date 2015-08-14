@@ -18,11 +18,35 @@
 
 #include "ShaderUtil.h"
 
+#define INIT_G_ANGLE 0.0f
+#define INIT_G_SPEED 10.0f
+// DANGEROUS GLOBAL VARIABLES
+int		g_modState = 0;
+float	g_angle = INIT_G_ANGLE;
+float	g_speed = INIT_G_SPEED;
+// END OF GLOBAL VARIABLES
+
 void glfw_error_callback(int error, const char* description)
 {
 #ifdef _DEBUG
 	puts(description);
 #endif
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	// Press Space
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		g_modState == 2 ? g_modState = 0 : g_modState++;
+		g_modState == 0 ? g_angle = INIT_G_ANGLE : true;			// reset truning angle and speed
+		g_modState == 0 ? g_speed = INIT_G_SPEED : true;
+#ifdef _DEBUG
+		std::cout << "g_modState = " << g_modState << std::endl;
+#endif
+	}
 }
 
 int main()
@@ -192,6 +216,8 @@ int main()
 	glUniform1f(blendRatio, 0.0f);
 	auto t_start = std::chrono::high_resolution_clock::now();
 
+	glfwSetKeyCallback(window, key_callback);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		// Blending
@@ -201,17 +227,31 @@ int main()
 
 		// keep rotate with time
 		glm::mat4 model;
-		GLint uniTrans = glGetUniformLocation(shaderProgram, "model");
-	//	model = glm::scale(
-	//		model,
-	//		glm::vec3(sin(time*2.0)+1, sin(time*2.0)+1, 1.0f)
-	//	);
-		model = glm::rotate(
-			model,
-			time * glm::radians(180.0f) ,
-			glm::vec3(0.0f, 0.0f, 1.0f)
-		);
-		glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
+		GLint uniModel = glGetUniformLocation(shaderProgram, "model");
+//		model = glm::scale(
+//			model,
+//			glm::vec3(sin(time*2.0)+1, sin(time*2.0)+1, 1.0f)
+//		);
+		if (g_modState==0)// rotate about z-axis
+			model = glm::rotate(
+				model,
+				glm::radians(g_angle) ,
+				glm::vec3(0.0f, 0.0f, 1.0f)
+			);
+		else // rotate about x-axis
+			model = glm::rotate(
+				model,
+				glm::radians(g_angle),
+				glm::vec3(1.0f, 0.0f, 0.0f)
+			);
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
+		
+		g_angle += g_speed;
+		// slow down rotation
+		if (g_modState == 2)
+		{
+			g_speed /= 1.0f + 0.02f;
+		}
 
 		// View transformation
 		glm::mat4 view = glm::lookAt(
@@ -243,10 +283,16 @@ int main()
 		glfwPollEvents();
 	}
 
+	glDeleteTextures(2, textures);
 
-// Handle Excape key
-//	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-//		glfwSetWindowShouldClose(window, GL_TRUE);
+	glDeleteProgram(shaderProgram);
+	glDeleteShader(fragmentShader);
+	glDeleteShader(vertexShader);
+
+	glDeleteBuffers(1, &ebo);
+	glDeleteBuffers(1, &vbo);
+
+	glDeleteVertexArrays(1, &vao);
 
 	glfwTerminate();
 	return 0;
