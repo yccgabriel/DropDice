@@ -27,5 +27,6 @@ void main()
 	else
 		colKitten = texture(texKitten, vec2(Texcoord.x + sin(Texcoord.y*50.0f)*0.05, 1-Texcoord.y));
 	colPuppy = texture(texPuppy, Texcoord);
-	outColor = mix(colKitten, colPuppy, blendRatio);
+	vec4 texColor = mix(colKitten, colPuppy, blendRatio);
+	outColor = vec4(Color, 1.0) * texColor;
 }
