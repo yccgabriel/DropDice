@@ -18,6 +18,10 @@
 
 #include "ShaderUtil.h"
 
+#include "ShaderManager.h"
+#include "Floor.h"
+#include "Die.h"
+
 void glfw_error_callback(int error, const char* description)
 {
 #ifdef _DEBUG
@@ -75,164 +79,81 @@ int main()
 	glBindVertexArray(vao);
 
 	// Create Vertex Buffer
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	// Define vertices. Move to seperate function later
-	float vertices[] = {
-		// X      Y     Z     R     G     B     U     V
-		// start of the cube
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-
-		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-
-		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-		// end of the cube
-
-		// start of the floor
-		-1.0f, -1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-		1.0f, -1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-		-1.0f, 1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-		-1.0f, -1.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
-		// end of the floor
-	};
-	// Make the vbo active object
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	// Draw, referto to binded vbo
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);		// GL_STATIC_DRAW, GL_DYNAMIC_DRAW, or GL_STREAM_DRAW
-
-//	// Define elements
-//	GLuint elements[] = {
-//		0, 1, 2,
-//		2, 3, 0
+//	GLuint vbo;
+//	glGenBuffers(1, &vbo);
+//	// Define vertices. Move to seperate function later
+//	float vertices[] = {
+//		// X      Y     Z     R     G     B     U     V
+//		// start of the cube
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//
+//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//
+//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//
+//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+//		// end of the cube
+//
+//		// start of the floor
+//		-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+//		2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+//		2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+//		2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+//		-2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+//		-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
+//		// end of the floor
 //	};
-//	GLuint ebo;
-//	glGenBuffers(1, &ebo);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+//	// Make the vbo active object
+//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//	// Draw, referto to binded vbo
+//	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);		// GL_STATIC_DRAW, GL_DYNAMIC_DRAW, or GL_STREAM_DRAW
 
-
-	// Create and Apply Vertex Shader object handler
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	std::string vertexShaderStr = readShaderFile("VertexShader.vert");
-	const char *vertexShaderSrc = vertexShaderStr.c_str();
-	glShaderSource(vertexShader, 1, &vertexShaderSrc, NULL);
-	glCompileShader(vertexShader);
-#ifdef _DEBUG	// Check Shader Compilation Error
-	GLint status;
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
-	char errorBuf[512];
-	glGetShaderInfoLog(vertexShader, sizeof(errorBuf), NULL, errorBuf);
-	std::cout << errorBuf << std::endl;
-#endif
-	// Create and Apply Fragment Shade
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	std::string fragmentShaderStr = readShaderFile("FragmentShader.frag");
-	const char *fragmentShaderSrc = fragmentShaderStr.c_str();
-	glShaderSource(fragmentShader, 1, &fragmentShaderSrc, NULL);
-	glCompileShader(fragmentShader);
-#ifdef _DEBUG	// Check Shader Compilation Error
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &status);
-	glGetShaderInfoLog(fragmentShader, sizeof(errorBuf), NULL, errorBuf);
-	std::cout << errorBuf << std::endl;
-#endif
-
-
-	// Combining shaders into program
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glBindFragDataLocation(shaderProgram, 0, "outColor");	// for fragmentShader apply to multiple buffers
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
 	
-	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), 0);
+	Die		die;
+	Floor	floor;
 
-	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-
-	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-
-	// Varying Triangle Color
-	//GLint uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
-	//glUniform3f(uniColor, 0.0f, 0.0f, 0.0f);
-	//auto t_start = std::chrono::high_resolution_clock::now();
-
-
-	// Textures
-	GLuint textures[2];
-	glGenTextures(2, textures);
-	int width, height;
-	unsigned char* image;
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
-	image = SOIL_load_image("image/kitten.png", &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-	glUniform1i(glGetUniformLocation(shaderProgram, "texKitten"), 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, textures[1]);
-	image = SOIL_load_image("image/puppy.png", &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	SOIL_free_image_data(image);
-	glUniform1i(glGetUniformLocation(shaderProgram, "texPuppy"), 1);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	ShaderManager *shaderManager = ShaderManager::GetInstance();
+	shaderManager->ActivateProgram();
+	shaderManager->ActivateTextures();
 
 	// Setup MVP outside the loop. Model need to calc everytime inside the loop
-	GLint uniModel = glGetUniformLocation(shaderProgram, "model");
-	GLint uniView = glGetUniformLocation(shaderProgram, "view");
-	GLint uniProj = glGetUniformLocation(shaderProgram, "proj");
+	GLint uniModel = glGetUniformLocation(shaderManager->resources.shaderProgram, "model");
+	GLint uniView = glGetUniformLocation(shaderManager->resources.shaderProgram, "view");
+	GLint uniProj = glGetUniformLocation(shaderManager->resources.shaderProgram, "proj");
 	// View transformation
 	glm::mat4 view = glm::lookAt(
 		glm::vec3(2.5f, 2.5f, 2.5f),
@@ -245,11 +166,18 @@ int main()
 	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
 
 	// Blending set timer
-	GLint blendRatio = glGetUniformLocation(shaderProgram, "blendRatio");
+	GLint blendRatio = glGetUniformLocation(shaderManager->resources.shaderProgram, "blendRatio");
 	glUniform1f(blendRatio, 0.0f);
 	auto t_start = std::chrono::high_resolution_clock::now();
 
 	glEnable(GL_DEPTH_TEST);
+	GLint overrideColor = glGetUniformLocation(shaderManager->resources.shaderProgram, "overrideColor");
+	glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
+
+	die.CreateInstance();
+	die.CreateInstance();
+	//die.m_opvInstances[0]->transform = glm::mat4
+	floor.CreateInstance();
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -262,62 +190,75 @@ int main()
 
 		// keep rotate with time
 		glm::mat4 model;
-		model = glm::rotate(
-			model,
-			time * glm::radians(180.0f) ,
-			glm::vec3(0.0f, 0.0f, 1.0f)
-		);
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
+	//	model = glm::rotate(
+	//		model,
+	//		time * glm::radians(180.0f) ,
+	//		glm::vec3(0.0f, 0.0f, 1.0f)
+	//	);
+	//	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
 
 		// Clear the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// Draw cube
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		model = glm::translate(model, glm::vec3(0, 0, 0));
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+	//	for (int i = 0; i < die.m_opvInstances.size(); i++)
+	//	{
+	//		die.DrawInstance(die.m_opvInstances[i]);
+	//		//std::cout << die.m_opvInstances[i] << std::endl;
+	//	}
+		die.m_opvInstances[0]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, 1));
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[0]->transform));
+		die.DrawInstance(die.m_opvInstances[0]);
+		die.m_opvInstances[1]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, -1));
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[1]->transform));
+		die.DrawInstance(die.m_opvInstances[1]);
 
-		glEnable(GL_STENCIL_TEST);
-			// Draw floor
-			glStencilFunc(GL_ALWAYS, 1, 0xFF); // Set any stencil to 1
-			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-			glStencilMask(0xFF); // Write to stencil buffer
-			glDepthMask(GL_FALSE); // Don't write to depth buffer
-			glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			glDrawArrays(GL_TRIANGLES, 36, 6);
+	//	die.m_opvInstances[0]->transform = glm::translate(model, glm::vec3(1, 0, 0));
+	//	die.m_opvInstances[1]->transform = glm::translate(model, glm::vec3(0, 1, 0));
+	//	model = glm::translate(glm::mat4(), glm::vec3(1, 0, 0));
+	//	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+	//	die.DrawInstance(die.m_opvInstances[0]);
+	//	model = glm::translate(glm::mat4() , glm::vec3(0, 1, 0));
+	//	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+	//	die.DrawInstance(die.m_opvInstances[1]);
 
-			// Draw cube reflection
-			glStencilFunc(GL_EQUAL, 1, 0xFF);
-			glStencilMask(0x00); // Write nothing to stencil buffer
-			glDepthMask(GL_TRUE); // why? write to depth buffer
-			model = glm::translate(model, glm::vec3(0, 0, -1));
-			model = glm::scale(model, glm::vec3(1, 1, -1));
-			glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
-
-			GLint overrideColor = glGetUniformLocation(shaderProgram, "overrideColor");
-			glUniform3f(overrideColor, 0.3f, 0.3f, 0.3f);
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-			glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
-
-
-		glDisable(GL_STENCIL_TEST);
+	//	glEnable(GL_STENCIL_TEST);
+	//		// Draw floor
+	//		glStencilFunc(GL_ALWAYS, 1, 0xFF); // Set any stencil to 1
+	//		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	//		glStencilMask(0xFF); // Write to stencil buffer
+	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
+	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
+	//		//floor.Draw();
+	//	
+	//		// Draw cube reflection
+	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
+	//		glStencilMask(0x00); // Write nothing to stencil buffer
+	//		glDepthMask(GL_TRUE); // why? write to depth buffer
+	//		model = glm::translate(model, glm::vec3(0, 0, -1));
+	//		model = glm::scale(model, glm::vec3(1, 1, -1));
+	//		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+	//	
+	//		glUniform3f(overrideColor, 0.3f, 0.3f, 0.3f);
+	//		//die.Draw();
+	//		glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
+	//
+	//
+	//	glDisable(GL_STENCIL_TEST);
 
 		// Triangle color keep varying
 		//auto t_now = std::chrono::high_resolution_clock::now();
 		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
 		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
 
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-
-	glDeleteTextures(2, textures);
-
-	glDeleteProgram(shaderProgram);
-	glDeleteShader(fragmentShader);
-	glDeleteShader(vertexShader);
-
-	glDeleteBuffers(1, &vbo);
+	delete shaderManager;
 
 	glDeleteVertexArrays(1, &vao);
 

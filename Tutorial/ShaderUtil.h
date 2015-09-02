@@ -1,8 +1,12 @@
+#pragma once
+#ifndef SHADERUTIL_H
+#define SHADERUTIL_H
+
 #include <string>
 #include <iostream>
 #include <fstream>
 
-std::string readShaderFile(const char *filePath) {
+static std::string readShaderFile(const char *filePath) {
 	std::string content;
 	std::ifstream fileStream(filePath, std::ios::in);
 
@@ -20,3 +24,5 @@ std::string readShaderFile(const char *filePath) {
 	fileStream.close();
 	return content;
 }
+
+#endif // SHADERUTIL_H
