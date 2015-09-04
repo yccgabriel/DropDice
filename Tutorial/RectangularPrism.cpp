@@ -1,18 +1,13 @@
 #ifdef _DEBUG
 	#include <iostream>
 #endif
-#include "ShaderUtil.h"
 #include "RectangularPrism.h"
 
 RectangularPrism::RectangularPrism(const std::vector<float>& v) : m_fvVertices(v)
 {
+	m_opShaderManager = ShaderManager::GetInstance();
 	RectangleToTriangleVertices();
-	glGenBuffers(1, &m_vbo);
-	// Make the buffer the active array buffer
-	// i.e. opengl->array_buffer = buffer
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);	
-	
-	//m_opShaderManager = ShaderManager::GetInstance();
+	m_opShaderManager->DefineAttribs();	// this call must follows Bind Buffer
 }
 
 RectangularPrism::~RectangularPrism()
@@ -20,24 +15,6 @@ RectangularPrism::~RectangularPrism()
 	glDeleteBuffers(1, &m_vbo);
 	for (int i = 0; i < m_opvInstances.size(); i++)
 		delete m_opvInstances[i];
-}
-
-void RectangularPrism::Draw()
-{
-	glBufferData(GL_ARRAY_BUFFER, m_fvVertices.size()*sizeof(float), &m_fvVertices[0], GL_STATIC_DRAW);
-
-	glDrawArrays(GL_TRIANGLES, 0, m_fvVertices.size() / VERTICES_COLUMN);
-}
-void RectangularPrism::DrawInstance(Instance* instance)
-{
-//	glm::mat4 model;
-//	model = instance->transform;
-//	glUniformMatrix4fv(m_opShaderManager->resources.uniforms.model, 1, GL_FALSE, glm::value_ptr(model));
-//
-	// Upload a bunch of data into the active array buffer
-	// i.e. opengl->array_buffer = new buffer(sizeof(points), points, STATIC_DRAW)
-	glBufferData(GL_ARRAY_BUFFER, m_fvVertices.size()*sizeof(float), &m_fvVertices[0], GL_STATIC_DRAW);
-	glDrawArrays(GL_TRIANGLES, 0, m_fvVertices.size()/VERTICES_COLUMN);
 }
 
 void RectangularPrism::CreateInstance()
@@ -94,4 +71,19 @@ void RectangularPrism::RectangleToTriangleVertices()
 //		std::cout << std::endl;
 //	}
 		
+}
+
+
+Face::Face()
+{
+	glGenBuffers(1, &m_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	m_opShaderManager = ShaderManager::GetInstance();
+}
+
+void Face::Draw()
+{
+	m_opShaderManager->UseTexture(texture);
+	glBufferData(GL_ARRAY_BUFFER, VERTICES_COLUMN*6*sizeof(float), m_fpVertices, GL_STATIC_DRAW);
+	glDrawArrays(GL_TRIANGLES, 0, VERTICES_COLUMN*6);
 }

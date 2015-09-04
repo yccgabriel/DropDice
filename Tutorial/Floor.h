@@ -13,8 +13,21 @@
 class Floor : public RectangularPrism
 {
 public:
-	Floor() : RectangularPrism(FLOOR_VERTICES){  }
-	//~Floor();
+	Floor() : RectangularPrism(FLOOR_VERTICES)
+	{ 
+		m_ovFaces.push_back(new Face());
+		m_ovFaces[0]->m_fpVertices = &m_fvVertices[0];
+		m_ovFaces[0]->texture = NULL;
+		m_opShaderManager->DefineAttribs();		// why need this?
+	}
+	~Floor()
+	{
+		delete m_ovFaces[0];
+	}
+	void DrawFloor()
+	{
+		m_ovFaces[0]->Draw();
+	}
 };
 
 #endif // FLOOR_H

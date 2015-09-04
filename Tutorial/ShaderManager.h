@@ -32,7 +32,7 @@ public:
 			GLuint view;
 			GLuint proj;
 
-			GLuint textures[6];
+			GLuint texture;
 		}uniforms;
 		struct{
 			GLint position;
@@ -41,13 +41,13 @@ public:
 		}attribs;
 	}resources;
 
+	void	DefineAttribs();
 	void	ActivateProgram();
-	void	ActivateTextures();
+	void	UseTexture(GLuint);
 private:
 	GLuint	MakeShader(GLenum, const char*);
 	GLuint	MakeProgram(GLuint, GLuint);
 	GLuint	MakeTexture(const char *);
-	void	DefineAttribs();
 	void	DefineUniforms();
 	void	DefineOuts();
 	void*	FileContents(const char*, GLint*);

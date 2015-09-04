@@ -142,13 +142,12 @@ int main()
 //	// Draw, referto to binded vbo
 //	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);		// GL_STATIC_DRAW, GL_DYNAMIC_DRAW, or GL_STREAM_DRAW
 
-	
+	ShaderManager *shaderManager = ShaderManager::GetInstance();
+
 	Die		die;
 	Floor	floor;
 
-	ShaderManager *shaderManager = ShaderManager::GetInstance();
 	shaderManager->ActivateProgram();
-	shaderManager->ActivateTextures();
 
 	// Setup MVP outside the loop. Model need to calc everytime inside the loop
 	GLint uniModel = glGetUniformLocation(shaderManager->resources.shaderProgram, "model");
@@ -174,6 +173,8 @@ int main()
 	GLint overrideColor = glGetUniformLocation(shaderManager->resources.shaderProgram, "overrideColor");
 	glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
 
+	die.CreateInstance();
+	die.CreateInstance();
 	die.CreateInstance();
 	die.CreateInstance();
 	//die.m_opvInstances[0]->transform = glm::mat4
@@ -209,11 +210,18 @@ int main()
 	//		//std::cout << die.m_opvInstances[i] << std::endl;
 	//	}
 		die.m_opvInstances[0]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, 1));
+		die.m_opvInstances[0]->transform = glm::rotate(die.m_opvInstances[0]->transform, time * glm::radians(180.0f), glm::vec3(0, 0, 1));
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[0]->transform));
-		die.DrawInstance(die.m_opvInstances[0]);
+		die.DrawDie();
 		die.m_opvInstances[1]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, -1));
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[1]->transform));
-		die.DrawInstance(die.m_opvInstances[1]);
+		die.DrawDie();
+		die.m_opvInstances[2]->transform = glm::translate(glm::mat4(), glm::vec3(1, 0, 0));
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[2]->transform));
+		die.DrawDie();
+		die.m_opvInstances[3]->transform = glm::translate(glm::mat4(), glm::vec3(-1, 0, 0));
+		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[3]->transform));
+		die.DrawDie();
 
 	//	die.m_opvInstances[0]->transform = glm::translate(model, glm::vec3(1, 0, 0));
 	//	die.m_opvInstances[1]->transform = glm::translate(model, glm::vec3(0, 1, 0));
@@ -231,7 +239,7 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-	//		//floor.Draw();
+			//floor.DrawFloor();
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);

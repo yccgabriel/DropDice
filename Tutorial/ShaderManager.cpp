@@ -55,37 +55,12 @@ void ShaderManager::ActivateProgram()
 	glUseProgram(resources.shaderProgram);
 }
 
-void ShaderManager::ActivateTextures()
+void ShaderManager::UseTexture(GLuint texture)
 {
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[0]);
-	resources.uniforms.textures[0] = glGetUniformLocation(resources.shaderProgram, "textures[0]");
-	glUniform1i(resources.uniforms.textures[0], 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[1]);
-	resources.uniforms.textures[1] = glGetUniformLocation(resources.shaderProgram, "textures[1]");
-	glUniform1i(resources.uniforms.textures[1], 1);
-
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[2]);
-	resources.uniforms.textures[2] = glGetUniformLocation(resources.shaderProgram, "textures[2]");
-	glUniform1i(resources.uniforms.textures[2], 2);
-
-	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[3]);
-	resources.uniforms.textures[3] = glGetUniformLocation(resources.shaderProgram, "textures[3]");
-	glUniform1i(resources.uniforms.textures[3], 3);
-
-	glActiveTexture(GL_TEXTURE4);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[4]);
-	resources.uniforms.textures[4] = glGetUniformLocation(resources.shaderProgram, "textures[4]");
-	glUniform1i(resources.uniforms.textures[4], 4);
-
-	glActiveTexture(GL_TEXTURE5);
-	glBindTexture(GL_TEXTURE_2D, resources.textures[5]);
-	resources.uniforms.textures[5] = glGetUniformLocation(resources.shaderProgram, "textures[5]");
-	glUniform1i(resources.uniforms.textures[5], 5);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	resources.uniforms.texture = glGetUniformLocation(resources.shaderProgram, "uniTexture");
+	glUniform1i(resources.uniforms.texture, 0);
 }
 
 // Private Methods
