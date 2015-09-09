@@ -1,0 +1,9 @@
+﻿Build started 9/9/2015 17:53:53.
+     1>Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\Bullet3Collision.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         Bullet3Collision.vcxproj -> C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\..\..\bin\Bullet3Collision_vs2010_debug.lib
+     1>Done Building Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\Bullet3Collision.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.06

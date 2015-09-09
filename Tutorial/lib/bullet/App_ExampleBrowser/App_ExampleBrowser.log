@@ -1,0 +1,733 @@
+﻿Build started 8/9/2015 23:11:27.
+     1>Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\App_ExampleBrowser.vcxproj" on node 4 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\src\clew /I..\..\examples\ExampleBrowser /I..\..\src /I..\..\examples\ThirdPartyLibs /I..\..\examples\ThirdPartyLibs\Glew /Zi /nologo /W3 /WX- /Od /Oy- /D _DEBUG=1 /D B3_USE_CLEW /D GLEW_STATIC /D INCLUDE_CLOTH_DEMOS /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Debug\App_ExampleBrowser\\" /Fd"..\..\bin\App_ExampleBrowser_vs2010_debug.pdb" /Gd /TC /analyze- /errorReport:prompt /MP ..\..\src\clew\clew.c ..\..\examples\ThirdPartyLibs\Glew\glew.c
+         clew.c
+         glew.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\src\clew /I..\..\examples\ExampleBrowser /I..\..\src /I..\..\examples\ThirdPartyLibs /I..\..\examples\ThirdPartyLibs\Glew /Zi /nologo /W3 /WX- /Od /Oy- /D _DEBUG=1 /D B3_USE_CLEW /D GLEW_STATIC /D INCLUDE_CLOTH_DEMOS /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Debug\App_ExampleBrowser\\" /Fd"..\..\bin\App_ExampleBrowser_vs2010_debug.pdb" /Gd /TP /analyze- /errorReport:prompt /MP ..\..\examples\ExampleBrowser\ExampleEntries.cpp ..\..\examples\ExampleBrowser\GL_ShapeDrawer.cpp ..\..\examples\ExampleBrowser\main.cpp ..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp ..\..\examples\ExampleBrowser\OpenGLGuiHelper.cpp ..\..\examples\ExampleBrowser\GwenGUISupport\GraphingTexture.cpp ..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp ..\..\examples\ExampleBrowser\GwenGUISupport\GwenProfileWindow.cpp ..\..\examples\ExampleBrowser\GwenGUISupport\GwenTextureWindow.cpp ..\..\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.cpp ..\..\examples\SharedMemory\PhysicsClientC_API.cpp ..\..\examples\SharedMemory\PhysicsServerExample.cpp ..\..\examples\SharedMemory\PhysicsClientExample.cpp ..\..\examples\SharedMemory\RobotControlExample.cpp ..\..\examples\SharedMemory\PhysicsServer.cpp ..\..\examples\SharedMemory\PhysicsClient.cpp ..\..\examples\SharedMemory\PosixSharedMemory.cpp ..\..\examples\SharedMemory\Win32SharedMemory.cpp ..\..\examples\MultiThreading\MultiThreadingExample.cpp ..\..\examples\MultiThreading\b3PosixThreadSupport.cpp ..\..\examples\MultiThreading\b3Win32ThreadSupport.cpp ..\..\examples\MultiThreading\b3ThreadSupportInterface.cpp ..\..\examples\BasicDemo\BasicExample.cpp ..\..\examples\Tutorial\Dof6ConstraintTutorial.cpp ..\..\examples\Tutorial\Tutorial.cpp ..\..\examples\Benchmarks\BenchmarkDemo.cpp ..\..\examples\ForkLift\ForkLiftDemo.cpp ..\..\examples\Importers\ImportBsp\BspConverter.cpp ..\..\examples\Importers\ImportBsp\BspLoader.cpp ..\..\examples\Importers\ImportBsp\ImportBspExample.cpp ..\..\examples\Importers\ImportBullet\SerializeSetup.cpp ..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp ..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp ..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp ..\..\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp ..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp ..\..\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp ..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp ..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp ..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp ..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp ..\..\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp ..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp ..\..\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp ..\..\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp ..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp ..\..\Extras\Serialize\BulletFileLoader\bChunk.cpp ..\..\Extras\Serialize\BulletFileLoader\bDNA.cpp ..\..\Extras\Serialize\BulletFileLoader\bFile.cpp ..\..\Extras\Serialize\BulletFileLoader\btBulletFile.cpp ..\..\examples\Planar2D\Planar2D.cpp ..\..\examples\RenderingExamples\CoordinateSystemDemo.cpp ..\..\examples\RenderingExamples\RaytracerSetup.cpp ..\..\examples\RenderingExamples\RenderInstancingDemo.cpp ..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp ..\..\examples\RenderingExamples\TimeSeriesExample.cpp ..\..\examples\RenderingExamples\TimeSeriesFontData.cpp ..\..\examples\VoronoiFracture\btConvexConvexMprAlgorithm.cpp ..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp ..\..\examples\SoftDemo\SoftDemo.cpp ..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp ..\..\examples\FractureDemo\btFractureBody.cpp ..\..\examples\FractureDemo\btFractureDynamicsWorld.cpp ..\..\examples\FractureDemo\FractureDemo.cpp ..\..\examples\DynamicControlDemo\MotorDemo.cpp ..\..\examples\Constraints\ConstraintDemo.cpp ..\..\examples\Constraints\ConstraintPhysicsSetup.cpp ..\..\examples\Constraints\Dof6Spring2Setup.cpp ..\..\examples\Constraints\TestHingeTorque.cpp ..\..\examples\Vehicles\Hinge2Vehicle.cpp ..\..\examples\Raycast\RaytestDemo.cpp ..\..\examples\MultiBody\MultiDofDemo.cpp ..\..\examples\MultiBody\TestJointTorqueSetup.cpp ..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp ..\..\examples\MultiBody\InvertedPendulumPDControl.cpp ..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp ..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp ..\..\examples\ThirdPartyLibs\tinyxml\tinystr.cpp ..\..\examples\ThirdPartyLibs\tinyxml\tinyxml.cpp ..\..\examples\ThirdPartyLibs\tinyxml\tinyxmlerror.cpp ..\..\examples\ThirdPartyLibs\tinyxml\tinyxmlparser.cpp ..\..\examples\Utils\b3Clock.cpp ..\..\examples\Utils\b3ResourcePath.cpp ..\..\examples\GyroscopicDemo\GyroscopicSetup.cpp ..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\pose.cpp ..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp ..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp ..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp ..\..\examples\ThirdPartyLibs\urdf\boost_replacement\printf_console.cpp ..\..\examples\ThirdPartyLibs\urdf\boost_replacement\string_split.cpp ..\..\examples\OpenCL\broadphase\PairBench.cpp ..\..\examples\OpenCL\rigidbody\GpuConvexScene.cpp ..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp
+         ExampleEntries.cpp
+         GL_ShapeDrawer.cpp
+         main.cpp
+         OpenGLExampleBrowser.cpp
+         OpenGLGuiHelper.cpp
+         GraphingTexture.cpp
+         GwenParameterInterface.cpp
+         GwenProfileWindow.cpp
+         GwenTextureWindow.cpp
+         gwenUserInterface.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3CommandLineArgs.h(97): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\ExampleBrowser\main.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>..\..\examples\ExampleBrowser\GL_ShapeDrawer.cpp(654): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>c:\users\gabriel\desktop\bullet3-master\examples\openglwindow\TwFonts.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\ExampleBrowser\GwenGUISupport\GwenProfileWindow.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\openglwindow\TwFonts.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp)
+         PhysicsClientC_API.cpp
+     1>..\..\examples\ExampleBrowser\OpenGLGuiHelper.cpp(479): warning C4316: 'MyDebugDrawer' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\SharedMemory\PhysicsClientC_API.cpp(13): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp(169): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+         PhysicsServerExample.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\openglwindow\TwFonts.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\ExampleBrowser\GwenGUISupport\GwenTextureWindow.cpp)
+         PhysicsClientExample.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\openglwindow\TwFonts.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp)
+     1>..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp(74): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+                 ..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp(57) : while compiling class template member function 'void MySliderEventHandler<btScalar>::SetValue(T)'
+                 with
+                 [
+                     T=btScalar
+                 ]
+                 ..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp(52) : see reference to function template instantiation 'void MySliderEventHandler<btScalar>::SetValue(T)' being compiled
+                 with
+                 [
+                     T=btScalar
+                 ]
+                 ..\..\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp(170) : see reference to class template instantiation 'MySliderEventHandler<btScalar>' being compiled
+     1>c:\users\gabriel\desktop\bullet3-master\examples\openglwindow\TwFonts.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.cpp)
+         RobotControlExample.cpp
+     1>..\..\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.cpp(620): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3CommandLineArgs.h(97): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         PhysicsServer.cpp
+         PhysicsClient.cpp
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(277): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(352): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(385): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(388): warning C4101: 'result' : unreferenced local variable
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(712): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(720): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(971): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(994): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\ExampleBrowser\OpenGLExampleBrowser.cpp(1037): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+         PosixSharedMemory.cpp
+         Win32SharedMemory.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\sharedmemory\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\SharedMemory\PhysicsClientExample.cpp)
+     1>..\..\examples\SharedMemory\PhysicsClientExample.cpp(105): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsClientExample.cpp(111): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsClientExample.cpp(165): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClientExample.cpp(348): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>c:\users\gabriel\desktop\bullet3-master\examples\sharedmemory\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\SharedMemory\PhysicsServerExample.cpp)
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(380): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(386): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(389): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(392): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(400): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(406): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(409): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsClient.cpp(412): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+         MultiThreadingExample.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\sharedmemory\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\SharedMemory\RobotControlExample.cpp)
+         b3PosixThreadSupport.cpp
+         b3Win32ThreadSupport.cpp
+         b3ThreadSupportInterface.cpp
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(136): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(215): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(414): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(415): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(418): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(421): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(464): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(494): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(502): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(509): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(517): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(597): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(600): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\SharedMemory\RobotControlExample.cpp(661): warning C4316: 'RobotControlExample' : object allocated on the heap may not be aligned 16
+         BasicExample.cpp
+         Dof6ConstraintTutorial.cpp
+         Tutorial.cpp
+         BenchmarkDemo.cpp
+         ForkLiftDemo.cpp
+     1>..\..\examples\MultiThreading\b3Win32ThreadSupport.cpp(247): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\MultiThreading\b3Win32ThreadSupport.cpp(250): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(151): warning C4316: 'PhysicsServerInternalData' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(657): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(658): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(659): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(663): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(664): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(665): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(666): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(668): warning C4800: 'const int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(669): warning C4800: 'const int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(719): warning C4316: 'btMultiBodyJointFeedback' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(788): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(791): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(801): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(829): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(832): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(869): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(870): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(872): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(873): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(886): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1043): warning C4244: '=' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1049): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1101): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1110): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1120): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SharedMemory\PhysicsServer.cpp(1219): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16
+         BspConverter.cpp
+     1>..\..\examples\Tutorial\Tutorial.cpp(167): warning C4244: 'argument' : conversion from 'double' to 'const b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(181): warning C4244: 'argument' : conversion from 'double' to 'const b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(186): warning C4244: 'argument' : conversion from 'double' to 'const b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(204): warning C4244: '=' : conversion from 'double' to 'b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(210): warning C4244: 'argument' : conversion from 'double' to 'const b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(215): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(217): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(388): warning C4316: 'LWRigidBody' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Tutorial\Tutorial.cpp(392): warning C4244: 'argument' : conversion from 'int' to 'const b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(410): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Tutorial\Tutorial.cpp(438): warning C4244: '=' : conversion from 'double' to 'b3Scalar', possible loss of data
+     1>..\..\examples\Tutorial\Tutorial.cpp(441): warning C4244: '=' : conversion from 'double' to 'b3Scalar', possible loss of data
+         BspLoader.cpp
+         ImportBspExample.cpp
+         SerializeSetup.cpp
+     1>..\..\examples\Importers\ImportBsp\BspLoader.cpp(173): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>..\..\examples\Importers\ImportBsp\BspLoader.cpp(195): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>..\..\examples\Importers\ImportBsp\BspLoader.cpp(355): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ImportColladaSetup.cpp
+         LoadMeshFromCollada.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\basicdemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\BasicDemo\BasicExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\BasicDemo\BasicExample.cpp(142): warning C4316: 'BasicExample' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\bullet3-master\src\bulletdynamics\mlcpsolvers\btLemkeAlgorithm.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\Tutorial\Dof6ConstraintTutorial.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\benchmarks\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Benchmarks\BenchmarkDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp(47): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp(59): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp(60): warning C4244: 'argument' : conversion from 'float' to 'const int', possible loss of data
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportBsp\ImportBspExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportBsp\ImportBspExample.cpp(190): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportBsp\ImportBspExample.cpp(191): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Benchmarks\BenchmarkDemo.cpp(1276): warning C4099: 'CommonExampleInterface' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\gabriel\desktop\bullet3-master\examples\commoninterfaces\CommonExampleInterface.h(25) : see declaration of 'CommonExampleInterface'
+     1>..\..\examples\Benchmarks\BenchmarkDemo.cpp(1278): warning C4316: 'BenchmarkDemo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\ForkLift\ForkLiftDemo.cpp(535): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\ForkLift\ForkLiftDemo.cpp(538): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\ForkLift\ForkLiftDemo.cpp(541): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\ForkLift\ForkLiftDemo.cpp(544): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp(496): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\gabriel\desktop\bullet3-master\examples\tutorial\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Tutorial\Dof6ConstraintTutorial.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportBsp\ImportBspExample.cpp(288): warning C4099: 'CommonExampleInterface' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\gabriel\desktop\bullet3-master\examples\commoninterfaces\CommonExampleInterface.h(25) : see declaration of 'CommonExampleInterface'
+     1>..\..\examples\Importers\ImportBsp\ImportBspExample.cpp(290): warning C4316: 'BspDemo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\ForkLift\ForkLiftDemo.cpp(1214): warning C4316: 'ForkLiftDemo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Tutorial\Dof6ConstraintTutorial.cpp(533): warning C4316: 'Dof6ConstraintTutorial' : object allocated on the heap may not be aligned 16
+         ImportObjExample.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportBullet\SerializeSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportBullet\SerializeSetup.cpp(65): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportBullet\SerializeSetup.cpp(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportBullet\SerializeSetup.cpp(96): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportBullet\SerializeSetup.cpp(113): warning C4316: 'SerializeSetup' : object allocated on the heap may not be aligned 16
+         LoadMeshFromObj.cpp
+         Wavefront2GLInstanceGraphicsShape.cpp
+         ImportSTLSetup.cpp
+         BulletUrdfImporter.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         ImportURDFSetup.cpp
+         MyMultiBodyCreator.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp(212): warning C4316: 'ImportColladaSetup' : object allocated on the heap may not be aligned 16
+         ROSURDFImporter.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\importers\importstldemo\LoadMeshFromSTL.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp(94): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp(110): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp(148): warning C4316: 'ImportObjSetup' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(64): warning C4316: 'GenericConstraintUserInfo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(147): warning C4316: 'GenericConstraintUserInfo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(171): warning C4316: 'GenericConstraintUserInfo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp(91): warning C4316: 'ImportSTLSetup' : object allocated on the heap may not be aligned 16
+         URDF2Bullet.cpp
+         UrdfParser.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\importers\importurdfdemo\../ImportSTLDemo/LoadMeshFromSTL.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(106): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(213): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+         urdfStringSplit.cpp
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(216): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(244): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(245): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(280): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(281): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(283): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(285): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(309): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(338): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(341): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(357): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(358): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         btBulletWorldImporter.cpp
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(584): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(585): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(593): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(595): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(625): warning C4244: 'initializing' : conversion from 'const double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(647): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(654): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(671): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp(672): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         btWorldImporter.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\importers\importurdfdemo\../ImportSTLDemo/LoadMeshFromSTL.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ExampleBrowser\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp)
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(112): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(120): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(230) : see declaration of 'fscanf'
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(143): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(291): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(327): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(423): warning C4316: 'ImportUrdfSetup' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(25): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(46): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(134): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(752): warning C4316: 'UrdfMaterial' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(768): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(774): warning C4316: 'UrdfLink' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(822): warning C4316: 'UrdfJoint' : object allocated on the heap may not be aligned 16
+         bChunk.cpp
+         bDNA.cpp
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1000): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1004): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1007): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1278): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1327): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1327): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1328): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1330): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1330): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1334): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1334): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1335): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1337): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1337): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ThirdPartyLibs\urdf/urdfdom_headers/urdf_model/include/urdf_model/pose.h(82): warning C4101: 'e' : unreferenced local variable (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(76): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(78): warning C4101: 'e' : unreferenced local variable (..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp)
+         bFile.cpp
+         btBulletFile.cpp
+         Planar2D.cpp
+         CoordinateSystemDemo.cpp
+         RaytracerSetup.cpp
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(214): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(215): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(216): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(217): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(238): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(239): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(240): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(269): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(270): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(303): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(305): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(318): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(329): warning C4244: 'initializing' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(359): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(362): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(378): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(379): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(613): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(615): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(635): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(646): warning C4244: 'initializing' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(669): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(676): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(693): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(694): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(856): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(857): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(888): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\Importers\ImportURDFDemo\ROSURDFImporter.cpp(889): warning C4244: 'argument' : conversion from 'const double' to 'const btScalar', possible loss of data
+     1>..\..\examples\RenderingExamples\CoordinateSystemDemo.cpp(159): warning C4099: 'CommonExampleInterface' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\gabriel\desktop\bullet3-master\examples\renderingexamples\../CommonInterfaces/CommonExampleInterface.h(25) : see declaration of 'CommonExampleInterface'
+     1>..\..\Extras\Serialize\BulletFileLoader\btBulletFile.cpp(371): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         RenderInstancingDemo.cpp
+     1>..\..\Extras\Serialize\BulletFileLoader\bFile.cpp(70): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\Extras\Serialize\BulletFileLoader\bFile.cpp(585): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         TimeSeriesCanvas.cpp
+         TimeSeriesExample.cpp
+         TimeSeriesFontData.cpp
+     1>..\..\examples\RenderingExamples\RenderInstancingDemo.cpp(56): warning C4244: 'argument' : conversion from 'int' to 'b3Scalar', possible loss of data
+     1>..\..\examples\RenderingExamples\RenderInstancingDemo.cpp(96): warning C4244: 'argument' : conversion from 'int' to 'b3Scalar', possible loss of data
+         btConvexConvexMprAlgorithm.cpp
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(69): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(133): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(135): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(136): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(137): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(138): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(241): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(258): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(260): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(271): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(272): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(300): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(304): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\RenderingExamples\TimeSeriesCanvas.cpp(320): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         VoronoiFractureDemo.cpp
+         SoftDemo.cpp
+         RollingFrictionDemo.cpp
+         btFractureBody.cpp
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(106): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(125): warning C4316: 'RaytracerInternalData' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(261): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(302): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(303): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(337): warning C4244: 'initializing' : conversion from 'btScalar' to 'unsigned char', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(338): warning C4244: 'initializing' : conversion from 'btScalar' to 'unsigned char', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(339): warning C4244: 'initializing' : conversion from 'btScalar' to 'unsigned char', possible loss of data
+     1>..\..\examples\RenderingExamples\RaytracerSetup.cpp(294): warning C4101: 'y' : unreferenced local variable
+     1>c:\users\gabriel\desktop\bullet3-master\examples\planar2d\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Planar2D\Planar2D.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Planar2D\Planar2D.cpp(337): warning C4316: 'Planar2D' : object allocated on the heap may not be aligned 16
+         btFractureDynamicsWorld.cpp
+         FractureDemo.cpp
+         MotorDemo.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\softdemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\SoftDemo\SoftDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         ConstraintDemo.cpp
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(426): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(523): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(524): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(528): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(579): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(676): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+         ConstraintPhysicsSetup.cpp
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(713): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(869): warning C4244: '=' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(936): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(1294): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(1466): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(1478): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(1482): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\SoftDemo\SoftDemo.cpp(2354): warning C4316: 'SoftDemo' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\bullet3-master\examples\voronoifracture\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp(722): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp(729): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp(737): warning C4244: 'argument' : conversion from 'double' to 'const btScalar', possible loss of data
+     1>..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp(829): warning C4316: 'VoronoiFractureDemo' : object allocated on the heap may not be aligned 16
+         Dof6Spring2Setup.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\rollingfrictiondemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         TestHingeTorque.cpp
+         Hinge2Vehicle.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\fracturedemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\FractureDemo\FractureDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\FractureDemo\FractureDemo.cpp(408): warning C4316: 'FractureDemo' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp(241): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp(237): warning C4101: 'p' : unreferenced local variable
+     1>..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp(293): warning C4316: 'RollingFrictionDemo' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\bullet3-master\examples\dynamiccontroldemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\DynamicControlDemo\MotorDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\DynamicControlDemo\MotorDemo.cpp(166): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\DynamicControlDemo\MotorDemo.cpp(206): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\DynamicControlDemo\MotorDemo.cpp(341): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\DynamicControlDemo\MotorDemo.cpp(359): warning C4244: 'initializing' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\DynamicControlDemo\MotorDemo.cpp(449): warning C4316: 'MotorDemo' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\bullet3-master\examples\constraints\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Constraints\ConstraintPhysicsSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         RaytestDemo.cpp
+     1>..\..\examples\Constraints\ConstraintPhysicsSetup.cpp(160): warning C4316: 'ConstraintPhysicsSetup' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\bullet3-master\src\bulletdynamics\mlcpsolvers\btLemkeAlgorithm.h : warning C4819: The file contains a character that cannot be represented in the current code page (950). Save the file in Unicode format to prevent data loss (..\..\examples\Constraints\Dof6Spring2Setup.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\constraints\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Constraints\ConstraintDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         MultiDofDemo.cpp
+     1>..\..\examples\Constraints\ConstraintDemo.cpp(884): warning C4316: 'AllConstraintDemo' : object allocated on the heap may not be aligned 16
+         TestJointTorqueSetup.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\constraints\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Constraints\TestHingeTorque.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\gabriel\desktop\bullet3-master\examples\constraints\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Constraints\Dof6Spring2Setup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Constraints\TestHingeTorque.cpp(205): warning C4316: 'btJointFeedback' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Constraints\TestHingeTorque.cpp(242): warning C4316: 'TestHingeTorque' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\Constraints\Dof6Spring2Setup.cpp(364): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\Constraints\Dof6Spring2Setup.cpp(404): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\Constraints\Dof6Spring2Setup.cpp(423): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\Constraints\Dof6Spring2Setup.cpp(502): warning C4316: 'Dof6Spring2Setup' : object allocated on the heap may not be aligned 16
+         MultiBodyConstraintFeedback.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\vehicles\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Vehicles\Hinge2Vehicle.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Vehicles\Hinge2Vehicle.cpp(574): warning C4101: 'i' : unreferenced local variable
+     1>..\..\examples\Vehicles\Hinge2Vehicle.cpp(573): warning C4101: 'm' : unreferenced local variable
+     1>..\..\examples\Vehicles\Hinge2Vehicle.cpp(1182): warning C4316: 'Hinge2Vehicle' : object allocated on the heap may not be aligned 16
+         InvertedPendulumPDControl.cpp
+         stb_image.cpp
+         tiny_obj_loader.cpp
+     1>..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(290): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(328): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(4220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         tinystr.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\raycast\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Raycast\RaytestDemo.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Raycast\RaytestDemo.cpp(74): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\examples\Raycast\RaytestDemo.cpp(252): warning C4244: 'argument' : conversion from 'int' to 'const btScalar', possible loss of data
+     1>..\..\examples\Raycast\RaytestDemo.cpp(331): warning C4316: 'RaytestDemo' : object allocated on the heap may not be aligned 16
+         tinyxml.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\multibody\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\MultiBody\TestJointTorqueSetup.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\multibody\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\MultiBody\MultiDofDemo.cpp)
+     1>..\..\examples\MultiBody\MultiDofDemo.cpp(433): warning C4316: 'MultiDofDemo' : object allocated on the heap may not be aligned 16
+         tinyxmlerror.cpp
+         tinyxmlparser.cpp
+         b3Clock.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\multibody\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp)
+     1>..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(161): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         b3ResourcePath.cpp
+     1>..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(217): warning C4316: 'btMultiBodyJointFeedback' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(364): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(366): warning C4244: 'argument' : conversion from 'int' to 'btScalar', possible loss of data
+     1>..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(431): warning C4316: 'MultiBodyConstraintFeedbackSetup' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(353): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+         GyroscopicSetup.cpp
+     1>..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(589): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(605): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>..\..\examples\MultiBody\TestJointTorqueSetup.cpp(221): warning C4316: 'btMultiBodyJointFeedback' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(661): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>..\..\examples\MultiBody\TestJointTorqueSetup.cpp(375): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\MultiBody\TestJointTorqueSetup.cpp(371): warning C4101: 'p' : unreferenced local variable
+     1>..\..\examples\MultiBody\TestJointTorqueSetup.cpp(435): warning C4316: 'TestJointTorqueSetup' : object allocated on the heap may not be aligned 16
+         pose.cpp
+         model.cpp
+         link.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\multibody\../CommonInterfaces/CommonMultiBodyBase.h(333): warning C4316: 'btMultiBodyPoint2Point' : object allocated on the heap may not be aligned 16 (..\..\examples\MultiBody\InvertedPendulumPDControl.cpp)
+         joint.cpp
+     1>c:\users\gabriel\desktop\bullet3-master\examples\gyroscopicdemo\../CommonInterfaces/CommonRigidBodyBase.h(165): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\GyroscopicDemo\GyroscopicSetup.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\GyroscopicDemo\GyroscopicSetup.cpp(137): warning C4316: 'GyroscopicSetup' : object allocated on the heap may not be aligned 16
+         printf_console.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ThirdPartyLibs\urdf/urdfdom_headers/urdf_model/include/urdf_model/pose.h(82): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\pose.cpp)
+     1>..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(222): warning C4316: 'btMultiBodyJointFeedback' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(396): warning C4244: 'initializing' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(416): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(465): warning C4316: 'InvertedPendulumPDControl' : object allocated on the heap may not be aligned 16
+         string_split.cpp
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Utils\b3ResourcePath.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Utils\b3ResourcePath.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3Common/b3FileUtils.h(44): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (..\..\examples\Utils\b3ResourcePath.cpp)
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>..\..\examples\Utils\b3ResourcePath.cpp(67): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\examples\Utils\b3ResourcePath.cpp(74): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+         PairBench.cpp
+         GpuConvexScene.cpp
+         GpuRigidBodyDemo.cpp
+     1>..\..\examples\OpenCL\broadphase\PairBench.cpp(331): warning C4244: 'argument' : conversion from 'double' to 'b3Scalar', possible loss of data
+     1>..\..\examples\OpenCL\broadphase\PairBench.cpp(377): warning C4244: 'argument' : conversion from 'int' to 'b3Scalar', possible loss of data
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ThirdPartyLibs\urdf/urdfdom_headers/urdf_model/include/urdf_model/pose.h(82): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(76): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(78): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp)
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ThirdPartyLibs\urdf/urdfdom_headers/urdf_model/include/urdf_model/pose.h(82): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(76): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(78): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\opencl\rigidbody\GpuRigidBodyDemoInternalData.h(20): warning C4099: 'b3DynamicBvhBroadphase' : type name first seen using 'struct' now seen using 'class' (..\..\examples\OpenCL\rigidbody\GpuConvexScene.cpp)
+                 C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h(35) : see declaration of 'b3DynamicBvhBroadphase'
+     1>C:\Users\Gabriel\Desktop\bullet3-master\examples\ThirdPartyLibs\urdf/urdfdom_headers/urdf_model/include/urdf_model/pose.h(82): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\opencl\rigidbody\GpuRigidBodyDemoInternalData.h(20): warning C4099: 'b3DynamicBvhBroadphase' : type name first seen using 'struct' now seen using 'class' (..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp)
+                 C:\Users\Gabriel\Desktop\bullet3-master\src\Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h(35) : see declaration of 'b3DynamicBvhBroadphase'
+     1>..\..\examples\OpenCL\rigidbody\GpuConvexScene.cpp(285): warning C4244: 'argument' : conversion from 'double' to 'b3Scalar', possible loss of data
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp(133): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp(184): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp(197): warning C4101: 'e' : unreferenced local variable
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(76): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp)
+     1>c:\users\gabriel\desktop\bullet3-master\examples\thirdpartylibs\urdf\urdfdom_headers\urdf_model\include\urdf_model\color.h(78): warning C4101: 'e' : unreferenced local variable (..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp)
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp(316): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp(348): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(82): warning C4316: 'GpuRigidBodyDemoInternalData' : object allocated on the heap may not be aligned 16
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(338): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(339): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(321): warning C4101: 'rightOffset' : unreferenced local variable
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(391): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(424): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp(106): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp(163): warning C4101: 'e' : unreferenced local variable
+     1>..\..\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp(107): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\App_ExampleBrowser_vs2010_debug.exe" /INCREMENTAL /NOLOGO ..\..\bin\gwen_vs2010_debug.lib ..\..\bin\OpenGL_Window_vs2010_debug.lib ..\..\bin\BulletSoftBody_vs2010_debug.lib ..\..\bin\BulletDynamics_vs2010_debug.lib ..\..\bin\BulletCollision_vs2010_debug.lib ..\..\bin\LinearMath_vs2010_debug.lib ..\..\bin\Bullet3Common_vs2010_debug.lib opengl32.lib glu32.lib ..\..\bin\Bullet3OpenCL_clew_vs2010_debug.lib ..\..\bin\Bullet3Dynamics_vs2010_debug.lib ..\..\bin\Bullet3Collision_vs2010_debug.lib ..\..\bin\Bullet3Geometry_vs2010_debug.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\bin\App_ExampleBrowser_vs2010_debug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\App_ExampleBrowser_vs2010_debug.lib" /MACHINE:X86 obj\x32\Debug\App_ExampleBrowser\clew.obj
+         obj\x32\Debug\App_ExampleBrowser\glew.obj
+         obj\x32\Debug\App_ExampleBrowser\ExampleEntries.obj
+         obj\x32\Debug\App_ExampleBrowser\GL_ShapeDrawer.obj
+         obj\x32\Debug\App_ExampleBrowser\main.obj
+         obj\x32\Debug\App_ExampleBrowser\OpenGLExampleBrowser.obj
+         obj\x32\Debug\App_ExampleBrowser\OpenGLGuiHelper.obj
+         obj\x32\Debug\App_ExampleBrowser\GraphingTexture.obj
+         obj\x32\Debug\App_ExampleBrowser\GwenParameterInterface.obj
+         obj\x32\Debug\App_ExampleBrowser\GwenProfileWindow.obj
+         obj\x32\Debug\App_ExampleBrowser\GwenTextureWindow.obj
+         obj\x32\Debug\App_ExampleBrowser\gwenUserInterface.obj
+         obj\x32\Debug\App_ExampleBrowser\PhysicsClientC_API.obj
+         obj\x32\Debug\App_ExampleBrowser\PhysicsServerExample.obj
+         obj\x32\Debug\App_ExampleBrowser\PhysicsClientExample.obj
+         obj\x32\Debug\App_ExampleBrowser\RobotControlExample.obj
+         obj\x32\Debug\App_ExampleBrowser\PhysicsServer.obj
+         obj\x32\Debug\App_ExampleBrowser\PhysicsClient.obj
+         obj\x32\Debug\App_ExampleBrowser\PosixSharedMemory.obj
+         obj\x32\Debug\App_ExampleBrowser\Win32SharedMemory.obj
+         obj\x32\Debug\App_ExampleBrowser\MultiThreadingExample.obj
+         obj\x32\Debug\App_ExampleBrowser\b3PosixThreadSupport.obj
+         obj\x32\Debug\App_ExampleBrowser\b3Win32ThreadSupport.obj
+         obj\x32\Debug\App_ExampleBrowser\b3ThreadSupportInterface.obj
+         obj\x32\Debug\App_ExampleBrowser\BasicExample.obj
+         obj\x32\Debug\App_ExampleBrowser\Dof6ConstraintTutorial.obj
+         obj\x32\Debug\App_ExampleBrowser\Tutorial.obj
+         obj\x32\Debug\App_ExampleBrowser\BenchmarkDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\ForkLiftDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\BspConverter.obj
+         obj\x32\Debug\App_ExampleBrowser\BspLoader.obj
+         obj\x32\Debug\App_ExampleBrowser\ImportBspExample.obj
+         obj\x32\Debug\App_ExampleBrowser\SerializeSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\ImportColladaSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\LoadMeshFromCollada.obj
+         obj\x32\Debug\App_ExampleBrowser\ImportObjExample.obj
+         obj\x32\Debug\App_ExampleBrowser\LoadMeshFromObj.obj
+         obj\x32\Debug\App_ExampleBrowser\Wavefront2GLInstanceGraphicsShape.obj
+         obj\x32\Debug\App_ExampleBrowser\ImportSTLSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\BulletUrdfImporter.obj
+         obj\x32\Debug\App_ExampleBrowser\ImportURDFSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\MyMultiBodyCreator.obj
+         obj\x32\Debug\App_ExampleBrowser\ROSURDFImporter.obj
+         obj\x32\Debug\App_ExampleBrowser\URDF2Bullet.obj
+         obj\x32\Debug\App_ExampleBrowser\UrdfParser.obj
+         obj\x32\Debug\App_ExampleBrowser\urdfStringSplit.obj
+         obj\x32\Debug\App_ExampleBrowser\btBulletWorldImporter.obj
+         obj\x32\Debug\App_ExampleBrowser\btWorldImporter.obj
+         obj\x32\Debug\App_ExampleBrowser\bChunk.obj
+         obj\x32\Debug\App_ExampleBrowser\bDNA.obj
+         obj\x32\Debug\App_ExampleBrowser\bFile.obj
+         obj\x32\Debug\App_ExampleBrowser\btBulletFile.obj
+         obj\x32\Debug\App_ExampleBrowser\Planar2D.obj
+         obj\x32\Debug\App_ExampleBrowser\CoordinateSystemDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\RaytracerSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\RenderInstancingDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\TimeSeriesCanvas.obj
+         obj\x32\Debug\App_ExampleBrowser\TimeSeriesExample.obj
+         obj\x32\Debug\App_ExampleBrowser\TimeSeriesFontData.obj
+         obj\x32\Debug\App_ExampleBrowser\btConvexConvexMprAlgorithm.obj
+         obj\x32\Debug\App_ExampleBrowser\VoronoiFractureDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\SoftDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\RollingFrictionDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\btFractureBody.obj
+         obj\x32\Debug\App_ExampleBrowser\btFractureDynamicsWorld.obj
+         obj\x32\Debug\App_ExampleBrowser\FractureDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\MotorDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\ConstraintDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\ConstraintPhysicsSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\Dof6Spring2Setup.obj
+         obj\x32\Debug\App_ExampleBrowser\TestHingeTorque.obj
+         obj\x32\Debug\App_ExampleBrowser\Hinge2Vehicle.obj
+         obj\x32\Debug\App_ExampleBrowser\RaytestDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\MultiDofDemo.obj
+         obj\x32\Debug\App_ExampleBrowser\TestJointTorqueSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\MultiBodyConstraintFeedback.obj
+         obj\x32\Debug\App_ExampleBrowser\InvertedPendulumPDControl.obj
+         obj\x32\Debug\App_ExampleBrowser\stb_image.obj
+         obj\x32\Debug\App_ExampleBrowser\tiny_obj_loader.obj
+         obj\x32\Debug\App_ExampleBrowser\tinystr.obj
+         obj\x32\Debug\App_ExampleBrowser\tinyxml.obj
+         obj\x32\Debug\App_ExampleBrowser\tinyxmlerror.obj
+         obj\x32\Debug\App_ExampleBrowser\tinyxmlparser.obj
+         obj\x32\Debug\App_ExampleBrowser\b3Clock.obj
+         obj\x32\Debug\App_ExampleBrowser\b3ResourcePath.obj
+         obj\x32\Debug\App_ExampleBrowser\GyroscopicSetup.obj
+         obj\x32\Debug\App_ExampleBrowser\pose.obj
+         obj\x32\Debug\App_ExampleBrowser\model.obj
+         obj\x32\Debug\App_ExampleBrowser\link.obj
+         obj\x32\Debug\App_ExampleBrowser\joint.obj
+         obj\x32\Debug\App_ExampleBrowser\printf_console.obj
+         obj\x32\Debug\App_ExampleBrowser\string_split.obj
+         obj\x32\Debug\App_ExampleBrowser\PairBench.obj
+         obj\x32\Debug\App_ExampleBrowser\GpuConvexScene.obj
+         obj\x32\Debug\App_ExampleBrowser\GpuRigidBodyDemo.obj
+         App_ExampleBrowser.vcxproj -> C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\..\..\bin\App_ExampleBrowser_vs2010_debug.exe
+     1>Done Building Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\App_ExampleBrowser.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:38.83

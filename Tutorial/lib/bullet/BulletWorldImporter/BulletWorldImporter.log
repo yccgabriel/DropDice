@@ -1,0 +1,29 @@
+﻿Build started 8/9/2015 23:10:46.
+     1>Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\BulletWorldImporter.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\Extras\Serialize\BulletFileLoader /I..\..\src /Zi /nologo /W3 /WX- /Od /Oy- /D _DEBUG=1 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:fast /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Debug\BulletWorldImporter\\" /Fd"..\..\bin\BulletWorldImporter_vs2010_debug.pdb" /Gd /TP /analyze- /errorReport:prompt /MP ..\..\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp ..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp
+         btBulletWorldImporter.cpp
+         btWorldImporter.cpp
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1000): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1004): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1007): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1278): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1327): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1327): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1328): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1330): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1330): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1334): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1334): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1335): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1337): warning C4800: 'char' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp(1337): warning C4244: 'argument' : conversion from 'double' to 'btScalar', possible loss of data
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"..\..\bin\BulletWorldImporter_vs2010_debug.lib" /NOLOGO /MACHINE:X86 obj\x32\Debug\BulletWorldImporter\btBulletWorldImporter.obj
+         obj\x32\Debug\BulletWorldImporter\btWorldImporter.obj
+         BulletWorldImporter.vcxproj -> C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\..\..\bin\BulletWorldImporter_vs2010_debug.lib
+     1>Done Building Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\BulletWorldImporter.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.55

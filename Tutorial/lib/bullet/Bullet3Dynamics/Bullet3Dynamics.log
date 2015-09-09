@@ -1,0 +1,9 @@
+﻿Build started 9/9/2015 17:53:54.
+     1>Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\Bullet3Dynamics.vcxproj" on node 3 (Build target(s)).
+     1>Lib:
+         Bullet3Dynamics.vcxproj -> C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\..\..\bin\Bullet3Dynamics_vs2010_debug.lib
+     1>Done Building Project "C:\Users\Gabriel\Desktop\bullet3-master\build3\vs2010\Bullet3Dynamics.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.22
