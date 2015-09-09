@@ -8,6 +8,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GL/glew.h>
+#include <qu3e/q3.h>
 
 #include "ShaderManager.h"
 #include "ShaderManager.h"
@@ -32,7 +33,8 @@ private:
 
 struct Instance	// default all to be public
 {
-	glm::mat4 transform;
+	glm::mat4	 transform;
+	const q3Box* m_opBox;
 };
 
 struct Face

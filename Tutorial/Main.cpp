@@ -11,6 +11,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
+#include <qu3e/q3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -28,6 +29,8 @@ void glfw_error_callback(int error, const char* description)
 	puts(description);
 #endif
 }
+
+q3Scene scene(1.0 / 60.0);
 
 int main()
 {
@@ -214,6 +217,7 @@ int main()
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[0]->transform));
 		die.DrawDie();
 		die.m_opvInstances[1]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, -1));
+		die.m_opvInstances[1]->transform = glm::rotate(die.m_opvInstances[1]->transform, time * glm::radians(180.0f), glm::vec3(0, 1, 0));
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[1]->transform));
 		die.DrawDie();
 		die.m_opvInstances[2]->transform = glm::translate(glm::mat4(), glm::vec3(1, 0, 0));
@@ -261,6 +265,7 @@ int main()
 		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
 		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
 
+		scene.Step();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
