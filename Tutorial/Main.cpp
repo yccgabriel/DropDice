@@ -15,12 +15,20 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <rp3d/reactphysics3d.h>
 
 #include "ShaderUtil.h"
 
 #include "ShaderManager.h"
 #include "Floor.h"
 #include "Die.h"
+
+// Gravity vector 
+rp3d::Vector3 gravity(0.0, 0.0, -1.0);
+// Time step (in seconds) 
+rp3d::decimal timeStep = 1.0 / 60.0;
+// Create the dynamics world 
+rp3d::DynamicsWorld world(gravity, timeStep);
 
 void glfw_error_callback(int error, const char* description)
 {
@@ -78,69 +86,15 @@ int main()
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
-	// Create Vertex Buffer
-//	GLuint vbo;
-//	glGenBuffers(1, &vbo);
-//	// Define vertices. Move to seperate function later
-//	float vertices[] = {
-//		// X      Y     Z     R     G     B     U     V
-//		// start of the cube
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//
-//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//
-//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		-0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//
-//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-//		-0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-//		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-//		// end of the cube
-//
-//		// start of the floor
-//		-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-//		2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-//		2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-//		2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-//		-2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-//		-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
-//		// end of the floor
-//	};
-//	// Make the vbo active object
-//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//	// Draw, referto to binded vbo
-//	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);		// GL_STATIC_DRAW, GL_DYNAMIC_DRAW, or GL_STREAM_DRAW
+	// Change the number of iterations of the velocity solver 
+	world.setNbIterationsVelocitySolver(10);
+	// Change the number of iterations of the position solver 
+	world.setNbIterationsPositionSolver(5);
+	// Disable the sleeping technique 
+	world.enableSleeping(true);
+
+	// Start the simulation 
+	world.start();
 
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
@@ -174,14 +128,14 @@ int main()
 	glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
 
 	die.CreateInstance();
-	die.CreateInstance();
-	die.CreateInstance();
-	die.CreateInstance();
 	//die.m_opvInstances[0]->transform = glm::mat4
 	floor.CreateInstance();
 
 	while (!glfwWindowShouldClose(window))
 	{
+		// Update the world by taking a simulation step 
+		world.update();
+
 		//glEnable(GL_DEPTH_TEST);		// this will fill the depth buffer with zeros, black screen
 
 		// Blending
@@ -209,18 +163,10 @@ int main()
 	//		die.DrawInstance(die.m_opvInstances[i]);
 	//		//std::cout << die.m_opvInstances[i] << std::endl;
 	//	}
-		die.m_opvInstances[0]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, 1));
-		die.m_opvInstances[0]->transform = glm::rotate(die.m_opvInstances[0]->transform, time * glm::radians(180.0f), glm::vec3(0, 0, 1));
+		//die.m_opvInstances[0]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, 1));
+		//die.m_opvInstances[0]->transform = glm::rotate(die.m_opvInstances[0]->transform, time * glm::radians(180.0f), glm::vec3(0, 0, 1));
+		die.m_opvInstances[0]->Update();
 		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[0]->transform));
-		die.DrawDie();
-		die.m_opvInstances[1]->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, -1));
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[1]->transform));
-		die.DrawDie();
-		die.m_opvInstances[2]->transform = glm::translate(glm::mat4(), glm::vec3(1, 0, 0));
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[2]->transform));
-		die.DrawDie();
-		die.m_opvInstances[3]->transform = glm::translate(glm::mat4(), glm::vec3(-1, 0, 0));
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die.m_opvInstances[3]->transform));
 		die.DrawDie();
 
 	//	die.m_opvInstances[0]->transform = glm::translate(model, glm::vec3(1, 0, 0));
@@ -239,7 +185,9 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			//floor.DrawFloor();
+			floor.m_opvInstances[0]->Update();
+			glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(floor.m_opvInstances[0]->transform));
+			floor.DrawFloor();
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);

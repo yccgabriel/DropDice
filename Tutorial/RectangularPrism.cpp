@@ -17,11 +17,6 @@ RectangularPrism::~RectangularPrism()
 		delete m_opvInstances[i];
 }
 
-void RectangularPrism::CreateInstance()
-{
-	m_opvInstances.push_back(new Instance());
-}
-
 // private methods
 void RectangularPrism::RectangleToTriangleVertices()
 {

@@ -13,6 +13,11 @@
 class Floor : public RectangularPrism
 {
 public:
+	// Initial position and orientation of the rigid body 
+	rp3d::Vector3		m_InitPosition = rp3d::Vector3(0.0, 0.0, 0.0);
+	rp3d::Quaternion	m_InitOrientation = rp3d::Quaternion::identity();
+	rp3d::Transform		m_Transform = rp3d::Transform(m_InitPosition, m_InitOrientation);
+
 	Floor() : RectangularPrism(FLOOR_VERTICES)
 	{ 
 		m_ovFaces.push_back(new Face());
@@ -27,6 +32,10 @@ public:
 	void DrawFloor()
 	{
 		m_ovFaces[0]->Draw();
+	}
+	void CreateInstance() override
+	{
+		m_opvInstances.push_back(new Instance(FLOOR, m_Transform));
 	}
 };
 
