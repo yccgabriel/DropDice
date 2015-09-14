@@ -1,0 +1,31 @@
+﻿Build started 14/9/2015 16:17:38.
+     1>Project "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\LinearMath.vcxproj" on node 5 (Build target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/Users/Gabriel/Desktop/bullet3-master/src/LinearMath/CMakeLists.txt
+         CMake does not need to re-run because C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Gabriel\Desktop\bullet3-master\src" /nologo /W3 /WX- /O2 /Ob2 /Oy- /D WIN32 /D NDEBUG /D USE_GRAPHICAL_BENCHMARK /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /D "CMAKE_INTDIR=\"Release\"" /D _MBCS /Gm- /EHsc /MT /GS /arch:SSE /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"LinearMath.dir\Release\\" /Fd"LinearMath.dir\Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btAlignedAllocator.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btConvexHull.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btConvexHullComputer.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btGeometryUtil.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btPolarDecomposition.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btQuickprof.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btSerializer.cpp" "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\btVector3.cpp"
+         btAlignedAllocator.cpp
+         btConvexHull.cpp
+         btConvexHullComputer.cpp
+         btGeometryUtil.cpp
+         btPolarDecomposition.cpp
+         btQuickprof.cpp
+         btSerializer.cpp
+         btVector3.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Gabriel\Desktop\bullet3-master\lib\Release\LinearMath.lib" /NOLOGO LinearMath.dir\Release\btAlignedAllocator.obj
+         LinearMath.dir\Release\btConvexHull.obj
+         LinearMath.dir\Release\btConvexHullComputer.obj
+         LinearMath.dir\Release\btGeometryUtil.obj
+         LinearMath.dir\Release\btPolarDecomposition.obj
+         LinearMath.dir\Release\btQuickprof.obj
+         LinearMath.dir\Release\btSerializer.obj
+         LinearMath.dir\Release\btVector3.obj
+         LinearMath.vcxproj -> C:\Users\Gabriel\Desktop\bullet3-master\lib\Release\LinearMath.lib
+     1>Done Building Project "C:\Users\Gabriel\Desktop\bullet3-master\src\LinearMath\LinearMath.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.42

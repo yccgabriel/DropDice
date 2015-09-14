@@ -1,0 +1,49 @@
+﻿Build started 14/9/2015 22:36:10.
+     1>Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Release\Tutorial.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glew32s_x86.lib glfw3x86.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Release\Tutorial.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Release\Tutorial.lib" /MACHINE:X86 /SAFESEH Release\Die.obj
+         Release\Floor.obj
+         Release\Main.obj
+         Release\RectangularPrism.obj
+         Release\ShaderManager.obj
+     1>SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>Main.obj : error LNK2001: unresolved external symbol __imp__glClear@4
+     1>glfw3x86.lib(window.c.obj) : error LNK2001: unresolved external symbol __imp__glClear@4
+     1>Main.obj : error LNK2001: unresolved external symbol __imp__glClearColor@16
+     1>Main.obj : error LNK2001: unresolved external symbol "public: __thiscall btBoxShape::btBoxShape(class btVector3 const &)" (??0btBoxShape@@QAE@ABVbtVector3@@@Z)
+     1>Main.obj : error LNK2001: unresolved external symbol "void * __cdecl btAlignedAllocInternal(unsigned int,int)" (?btAlignedAllocInternal@@YAPAXIH@Z)
+     1>Main.obj : error LNK2001: unresolved external symbol __imp__glEnable@4
+     1>Main.obj : error LNK2001: unresolved external symbol "void __cdecl btAlignedFreeInternal(void *)" (?btAlignedFreeInternal@@YAXPAX@Z)
+     1>RectangularPrism.obj : error LNK2001: unresolved external symbol __imp__glDrawArrays@12
+     1>ShaderManager.obj : error LNK2001: unresolved external symbol __imp__glDeleteTextures@8
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glDeleteTextures@8
+     1>ShaderManager.obj : error LNK2001: unresolved external symbol __imp__glBindTexture@8
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glBindTexture@8
+     1>ShaderManager.obj : error LNK2001: unresolved external symbol __imp__glTexImage2D@36
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glTexImage2D@36
+     1>ShaderManager.obj : error LNK2001: unresolved external symbol __imp__glTexParameteri@12
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glTexParameteri@12
+     1>ShaderManager.obj : error LNK2001: unresolved external symbol __imp__glGenTextures@8
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glGenTextures@8
+     1>glew32s_x86.lib(glew.obj) : error LNK2001: unresolved external symbol __imp__glGetString@4
+     1>glfw3x86.lib(context.c.obj) : error LNK2001: unresolved external symbol __imp__glGetString@4
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glGetString@4
+     1>glew32s_x86.lib(glew.obj) : error LNK2001: unresolved external symbol __imp__wglGetCurrentDC@0
+     1>glew32s_x86.lib(glew.obj) : error LNK2001: unresolved external symbol __imp__wglGetProcAddress@4
+     1>glfw3x86.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__wglGetProcAddress@4
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__wglGetProcAddress@4
+     1>glfw3x86.lib(context.c.obj) : error LNK2001: unresolved external symbol __imp__glGetIntegerv@8
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glGetIntegerv@8
+     1>glfw3x86.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__wglCreateContext@4
+     1>glfw3x86.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__wglDeleteContext@4
+     1>glfw3x86.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__wglMakeCurrent@8
+     1>glfw3x86.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__wglShareLists@8
+     1>SOIL.lib(SOIL.obj) : error LNK2001: unresolved external symbol __imp__glReadPixels@28
+     1>C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Release\Tutorial.exe : fatal error LNK1120: 21 unresolved externals
+     1>Done Building Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.48

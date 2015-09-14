@@ -76,7 +76,7 @@ int main()
 
 	//** Bullet Physics Engine
 	btBoxShape* box = new btBoxShape(btVector3(1, 1, 1));
-	// Build the broadphase
+//	// Build the broadphase
 //	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
 //	// Set up the collision configuration and dispatcher
 //	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
