@@ -1,25 +1,17 @@
-﻿Build started 9/9/2015 19:01:20.
+﻿Build started 14/9/2015 23:01:07.
      1>Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Die.cpp Floor.cpp Main.cpp RectangularPrism.cpp ShaderManager.cpp
-         ShaderManager.cpp
-         RectangularPrism.cpp
-     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(16): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(22): warning C4316: 'Instance' : object allocated on the heap may not be aligned 16
-         Main.cpp
-     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\die.h(60): warning C4018: '<' : signed/unsigned mismatch
-         Floor.cpp
-         Die.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glfw3x86.lib glew32s_x86.lib SOIL.lib /NODEFAULTLIB:opengl32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.lib" /MACHINE:X86 Debug\Die.obj
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glfw3x86.lib glew32s_x86.lib SOIL.lib bullet/Bullet2FileLoader_vs2010_debug.lib bullet/Bullet3Collision_vs2010_debug.lib bullet/Bullet3Common_vs2010_debug.lib bullet/Bullet3Dynamics_vs2010_debug.lib bullet/Bullet3Geometry_vs2010_debug.lib bullet/Bullet3OpenCL_clew_vs2010_debug.lib bullet/BulletCollision_vs2010_debug.lib bullet/BulletDynamics_vs2010_debug.lib bullet/BulletFileLoader_vs2010_debug.lib bullet/BulletSoftBody_vs2010_debug.lib bullet/BulletWorldImporter_vs2010_debug.lib bullet/ConvexDecomposition_vs2010_debug.lib bullet/gtest_vs2010_debug.lib bullet/gwen_vs2010_debug.lib bullet/HACD_vs2010_debug.lib bullet/LinearMath_vs2010_debug.lib bullet/OpenGL_Window_vs2010_debug.lib /NODEFAULTLIB:opengl32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.lib" /MACHINE:X86 Debug\Die.obj
          Debug\Floor.obj
          Debug\Main.obj
          Debug\RectangularPrism.obj
          Debug\ShaderManager.obj
-         "C:\Users\Gabriel\Desktop\bullet3-master\bin\Bullet3Collision_vs2010_debug.lib"
-         "C:\Users\Gabriel\Desktop\bullet3-master\bin\Bullet3Dynamics_vs2010_debug.lib"
-         "C:\Users\Gabriel\Desktop\bullet3-master\bin\LinearMath_vs2010_debug.lib"
+     1>BulletCollision_vs2010_debug.lib(btCollisionShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
+     1>BulletCollision_vs2010_debug.lib(btConvexShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
+     1>BulletCollision_vs2010_debug.lib(btPolyhedralConvexShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
+     1>BulletCollision_vs2010_debug.lib(btConvexPolyhedron.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
+     1>LinearMath_vs2010_debug.lib(btConvexHullComputer.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
+     1>LinearMath_vs2010_debug.lib(btGeometryUtil.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MDd_DynamicDebug' in Main.obj
      1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
@@ -47,10 +39,9 @@
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewBindFragDataLocation imported
-     1>Main.obj : error LNK2019: unresolved external symbol "public: __thiscall btBoxShape::btBoxShape(class btVector3 const &)" (??0btBoxShape@@QAE@ABVbtVector3@@@Z) referenced in function _main
-     1>C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe : fatal error LNK1120: 1 unresolved externals
+     1>C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe : fatal error LNK1319: 6 mismatches detected
      1>Done Building Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:03.47
+Time Elapsed 00:00:00.47
