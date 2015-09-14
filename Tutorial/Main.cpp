@@ -76,16 +76,16 @@ int main()
 
 	//** Bullet Physics Engine
 	btBoxShape* box = new btBoxShape(btVector3(1, 1, 1));
-//	// Build the broadphase
-//	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
-//	// Set up the collision configuration and dispatcher
-//	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-//	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
-//	// The actual physics solver
-//	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
-//	// The world.
-//	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
-//	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	// Build the broadphase
+	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
+	// Set up the collision configuration and dispatcher
+	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
+	// The actual physics solver
+	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
+	// The world.
+	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+	dynamicsWorld->setGravity(btVector3(0, -10, 0));
 
 	// Vertex Array Objects, use to link VBO and attributes with raw vertex data
 	GLuint vao;
