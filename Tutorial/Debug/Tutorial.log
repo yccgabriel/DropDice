@@ -1,25 +1,13 @@
-﻿Build started 14/9/2015 22:22:15.
+﻿Build started 15/9/2015 20:31:01.
      1>Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" on node 2 (Build target(s)).
      1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glfw3x86.lib glew32s_x86.lib SOIL.lib bullet/Bullet2FileLoader.lib bullet/Bullet3Collision.lib bullet/Bullet3Common.lib bullet/Bullet3Dynamics.lib bullet/Bullet3Geometry.lib bullet/Bullet3OpenCL_clew.lib bullet/BulletCollision.lib bullet/BulletDynamics.lib bullet/BulletFileLoader.lib bullet/BulletSoftBody.lib bullet/BulletWorldImporter.lib bullet/BulletXmlWorldImporter.lib bullet/ConvexDecomposition.lib bullet/GIMPACTUtils.lib bullet/gtest.lib bullet/gwen.lib bullet/HACD.lib bullet/LinearMath.lib bullet/OpenGLWindow.lib /NODEFAULTLIB:opengl32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.lib" /MACHINE:X86 Debug\Die.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe" /INCREMENTAL /NOLOGO opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glew32s_x86.lib glfw3x86.lib SOIL.lib bullet/Bullet2FileLoader_vs2010_debug.lib bullet/Bullet3Collision_vs2010_debug.lib bullet/Bullet3Common_vs2010_debug.lib bullet/Bullet3Dynamics_vs2010_debug.lib bullet/Bullet3Geometry_vs2010_debug.lib bullet/Bullet3OpenCL_clew_vs2010_debug.lib bullet/BulletCollision_vs2010_debug.lib bullet/BulletDynamics_vs2010_debug.lib bullet/BulletFileLoader_vs2010_debug.lib bullet/BulletSoftBody_vs2010_debug.lib bullet/BulletWorldImporter_vs2010_debug.lib bullet/ConvexDecomposition_vs2010_debug.lib bullet/gtest_vs2010_debug.lib bullet/gwen_vs2010_debug.lib bullet/HACD_vs2010_debug.lib bullet/LinearMath_vs2010_debug.lib bullet/OpenGL_Window_vs2010_debug.lib /NODEFAULTLIB:opengl32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.lib" /MACHINE:X86 Debug\Die.obj
          Debug\Floor.obj
          Debug\Main.obj
          Debug\RectangularPrism.obj
          Debug\ShaderManager.obj
-     1>BulletCollision.lib(btCollisionShape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>BulletCollision.lib(btCollisionShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>BulletCollision.lib(btConvexShape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>BulletCollision.lib(btConvexShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>BulletCollision.lib(btPolyhedralConvexShape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>BulletCollision.lib(btPolyhedralConvexShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>BulletCollision.lib(btConvexPolyhedron.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>BulletCollision.lib(btConvexPolyhedron.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>LinearMath.lib(btConvexHullComputer.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>LinearMath.lib(btConvexHullComputer.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>LinearMath.lib(btGeometryUtil.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in Main.obj
-     1>LinearMath.lib(btGeometryUtil.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MDd_DynamicDebug' in Main.obj
-     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>RectangularPrism.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
      1>RectangularPrism.obj : warning LNK4049: locally defined symbol ___glewBufferData imported
      1>RectangularPrism.obj : warning LNK4049: locally defined symbol ___glewDeleteBuffers imported
@@ -44,9 +32,10 @@
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
      1>ShaderManager.obj : warning LNK4049: locally defined symbol ___glewBindFragDataLocation imported
-     1>C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe : fatal error LNK1319: 12 mismatches detected
-     1>Done Building Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" (Build target(s)) -- FAILED.
+     1>glew32s_x86.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s_x86.lib(glew.obj)' or at 'C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\vc120.pdb'; linking object as if no debug info
+         Tutorial.vcxproj -> C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe
+     1>Done Building Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.33
+Time Elapsed 00:00:02.01
