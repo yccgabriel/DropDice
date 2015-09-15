@@ -35,6 +35,8 @@
 
 #include "RectangularPrism.h"
 
+extern btDiscreteDynamicsWorld* dynamicsWorld;
+
 class Die : public RectangularPrism
 {
 public:
@@ -47,6 +49,8 @@ public:
 			m_ovFaces[i]->m_fpVertices = &m_fvVertices[i*VERTICES_COLUMN * 6];
 			m_ovFaces[i]->texture = m_opShaderManager->resources.textures[i];
 		}
+
+		m_CollisionShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
 	}
 	~Die()
 	{
@@ -61,6 +65,24 @@ public:
 		{
 			m_ovFaces[i]->Draw();
 		}
+	}
+	void CreateInstance()
+	{
+		// random generator
+		std::random_device rd;
+		std::mt19937 mt(rd());
+		std::uniform_real_distribution<float> dist(0, 1);
+		// end of random generator
+		RectangularPrism::CreateInstance();
+		Instance* instance = m_opvInstances.back();	// the instance just created
+		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(dist(mt), dist(mt), dist(mt), 1), btVector3(0, 0, 10)));
+		// calculate inertia
+		btScalar mass = 1;
+		btVector3 dieInertia(0, 0, 0);
+		m_CollisionShape->calculateLocalInertia(mass, dieInertia);	// mass and inertia vector
+		btRigidBody::btRigidBodyConstructionInfo dieRigidBodyCI(mass, instance->mMotionState, m_CollisionShape, dieInertia);
+		instance->mRigidBody = new btRigidBody(dieRigidBodyCI);
+		dynamicsWorld->addRigidBody(instance->mRigidBody);
 	}
 };
 

@@ -10,6 +10,8 @@
 
 #include "RectangularPrism.h"
 
+extern btDiscreteDynamicsWorld* dynamicsWorld;
+
 class Floor : public RectangularPrism
 {
 public:
@@ -19,6 +21,9 @@ public:
 		m_ovFaces[0]->m_fpVertices = &m_fvVertices[0];
 		m_ovFaces[0]->texture = NULL;
 		m_opShaderManager->DefineAttribs();		// why need this?
+
+		m_CollisionShape = new btBoxShape(btVector3(3,3,0));
+		//m_CollisionShape = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
 	}
 	~Floor()
 	{
@@ -27,6 +32,15 @@ public:
 	void DrawFloor()
 	{
 		m_ovFaces[0]->Draw();
+	}
+	void CreateInstance() 
+	{
+		RectangularPrism::CreateInstance();
+		Instance* instance = m_opvInstances.back();	// the instance just created
+		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 0)));
+		btRigidBody::btRigidBodyConstructionInfo floorRigidBodyCI(0, instance->mMotionState, m_CollisionShape);
+		instance->mRigidBody = new btRigidBody(floorRigidBodyCI);
+		dynamicsWorld->addRigidBody(instance->mRigidBody);
 	}
 };
 
