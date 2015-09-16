@@ -1,6 +1,9 @@
 #ifdef _DEBUG
 	#include <iostream>
+	#include <sstream>
+	#include <Windows.h>
 #endif
+#include <algorithm>	// for std::remove
 #include "RectangularPrism.h"
 
 RectangularPrism::RectangularPrism(const std::vector<float>& v) : m_fvVertices(v)
@@ -20,6 +23,22 @@ RectangularPrism::~RectangularPrism()
 void RectangularPrism::CreateInstance()
 {
 	m_opvInstances.push_back(new Instance());
+}
+
+void RectangularPrism::DeleteInstance(Instance* instance)
+{
+	dynamicsWorld->removeRigidBody(instance->mRigidBody);
+	std::vector<Instance*>& instances = m_opvInstances;
+	instances.erase(std::remove(instances.begin(), instances.end(), instance), instances.end());
+	delete instance;
+}
+
+void RectangularPrism::DeleteAllInstances()
+{
+	for (int i = m_opvInstances.size()-1; i >= 0; i--)
+	{
+		DeleteInstance(m_opvInstances[i]);
+	}
 }
 
 // private methods

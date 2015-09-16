@@ -14,6 +14,7 @@
 #include "ShaderManager.h"
 #include "ShaderManager.h"
 
+extern btDiscreteDynamicsWorld* dynamicsWorld;
 struct Instance;	// forward definition
 struct Face;		// forward definition
 class RectangularPrism
@@ -29,6 +30,8 @@ public:
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
 	void CreateInstance();
+	virtual void DeleteInstance(Instance*);		// this function called by DeleAllInstances()
+	void DeleteAllInstances();
 private:
 	void RectangleToTriangleVertices();
 };
@@ -39,6 +42,11 @@ struct Instance	// default all to be public
 	btDefaultMotionState*	mMotionState;
 	btRigidBody*			mRigidBody;
 
+	~Instance()
+	{
+		delete mMotionState;
+		delete mRigidBody;
+	}
 	void SetTransform()
 	{
 		btTransform btTrans;

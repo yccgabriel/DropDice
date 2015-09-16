@@ -1,17 +1,21 @@
-﻿Build started 15/9/2015 20:52:12.
+﻿Build started 16/9/2015 22:03:52.
      1>Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RectangularPrism.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp RectangularPrism.cpp
+         Main.cpp
+     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\die.h(64): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
          RectangularPrism.cpp
-     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(16): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(22): warning C4316: 'Instance' : object allocated on the heap may not be aligned 16
+     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(19): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\gabriel\desktop\open.gl\tutorial_01_glew\tutorial\rectangularprism.cpp(25): warning C4316: 'Instance' : object allocated on the heap may not be aligned 16
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe" /INCREMENTAL /NOLOGO opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glew32s_x86.lib glfw3x86.lib SOIL.lib bullet/Bullet2FileLoader_vs2010_debug.lib bullet/Bullet3Collision_vs2010_debug.lib bullet/Bullet3Common_vs2010_debug.lib bullet/Bullet3Dynamics_vs2010_debug.lib bullet/Bullet3Geometry_vs2010_debug.lib bullet/Bullet3OpenCL_clew_vs2010_debug.lib bullet/BulletCollision_vs2010_debug.lib bullet/BulletDynamics_vs2010_debug.lib bullet/BulletFileLoader_vs2010_debug.lib bullet/BulletSoftBody_vs2010_debug.lib bullet/BulletWorldImporter_vs2010_debug.lib bullet/ConvexDecomposition_vs2010_debug.lib bullet/gtest_vs2010_debug.lib bullet/gwen_vs2010_debug.lib bullet/HACD_vs2010_debug.lib bullet/LinearMath_vs2010_debug.lib bullet/OpenGL_Window_vs2010_debug.lib /NODEFAULTLIB:opengl32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.lib" /MACHINE:X86 Debug\Die.obj
          Debug\Floor.obj
          Debug\Main.obj
          Debug\RectangularPrism.obj
          Debug\ShaderManager.obj
-         LINK : C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe not found or not built by the last incremental link; performing full link
      1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>RectangularPrism.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
@@ -44,4 +48,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.12
+Time Elapsed 00:00:03.93

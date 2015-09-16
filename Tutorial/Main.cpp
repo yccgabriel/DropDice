@@ -2,6 +2,9 @@
 #if defined(WIN32)||defined(_WIN32)||defined(__WIN32)&&!defined(__CYGWIN__)
 #include <windows.h>
 #include <wincon.h>		// for debugging console
+#define _CRTDBG_MAP_ALLOC	// debug memory leak
+#include <stdlib.h>
+#include <crtdbg.h>
 #endif
 #endif
 
@@ -34,6 +37,12 @@ void glfw_error_callback(int error, const char* description)
 #ifdef _DEBUG
 	puts(description);
 #endif
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
 int main()
@@ -70,6 +79,7 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
+	glfwSetKeyCallback(window, key_callback);
 	
 	glewExperimental = GL_TRUE;
 	GLenum err=glewInit();
@@ -205,6 +215,9 @@ int main()
 
 	delete shaderManager;
 
+	floor.DeleteAllInstances();
+	die.DeleteAllInstances();
+
 	// Clean up Bullet Physics Engine
 	delete dynamicsWorld;
 	delete solver;
@@ -214,7 +227,9 @@ int main()
 
 	glDeleteVertexArrays(1, &vao);
 
-
 	glfwTerminate();
+#ifdef _DEBUG
+	_CrtDumpMemoryLeaks();
+#endif
 	return 0;
 }
