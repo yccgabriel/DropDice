@@ -9,6 +9,8 @@
 #endif
 
 #define GLEW_STATIC
+#define WINDOW_WIDTH	800
+#define WINDOW_HEIGHT	600
 #include <thread>
 #include <iostream>
 #include <GL/glew.h>
@@ -60,6 +62,24 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	else if (key == GLFW_KEY_E && action == GLFW_PRESS)
 		camera.Move(UP);
 }
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+		camera.move_camera = true;
+	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+		camera.move_camera = false;
+}
+void cursor_pos_callback(GLFWwindow* window, double x, double y)
+{
+	camera.Move2D(x, y);
+}
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (yoffset > 0)
+		camera.camera_position_delta += camera.camera_up * .05f;
+	else if (yoffset < 0)
+		camera.camera_position_delta -= camera.camera_up * .05f;
+}
 
 int main()
 {
@@ -85,8 +105,7 @@ int main()
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGL", nullptr, nullptr);	// width, height, window title, null for window mode|glfwGetPrimaryMonitor() for full screen, OpenGL context to share resource
-	//GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGL", glfwGetPrimaryMonitor(), nullptr);
+	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "OpenGL", nullptr, nullptr);	// width, height, window title, null for window mode|glfwGetPrimaryMonitor() for full screen, OpenGL context to share resource
 	if (window == NULL)
 	{
 #ifdef _DEBUG
@@ -96,6 +115,9 @@ int main()
 
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetCursorPosCallback(window, cursor_pos_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 	
 	glewExperimental = GL_TRUE;
 	GLenum err=glewInit();
@@ -127,32 +149,20 @@ int main()
 
 	shaderManager->ActivateProgram();
 
-	// Setup MVP outside the loop. Model need to calc everytime inside the loop
-	GLint uniModel = glGetUniformLocation(shaderManager->resources.shaderProgram, "model");
-	GLint uniView = glGetUniformLocation(shaderManager->resources.shaderProgram, "view");
-	GLint uniProj = glGetUniformLocation(shaderManager->resources.shaderProgram, "proj");
-	// View transformation
-	glm::mat4 view = glm::lookAt(
-		glm::vec3(2.0f, 2.0f, 5.0f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, 0.0f, 1.0f)
-		);
-	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
-	// Projection transform
-	glm::mat4 proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 1.0f, 10.0f);	//FOV, aspect ratio of screen, near, far clipping plane
-	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
-
-	// Blending set timer
-	GLint blendRatio = glGetUniformLocation(shaderManager->resources.shaderProgram, "blendRatio");
-	glUniform1f(blendRatio, 0.0f);
-	auto t_start = std::chrono::high_resolution_clock::now();
-
 	glEnable(GL_DEPTH_TEST);
 	GLint overrideColor = glGetUniformLocation(shaderManager->resources.shaderProgram, "overrideColor");
 	glUniform3f(overrideColor, 1.0f, 1.0f, 1.0f);
 
+	// Camera Section
+	glm::mat4 model, view, proj;
+
+	camera.SetPosition(glm::vec3(2.0f, 2.0f, 5.0f));
+	camera.SetLookAt(glm::vec3(0, 0, 0));
+	camera.SetClipping(0.1, 1000);
+	camera.SetFOV(45);
+	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
 	die.CreateInstance();
-	//die.m_opvInstances[0]->transform = glm::mat4
 	floor.CreateInstance();
 
 	while (!glfwWindowShouldClose(window))
@@ -161,36 +171,12 @@ int main()
 
 		//glEnable(GL_DEPTH_TEST);		// this will fill the depth buffer with zeros, black screen
 
-		// Blending
-		auto t_now = std::chrono::high_resolution_clock::now();
-		float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
-		glUniform1f(blendRatio, sin(time*4.0f) / 2.0f + 0.5f);
-
-		// keep rotate with time
-		glm::mat4 model;
-	//	model = glm::rotate(
-	//		model,
-	//		time * glm::radians(180.0f) ,
-	//		glm::vec3(0.0f, 0.0f, 1.0f)
-	//	);
-	//	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));	// have to update to the handler everytime
-
 		// Clear the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// Draw cube
-		model = glm::translate(model, glm::vec3(0, 0, 0));
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
-	//	for (int i = 0; i < die.m_opvInstances.size(); i++)
-	//	{
-	//		die.DrawInstance(die.m_opvInstances[i]);
-	//		//std::cout << die.m_opvInstances[i] << std::endl;
-	//	}
+
 		Instance* die0 = die.m_opvInstances[0];
-		//die0->transform = glm::translate(glm::mat4(), glm::vec3(0, 0, 1));
-		die0->SetTransform();
-		glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(die0->transform));
-		die.DrawDie();
+		die.DrawInstance(die0);
 
 
 	//	glEnable(GL_STENCIL_TEST);
@@ -201,8 +187,7 @@ int main()
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
 			Instance* floor0 = floor.m_opvInstances[0];
-			glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(floor0->transform));
-			floor.DrawFloor();
+			floor.DrawInstance(floor0);
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
@@ -219,11 +204,11 @@ int main()
 	//
 	//	glDisable(GL_STENCIL_TEST);
 
-		// Triangle color keep varying
-		//auto t_now = std::chrono::high_resolution_clock::now();
-		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
-		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f / 2.0f), (sin(time*2.0f) + 1.0f / 2.0f), (sin(time*1.0f) + 1.0f / 2.0f));
-
+		camera.Update();
+		camera.GetMatricies(proj, view, model);
+		glUniformMatrix4fv(shaderManager->resources.uniforms.model , 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(shaderManager->resources.uniforms.proj  , 1, GL_FALSE, glm::value_ptr(proj));
+		glUniformMatrix4fv(shaderManager->resources.uniforms.view  , 1, GL_FALSE, glm::value_ptr(view));
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

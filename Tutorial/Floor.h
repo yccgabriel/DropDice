@@ -29,10 +29,6 @@ public:
 	{
 		delete m_ovFaces[0];
 	}
-	void DrawFloor()
-	{
-		m_ovFaces[0]->Draw();
-	}
 	void CreateInstance() 
 	{
 		RectangularPrism::CreateInstance();
@@ -41,6 +37,12 @@ public:
 		btRigidBody::btRigidBodyConstructionInfo floorRigidBodyCI(0, instance->mMotionState, m_CollisionShape);
 		instance->mRigidBody = new btRigidBody(floorRigidBodyCI);
 		dynamicsWorld->addRigidBody(instance->mRigidBody);
+	}
+
+private:
+	void OpenGLDraw()
+	{
+		m_ovFaces[0]->Draw();
 	}
 };
 

@@ -145,9 +145,9 @@ void ShaderManager::DefineAttribs()
 
 void ShaderManager::DefineUniforms()
 {
-	//resources.uniforms.model	= glGetUniformLocation(resources.shaderProgram, "model");
-	//resources.uniforms.view		= glGetUniformLocation(resources.shaderProgram, "view");
-	//resources.uniforms.proj		= glGetUniformLocation(resources.shaderProgram, "proj");
+	resources.uniforms.model	= glGetUniformLocation(resources.shaderProgram, "model");
+	resources.uniforms.view		= glGetUniformLocation(resources.shaderProgram, "view");
+	resources.uniforms.proj		= glGetUniformLocation(resources.shaderProgram, "proj");
 }
 
 void ShaderManager::DefineOuts()

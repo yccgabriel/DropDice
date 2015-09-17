@@ -45,7 +45,7 @@ class Camera {
 		void ChangeHeading(float degrees);
 
 		//Change the heading and pitch of the camera based on the 2d movement of the mouse
-		void Move2D(int x, int y);
+		void Move2D(double x, double y);
 
 		//Setting Functions
 		//Changes the camera mode, only three valid modes, Ortho, Free, and Spherical

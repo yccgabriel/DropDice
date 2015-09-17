@@ -32,8 +32,10 @@ public:
 	void CreateInstance();
 	virtual void DeleteInstance(Instance*);		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
+	void DrawInstance(Instance*);
 private:
 	void RectangleToTriangleVertices();
+	virtual void OpenGLDraw() = 0;
 };
 
 struct Instance	// default all to be public

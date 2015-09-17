@@ -59,13 +59,6 @@ public:
 			delete m_ovFaces[i];
 		}
 	}
-	void DrawDie()
-	{
-		for (int i = 0; i < m_ovFaces.size(); i++)
-		{
-			m_ovFaces[i]->Draw();
-		}
-	}
 	void CreateInstance()
 	{
 		// random generator
@@ -83,6 +76,15 @@ public:
 		btRigidBody::btRigidBodyConstructionInfo dieRigidBodyCI(mass, instance->mMotionState, m_CollisionShape, dieInertia);
 		instance->mRigidBody = new btRigidBody(dieRigidBodyCI);
 		dynamicsWorld->addRigidBody(instance->mRigidBody);
+	}
+
+private:
+	void OpenGLDraw() override
+	{
+		for (int i = 0; i < m_ovFaces.size(); i++)
+		{
+			m_ovFaces[i]->Draw();
+		}
 	}
 };
 

@@ -41,6 +41,13 @@ void RectangularPrism::DeleteAllInstances()
 	}
 }
 
+void RectangularPrism::DrawInstance(Instance* instance)
+{
+	instance->SetTransform();
+	glUniformMatrix4fv(m_opShaderManager->resources.uniforms.model, 1, GL_FALSE, glm::value_ptr(instance->transform));
+	this->OpenGLDraw();
+}
+
 // private methods
 void RectangularPrism::RectangleToTriangleVertices()
 {
@@ -81,14 +88,6 @@ void RectangularPrism::RectangleToTriangleVertices()
 			break;
 		}
 	}
-
-	// testing
-//	for (int i = 0; i < 6; i++)
-//	{
-//		for (int j = 0; j < VERTICES_COLUMN; j++)
-//			std::cout << m_fvVertices[8*i+j] << "\t";
-//		std::cout << std::endl;
-//	}
 		
 }
 

@@ -4,7 +4,7 @@ using namespace std;
 
 Camera::Camera() {
 	camera_mode = FREE;
-	camera_up = glm::vec3(0, 1, 0);
+	camera_up = glm::vec3(0, 0, 1);
 	field_of_view = 45;
 	camera_position_delta = glm::vec3(0, 0, 0);
 	camera_scale = .5f;
@@ -16,7 +16,7 @@ Camera::~Camera() {
 }
 
 void Camera::Reset() {
-	camera_up = glm::vec3(0, 1, 0);
+	camera_up = glm::vec3(0, 0, 1);
 }
 
 void Camera::Update() {
@@ -148,13 +148,13 @@ void Camera::ChangeHeading(float degrees) {
 		camera_heading += 360.0f;
 	}
 }
-void Camera::Move2D(int x, int y) {
+void Camera::Move2D(double x, double y) {
 	//compute the mouse delta from the previous mouse position
 	glm::vec3 mouse_delta = mouse_position - glm::vec3(x, y, 0);
 	//if the camera is moving, meaning that the mouse was clicked and dragged, change the pitch and heading
 	if (move_camera) {
-		ChangeHeading(.08f * mouse_delta.x);
-		ChangePitch(.08f * mouse_delta.y);
+		ChangeHeading(.008f * mouse_delta.x);
+		ChangePitch(.008f * mouse_delta.y);
 	}
 	mouse_position = glm::vec3(x, y, 0);
 }
