@@ -21,10 +21,13 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "ShaderUtil.h"
+#include "camera.h"
 
 #include "ShaderManager.h"
 #include "Floor.h"
 #include "Die.h"
+
+Camera camera;
 
 btBroadphaseInterface* broadphase;
 btDefaultCollisionConfiguration* collisionConfiguration;
@@ -43,6 +46,19 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+
+	else if (key == GLFW_KEY_W && action == GLFW_PRESS)
+		camera.Move(FORWARD);
+	else if (key == GLFW_KEY_A && action == GLFW_PRESS)
+		camera.Move(LEFT);
+	else if (key == GLFW_KEY_S && action == GLFW_PRESS)
+		camera.Move(BACK);
+	else if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		camera.Move(RIGHT);
+	else if (key == GLFW_KEY_Q && action == GLFW_PRESS)
+		camera.Move(DOWN);
+	else if (key == GLFW_KEY_E && action == GLFW_PRESS)
+		camera.Move(UP);
 }
 
 int main()
