@@ -22,7 +22,7 @@ public:
 		m_ovFaces[0]->texture = NULL;
 		m_opShaderManager->DefineAttribs();		// why need this?
 
-		m_CollisionShape = new btBoxShape(btVector3(1,1,0));
+		m_CollisionShape = new btBoxShape(btVector3(10,10,0));
 		//m_CollisionShape = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
 	}
 	~Floor()

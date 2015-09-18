@@ -26,8 +26,8 @@
 #include "camera.h"
 
 #include "ShaderManager.h"
+#include "SpawnMachine.h"
 #include "Floor.h"
-#include "Die.h"
 
 Camera camera;
 
@@ -144,7 +144,7 @@ int main()
 
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
-	Die		die;
+	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
 	Floor	floor;
 
 	shaderManager->ActivateProgram();
@@ -162,9 +162,9 @@ int main()
 	camera.SetFOV(45);
 	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	die.CreateInstance();
 	floor.CreateInstance();
 
+	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
 	{
 		dynamicsWorld->stepSimulation(1 / 60.f, 10);
@@ -175,8 +175,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Instance* die0 = die.m_opvInstances[0];
-		die.DrawInstance(die0);
+		spawnMachine.DrawAllDice();
 
 
 	//	glEnable(GL_STENCIL_TEST);
@@ -213,11 +212,11 @@ int main()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+	spawnMachine.Stop();
 
 	delete shaderManager;
 
 	floor.DeleteAllInstances();
-	die.DeleteAllInstances();
 
 	// Clean up Bullet Physics Engine
 	delete dynamicsWorld;

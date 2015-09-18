@@ -1,4 +1,4 @@
-﻿Build started 17/9/2015 20:11:13.
+﻿Build started 18/9/2015 15:45:58.
      1>Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
@@ -11,9 +11,10 @@
          Debug\Main.obj
          Debug\RectangularPrism.obj
          Debug\ShaderManager.obj
+         Debug\SpawnMachine.obj
          Tutorial.vcxproj -> C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Debug\Tutorial.exe
      1>Done Building Project "C:\Users\Gabriel\Desktop\open.gl\Tutorial_01_glew\Tutorial\Tutorial.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.75
+Time Elapsed 00:00:03.15
