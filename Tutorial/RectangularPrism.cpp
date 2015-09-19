@@ -16,29 +16,30 @@ RectangularPrism::RectangularPrism(const std::vector<float>& v) : m_fvVertices(v
 RectangularPrism::~RectangularPrism()
 {
 	glDeleteBuffers(1, &m_vbo);
-	for (int i = 0; i < m_opvInstances.size(); i++)
-		delete m_opvInstances[i];
+	for (int i = 0; i < mInstances.size(); i++)
+		delete mInstances[i];
 }
 
 void RectangularPrism::CreateInstance()
 {
-	m_opvInstances.push_back(new Instance());
+	mInstances.push_back(new Instance());
 }
 
 void RectangularPrism::DeleteInstance(Instance* instance)
 {
 	dynamicsWorld->removeRigidBody(instance->mRigidBody);
-	std::vector<Instance*>& instances = m_opvInstances;
-	instances.erase(std::remove(instances.begin(), instances.end(), instance), instances.end());
+	mInstances.erase(std::remove(mInstances.begin(), mInstances.end(), instance), mInstances.end());
 	delete instance;
 }
 
 void RectangularPrism::DeleteAllInstances()
 {
-	for (int i = m_opvInstances.size()-1; i >= 0; i--)
+	for (int i = mInstances.size() - 1; i >= 0; i--)
 	{
-		DeleteInstance(m_opvInstances[i]);
+		DeleteInstance(mInstances[i]);
 	}
+//	for (std::deque<Instance*>::reverse_iterator it = mInstances.rbegin(); it != mInstances.rend(); ++it)
+//		DeleteInstance(*it);
 }
 
 void RectangularPrism::DrawInstance(Instance* instance)

@@ -84,8 +84,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
-    <ClCompile Include="Die.cpp" />
-    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RectangularPrism.cpp" />
     <ClCompile Include="ShaderManager.cpp" />

@@ -14,6 +14,7 @@ public:
 	enum mode {DROPDICE, RAY, STACK};
 	int mMode;
 	int mInterval;
+	int mMaxDice;
 	std::chrono::time_point<Clock> mStartTime;
 	Die mDie;
 
@@ -29,9 +30,7 @@ private:
 	bool mTimerCont;	// no mutex lock for this variable
 	void Timer();
 	void Spawn();
-	void DropDice();
-	void Ray();
-	void Stack();
+	void Settings();
 };
 
 #endif //SPAWNMACHINE

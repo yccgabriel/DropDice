@@ -5,15 +5,7 @@ SpawnMachine::SpawnMachine(int mode = DROPDICE, int interval = 1000)
 	mMode = mode;
 	mInterval = interval;
 	mTimerCont = true;
-	switch(mode)
-	{
-	case DROPDICE:
-		break;
-	case RAY:
-		break;
-	case STACK:
-		break;
-	}
+	mMaxDice = 3;
 }
 
 SpawnMachine::~SpawnMachine()
@@ -22,10 +14,9 @@ SpawnMachine::~SpawnMachine()
 
 void SpawnMachine::Start()
 {
-	mTimerThread = std::thread(&SpawnMachine::Timer, this);
-	//if		(mMode == DROPDICE)	DropDice();
-	//else if (mMode == RAY)		Ray();
-	//else if (mMode == STACK)	Stack();
+	Settings();
+	if (mInterval > 0)		// which means Spawn is not once-off
+		mTimerThread = std::thread(&SpawnMachine::Timer, this);
 }
 
 void SpawnMachine::Stop()
@@ -37,9 +28,9 @@ void SpawnMachine::Stop()
 
 void SpawnMachine::DrawAllDice()
 {
-	for (int i = 0; i < mDie.m_opvInstances.size(); i++)
+	for (int i = 0; i < mDie.mInstances.size(); i++)
 	{
-		mDie.DrawInstance(mDie.m_opvInstances[i]);
+		mDie.DrawInstance(mDie.mInstances[i]);
 	}
 }
 
@@ -60,5 +51,12 @@ void SpawnMachine::Timer()
 
 void SpawnMachine::Spawn()
 {
+	while (mDie.mInstances.size() >= mMaxDice)
+		mDie.DeleteInstance(mDie.mInstances.front());
 	mDie.CreateInstance();
+}
+
+void SpawnMachine::Settings()
+{
+
 }

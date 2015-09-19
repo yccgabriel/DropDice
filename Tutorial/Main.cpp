@@ -185,7 +185,7 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			Instance* floor0 = floor.m_opvInstances[0];
+			Instance* floor0 = floor.mInstances[0];
 			floor.DrawInstance(floor0);
 	//	
 	//		// Draw cube reflection

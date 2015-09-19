@@ -58,6 +58,7 @@ public:
 		{
 			delete m_ovFaces[i];
 		}
+		delete m_CollisionShape;
 	}
 	void CreateInstance()
 	{
@@ -67,7 +68,7 @@ public:
 		std::uniform_real_distribution<float> dist(0, 1);
 		// end of random generator
 		RectangularPrism::CreateInstance();
-		Instance* instance = m_opvInstances.back();	// the instance just created
+		Instance* instance = mInstances.back();	// the instance just created
 		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(dist(mt), dist(mt), dist(mt), 1), btVector3(0, 0, 10)));
 		// calculate inertia
 		btScalar mass = 1;

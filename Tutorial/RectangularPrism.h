@@ -1,10 +1,14 @@
 #pragma once
 #ifndef RECTANGULARPRISM_H
 #define RECTANGULARPRISM_H
+#ifdef _DEBUG
+#include <sstream>
+#endif
 
 #define VERTICES_COLUMN 8
 
 #include <vector>
+#include <deque>
 #include <random>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -22,7 +26,7 @@ class RectangularPrism
 public:
 	std::vector<float>	m_fvVertices;
 	std::vector<Face*>	m_ovFaces;
-	std::vector<Instance*> m_opvInstances;
+	std::deque<Instance*> mInstances;
 	GLuint m_vbo;	// vertex buffer object
 	ShaderManager* m_opShaderManager;
 	btCollisionShape* m_CollisionShape;
@@ -46,6 +50,7 @@ struct Instance	// default all to be public
 
 	~Instance()
 	{
+		std::cout << "Instance destructor called" << std::endl;
 		delete mMotionState;
 		delete mRigidBody;
 	}

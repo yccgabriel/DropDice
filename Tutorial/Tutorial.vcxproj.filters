@@ -18,12 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Die.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Floor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RectangularPrism.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
