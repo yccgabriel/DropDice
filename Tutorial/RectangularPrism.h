@@ -50,7 +50,7 @@ struct Instance	// default all to be public
 
 	~Instance()
 	{
-		std::cout << "Instance destructor called" << std::endl;
+		std::cout << mMotionState << " " << mRigidBody->getMotionState() << std::endl;
 		delete mMotionState;
 		delete mRigidBody;
 	}

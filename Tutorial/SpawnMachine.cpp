@@ -5,7 +5,7 @@ SpawnMachine::SpawnMachine(int mode = DROPDICE, int interval = 1000)
 	mMode = mode;
 	mInterval = interval;
 	mTimerCont = true;
-	mMaxDice = 3;
+	mMaxDice = 100;
 }
 
 SpawnMachine::~SpawnMachine()
@@ -32,6 +32,11 @@ void SpawnMachine::DrawAllDice()
 	{
 		mDie.DrawInstance(mDie.mInstances[i]);
 	}
+//	for (std::deque<Instance*>::iterator it = mDie.mInstances.begin(); it != mDie.mInstances.end(); ++it)
+//		mDie.DrawInstance(*it);
+//	std::deque<Instance*>::iterator it = mDie.mInstances.begin();
+//	while (it != mDie.mInstances.end())
+//		mDie.DrawInstance((*it++));
 }
 
 // private methods

@@ -1,10 +1,14 @@
 #ifdef _DEBUG
 #if defined(WIN32)||defined(_WIN32)||defined(__WIN32)&&!defined(__CYGWIN__)
-#include <windows.h>
-#include <wincon.h>		// for debugging console
-#define _CRTDBG_MAP_ALLOC	// debug memory leak
-#include <stdlib.h>
-#include <crtdbg.h>
+	#include <windows.h>
+	#include <wincon.h>		// for debugging console
+	#define _CRTDBG_MAP_ALLOC	// debug memory leak
+	#include <stdlib.h>
+	#include <crtdbg.h>
+//	#ifndef DBG_NEW
+//	#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )     
+//	#define new DBG_NEW
+//	#endif
 #endif
 #endif
 
@@ -84,8 +88,10 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 int main()
 {
 #ifdef _DEBUG
-	//AllocConsole();
 	std::cout << "Debugging Window:\n" << std::endl;
+//	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+//	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+//	_CrtSetBreakAlloc(527);
 #endif
 
 	glfwSetErrorCallback(glfw_error_callback);
@@ -145,7 +151,7 @@ int main()
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
-	Floor	floor;
+	Floor* floor = new Floor();;
 
 	shaderManager->ActivateProgram();
 
@@ -162,7 +168,7 @@ int main()
 	camera.SetFOV(45);
 	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	floor.CreateInstance();
+	floor->CreateInstance();
 
 	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
@@ -185,8 +191,8 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			Instance* floor0 = floor.mInstances[0];
-			floor.DrawInstance(floor0);
+			Instance* floor0 = floor->mInstances[0];
+			floor->DrawInstance(floor0);
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
@@ -216,7 +222,8 @@ int main()
 
 	delete shaderManager;
 
-	floor.DeleteAllInstances();
+	floor->DeleteAllInstances();
+	delete floor;
 
 	// Clean up Bullet Physics Engine
 	delete dynamicsWorld;
@@ -231,5 +238,6 @@ int main()
 #ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
 #endif
+	getchar();
 	return 0;
 }
