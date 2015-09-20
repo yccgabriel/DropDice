@@ -14,6 +14,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <GL/glew.h>
 #include <bullet/btBulletDynamicsCommon.h>
+#include <qu3e/q3.h>
 
 #include "ShaderManager.h"
 #include "ShaderManager.h"

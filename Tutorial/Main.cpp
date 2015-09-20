@@ -21,6 +21,7 @@
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
 #include <bullet/btBulletDynamicsCommon.h>
+#include <qu3e/q3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -84,6 +85,9 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	else if (yoffset < 0)
 		camera.camera_position_delta -= camera.camera_up * .05f;
 }
+
+q3Scene scene(1.0 / 60.0);
+
 
 int main()
 {
@@ -183,7 +187,6 @@ int main()
 
 		spawnMachine.DrawAllDice();
 
-
 	//	glEnable(GL_STENCIL_TEST);
 	//		// Draw floor
 	//		glStencilFunc(GL_ALWAYS, 1, 0xFF); // Set any stencil to 1
@@ -214,6 +217,10 @@ int main()
 		glUniformMatrix4fv(shaderManager->resources.uniforms.model , 1, GL_FALSE, glm::value_ptr(model));
 		glUniformMatrix4fv(shaderManager->resources.uniforms.proj  , 1, GL_FALSE, glm::value_ptr(proj));
 		glUniformMatrix4fv(shaderManager->resources.uniforms.view  , 1, GL_FALSE, glm::value_ptr(view));
+
+
+		scene.Step();
+
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
