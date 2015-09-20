@@ -1,1 +1,15 @@
 *.opensdf
+Debug/Tutorial.exe
+Debug/Tutorial.ilk
+Debug/Tutorial.pdb
+Tutorial.sdf
+Tutorial.v12.suo
+Tutorial/Debug/Main.obj
+Tutorial/Debug/RectangularPrism.obj
+Tutorial/Debug/Tutorial.log
+Tutorial/Debug/Tutorial.tlog/CL.read.1.tlog
+Tutorial/Debug/Tutorial.tlog/CL.write.1.tlog
+Tutorial/Debug/Tutorial.tlog/link.command.1.tlog
+Tutorial/Debug/Tutorial.tlog/link.read.1.tlog
+Tutorial/Debug/vc120.idb
+Tutorial/Debug/vc120.pdb
