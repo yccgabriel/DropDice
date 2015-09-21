@@ -1,11 +1,15 @@
 #include "SpawnMachine.h"
 
+unsigned short tasks;
+std::mutex tasks_mutex;
+std::atomic<bool> timerCont;
+
 SpawnMachine::SpawnMachine(int mode = DROPDICE, int interval = 1000)
 {
 	mMode = mode;
 	mInterval = interval;
-	mTimerCont = true;
-	mMaxDice = 10;
+	timerCont = true;
+	mMaxDice = 200;
 }
 
 SpawnMachine::~SpawnMachine()
@@ -21,7 +25,7 @@ void SpawnMachine::Start()
 
 void SpawnMachine::Stop()
 {
-	mTimerCont = false;
+	timerCont = false;
 	mTimerThread.join();
 	mDie.DeleteAllInstances();
 }
@@ -39,19 +43,36 @@ void SpawnMachine::DrawAllDice()
 //		mDie.DrawInstance((*it++));
 }
 
+void SpawnMachine::CheckSpawn()
+{
+	size_t tasks_count;
+	tasks_mutex.lock();
+	tasks_count = tasks;
+	tasks_mutex.unlock();
+	while (tasks_count > 0)
+	{
+		Spawn();
+		tasks_mutex.lock();
+		tasks_count = --tasks;
+		tasks_mutex.unlock();
+	}
+}
+
 // private methods
 void SpawnMachine::Timer()
 {
 	std::cout << "Timer Start" << std::endl;
 	mStartTime = Clock::now();
-	while (mTimerCont)	// mTimerCont has no mutex lock
+	while (timerCont)
 	{
 		std::cout << "the time now is " 
 			<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
 			<< "milliseconds. Spawned dice: "
-			<< mDie.mInstances.size() + 1
+			//<< mDie.mInstances.size() + 1
 			<< std::endl;
-		Spawn();
+		tasks_mutex.lock();
+		tasks++;
+		tasks_mutex.unlock();
 		std::this_thread::sleep_for(std::chrono::milliseconds(mInterval));
 	}
 }
