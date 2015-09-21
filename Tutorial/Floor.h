@@ -19,6 +19,11 @@ public:
 		m_ovFaces[0]->m_fpVertices = &m_fvVertices[0];
 		m_ovFaces[0]->texture = NULL;
 		m_opShaderManager->DefineAttribs();		// why need this?
+
+		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, q3Vec3(100.0, 100.0, 0.0));	// x,y,z
 	}
 	~Floor()
 	{
@@ -28,6 +33,10 @@ public:
 	{
 		RectangularPrism::CreateInstance();
 		Instance* instance = mInstances.back();	// the instance just created
+
+		instance->mBody = scene.CreateBody(m_oBodyDef);
+		mBox = instance->mBody->AddBox(mBoxDef);
+		instance->mReady = true;
 	}
 
 private:

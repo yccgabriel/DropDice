@@ -5,7 +5,7 @@ SpawnMachine::SpawnMachine(int mode = DROPDICE, int interval = 1000)
 	mMode = mode;
 	mInterval = interval;
 	mTimerCont = true;
-	mMaxDice = 100;
+	mMaxDice = 10;
 }
 
 SpawnMachine::~SpawnMachine()
@@ -48,7 +48,9 @@ void SpawnMachine::Timer()
 	{
 		std::cout << "the time now is " 
 			<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
-			<< "milliseconds" << std::endl;
+			<< "milliseconds. Spawned dice: "
+			<< mDie.mInstances.size() + 1
+			<< std::endl;
 		Spawn();
 		std::this_thread::sleep_for(std::chrono::milliseconds(mInterval));
 	}

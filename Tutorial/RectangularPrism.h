@@ -19,11 +19,15 @@
 #include "ShaderManager.h"
 #include "ShaderManager.h"
 
+extern q3Scene scene;
 struct Instance;	// forward definition
 struct Face;		// forward definition
 class RectangularPrism
 {
 public:
+	q3BodyDef	m_oBodyDef;
+	q3BoxDef	mBoxDef;
+	const q3Box* mBox;
 	std::vector<float>	m_fvVertices;
 	std::vector<Face*>	m_ovFaces;
 	std::deque<Instance*> mInstances;
@@ -57,24 +61,15 @@ struct Instance	// default all to be public
 		glm::mat4	rot(r.ex.x, r.ex.y, r.ex.z, 0,
 						r.ey.x, r.ey.y, r.ey.z, 0,
 						r.ez.x, r.ez.y, r.ez.z, 0,
-							 0,		 0,		 0, 0);
+							 0,		 0,		 0, 1);
 		glm::mat4 trans = glm::translate(glm::mat4(1.0f), glm::vec3(t.x, t.y, t.z));
-		//transform = trans * rot;
+		transform = trans * rot;
 
 		// debugging
-	//	printf("%p", t);
-		std::cout << t.x << " " << t.y << " " << t.z << std::endl;
-//		double arr[16] = { 0,0 };
-//		const float *pSource = (const float*)glm::value_ptr(trans);
-//		for (int i = 0; i < 16; ++i)
-//			arr[i] = pSource[i];
-//		for (int i = 0; i < 16; ++i)
-//		{
-//			std::cout << arr[i] << "\t\t";
-//			if (i % 4 == 0)
-//				std::cout << std::endl;
-//		}
-//		std::cout << std::endl;
+		//std::cout << r.ex.x << "\t" << r.ex.y << "\t" << r.ex.z << std::endl;
+		//std::cout << r.ey.x << "\t" << r.ey.y << "\t" << r.ey.z << std::endl;
+		//std::cout << r.ez.x << "\t" << r.ez.y << "\t" << r.ez.z << std::endl;
+		//std::cout << std::endl;
 	}
 };
 

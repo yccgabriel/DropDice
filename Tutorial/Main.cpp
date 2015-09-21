@@ -137,8 +137,10 @@ int main()
 
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
+	scene.SetGravity(q3Vec3(0,0,-10));
+
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
-	Floor* floor = new Floor();;
+	Floor floor;
 
 	shaderManager->ActivateProgram();
 
@@ -155,7 +157,7 @@ int main()
 	camera.SetFOV(45);
 	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	floor->CreateInstance();
+	floor.CreateInstance();
 
 	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
@@ -177,8 +179,8 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			Instance* floor0 = floor->mInstances[0];
-			floor->DrawInstance(floor0);
+			Instance* floor0 = floor.mInstances[0];
+			floor.DrawInstance(floor0);
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
@@ -209,15 +211,14 @@ int main()
 
 	delete shaderManager;
 
-	floor->DeleteAllInstances();
-	delete floor;
+	floor.DeleteAllInstances();
 
 	glDeleteVertexArrays(1, &vao);
 
 	glfwTerminate();
 #ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
+	//getchar();
 #endif
-	getchar();
 	return 0;
 }
