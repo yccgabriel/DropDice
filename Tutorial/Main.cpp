@@ -20,7 +20,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
-#include <bullet/btBulletDynamicsCommon.h>
 #include <qu3e/q3.h>
 
 #include <glm/glm.hpp>
@@ -35,12 +34,6 @@
 #include "Floor.h"
 
 Camera camera;
-
-btBroadphaseInterface* broadphase;
-btDefaultCollisionConfiguration* collisionConfiguration;
-btCollisionDispatcher* dispatcher;
-btSequentialImpulseConstraintSolver* solver;
-btDiscreteDynamicsWorld* dynamicsWorld;
 
 void glfw_error_callback(int error, const char* description)
 {
@@ -87,7 +80,6 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 }
 
 q3Scene scene(1.0 / 60.0);
-
 
 int main()
 {
@@ -138,15 +130,6 @@ int main()
 #endif
 	}
 
-	//** Bullet Physics Engine
-	broadphase = new btDbvtBroadphase();
-	collisionConfiguration = new btDefaultCollisionConfiguration();
-	dispatcher = new btCollisionDispatcher(collisionConfiguration);
-	solver = new btSequentialImpulseConstraintSolver;
-	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
-
-	dynamicsWorld->setGravity(btVector3(0, 0, -10));
-
 	// Vertex Array Objects, use to link VBO and attributes with raw vertex data
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -177,7 +160,7 @@ int main()
 	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
 	{
-		dynamicsWorld->stepSimulation(1 / 60.f, 10);
+		scene.Step();
 
 		//glEnable(GL_DEPTH_TEST);		// this will fill the depth buffer with zeros, black screen
 
@@ -219,9 +202,6 @@ int main()
 		glUniformMatrix4fv(shaderManager->resources.uniforms.view  , 1, GL_FALSE, glm::value_ptr(view));
 
 
-		scene.Step();
-
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -231,13 +211,6 @@ int main()
 
 	floor->DeleteAllInstances();
 	delete floor;
-
-	// Clean up Bullet Physics Engine
-	delete dynamicsWorld;
-	delete solver;
-	delete dispatcher;
-	delete collisionConfiguration;
-	delete broadphase;
 
 	glDeleteVertexArrays(1, &vao);
 

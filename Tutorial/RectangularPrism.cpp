@@ -27,7 +27,6 @@ void RectangularPrism::CreateInstance()
 
 void RectangularPrism::DeleteInstance(Instance* instance)
 {
-	dynamicsWorld->removeRigidBody(instance->mRigidBody);
 	mInstances.erase(std::remove(mInstances.begin(), mInstances.end(), instance), mInstances.end());
 	delete instance;
 }
@@ -44,6 +43,7 @@ void RectangularPrism::DeleteAllInstances()
 
 void RectangularPrism::DrawInstance(Instance* instance)
 {
+	if (!instance->mReady)	return;
 	instance->SetTransform();
 	glUniformMatrix4fv(m_opShaderManager->resources.uniforms.model, 1, GL_FALSE, glm::value_ptr(instance->transform));
 	this->OpenGLDraw();

@@ -12,14 +12,13 @@
 #include <random>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/transform.hpp>
 #include <GL/glew.h>
-#include <bullet/btBulletDynamicsCommon.h>
 #include <qu3e/q3.h>
 
 #include "ShaderManager.h"
 #include "ShaderManager.h"
 
-extern btDiscreteDynamicsWorld* dynamicsWorld;
 struct Instance;	// forward definition
 struct Face;		// forward definition
 class RectangularPrism
@@ -30,7 +29,6 @@ public:
 	std::deque<Instance*> mInstances;
 	GLuint m_vbo;	// vertex buffer object
 	ShaderManager* m_opShaderManager;
-	btCollisionShape* m_CollisionShape;
 
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
@@ -46,22 +44,37 @@ private:
 struct Instance	// default all to be public
 {
 	glm::mat4 transform;
-	btDefaultMotionState*	mMotionState;
-	btRigidBody*			mRigidBody;
+	q3Body* mBody;
+	bool mReady;		// flag indicate instance is completely created to draw
 
-	~Instance()
+	Instance() { mReady = false; }
+	~Instance(){}
+	void SetTransform()		// convert engine's transform to OpenGL's transform
 	{
-		std::cout << mMotionState << " " << mRigidBody->getMotionState() << std::endl;
-		delete mMotionState;
-		delete mRigidBody;
-	}
-	void SetTransform()
-	{
-		btTransform btTrans;
-		mRigidBody->getMotionState()->getWorldTransform(btTrans);
-		btScalar glTrans[16];
-		btTrans.getOpenGLMatrix(glTrans);
-		transform = glm::make_mat4(glTrans);
+		const q3Transform& q3tran = mBody->GetTransform();
+		const q3Vec3& t = q3tran.position;
+		const q3Mat3& r = q3tran.rotation;
+		glm::mat4	rot(r.ex.x, r.ex.y, r.ex.z, 0,
+						r.ey.x, r.ey.y, r.ey.z, 0,
+						r.ez.x, r.ez.y, r.ez.z, 0,
+							 0,		 0,		 0, 0);
+		glm::mat4 trans = glm::translate(glm::mat4(1.0f), glm::vec3(t.x, t.y, t.z));
+		//transform = trans * rot;
+
+		// debugging
+	//	printf("%p", t);
+		std::cout << t.x << " " << t.y << " " << t.z << std::endl;
+//		double arr[16] = { 0,0 };
+//		const float *pSource = (const float*)glm::value_ptr(trans);
+//		for (int i = 0; i < 16; ++i)
+//			arr[i] = pSource[i];
+//		for (int i = 0; i < 16; ++i)
+//		{
+//			std::cout << arr[i] << "\t\t";
+//			if (i % 4 == 0)
+//				std::cout << std::endl;
+//		}
+//		std::cout << std::endl;
 	}
 };
 

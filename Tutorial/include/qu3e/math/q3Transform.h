@@ -37,6 +37,12 @@ struct q3Transform
 {
 	q3Vec3 position;
 	q3Mat3 rotation;
+	q3Transform() {}	// default constructor
+	q3Transform(q3Vec3 vec3, q3Mat3 mat3)
+	{
+		position = vec3;
+		rotation = mat3;
+	}
 };
 
 #include "q3Transform.inl"

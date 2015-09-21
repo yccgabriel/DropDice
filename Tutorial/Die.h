@@ -35,21 +35,16 @@
 
 #include "RectangularPrism.h"
 
-extern btDiscreteDynamicsWorld* dynamicsWorld;
 extern q3Scene scene;
 
 class Die : public RectangularPrism
 {
 public:
 	q3BodyDef	m_oBodyDef;
-	q3Body*		m_opBody;
-	q3BoxDef	m_oBoxDef;
-	q3Transform	m_oLocalSpace;
+	q3BoxDef	mBoxDef;
+	const q3Box* mBox;
 	Die() : RectangularPrism(DIE_VERTICES)
 	{
-		m_opBody = scene.CreateBody(m_oBodyDef);
-		q3Identity(m_oLocalSpace);
-		m_oBoxDef.Set(m_oLocalSpace, q3Vec3(1.0, 1.0, 1.0));
 		// map Faces vertices pointer to m_fvVertices
 		for (int i = 0; i < 6; i++)
 		{
@@ -57,8 +52,9 @@ public:
 			m_ovFaces[i]->m_fpVertices = &m_fvVertices[i*VERTICES_COLUMN * 6];
 			m_ovFaces[i]->texture = m_opShaderManager->resources.textures[i];
 		}
-
-		m_CollisionShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, q3Vec3(1.0, 1.0, 1.0));	// width, height, depth
 	}
 	~Die()
 	{
@@ -66,25 +62,26 @@ public:
 		{
 			delete m_ovFaces[i];
 		}
-		delete m_CollisionShape;
 	}
 	void CreateInstance()
 	{
 		// random generator
 		std::random_device rd;
 		std::mt19937 mt(rd());
-		std::uniform_real_distribution<float> dist(0, 1);
-		// end of random generator
+		std::uniform_real_distribution<float> dist(-1, 1);
+		// end of random generator		how to use: dist(mt);
 		RectangularPrism::CreateInstance();
 		Instance* instance = mInstances.back();	// the instance just created
-		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(dist(mt), dist(mt), dist(mt), 1), btVector3(0, 0, 50)));
-		// calculate inertia
-		btScalar mass = 100;
-		btVector3 dieInertia(0, 0, 0);
-		m_CollisionShape->calculateLocalInertia(mass, dieInertia);	// mass and inertia vector
-		btRigidBody::btRigidBodyConstructionInfo dieRigidBodyCI(mass, instance->mMotionState, m_CollisionShape, dieInertia);
-		instance->mRigidBody = new btRigidBody(dieRigidBodyCI);
-		dynamicsWorld->addRigidBody(instance->mRigidBody);
+
+		instance->mBody = scene.CreateBody(m_oBodyDef);
+		mBox = instance->mBody->AddBox(mBoxDef);
+		instance->mReady = true;
+	}
+	void DeleteInstance(Instance* instance) override
+	{
+		instance->mBody->RemoveBox(mBox);
+		scene.RemoveBody(instance->mBody);
+		RectangularPrism::DeleteInstance(instance);
 	}
 
 private:
@@ -94,11 +91,6 @@ private:
 		{
 			m_ovFaces[i]->Draw();
 		}
-	}
-	void CreateInstance()
-	{
-		RectangularPrism::CreateInstance();
-		m_opvInstances.back()->m_opBox = m_opBody->AddBox(m_oBoxDef);
 	}
 };
 
