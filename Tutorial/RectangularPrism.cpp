@@ -21,9 +21,10 @@ RectangularPrism::~RectangularPrism()
 		delete mInstances[i];
 }
 
-void RectangularPrism::CreateInstance()
+Instance<RectangularPrism>* RectangularPrism::CreateInstance()
 {
 	mInstances.push_back(new Instance<RectangularPrism>());
+	return mInstances.back();
 }
 
 void RectangularPrism::DeleteInstance(Instance<RectangularPrism>* instance)

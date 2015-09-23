@@ -14,7 +14,9 @@ Scene::~Scene()
 
 void Scene::SetScene()
 {
-	mFloor.CreateInstance();
+	Instance<RectangularPrism>* instance = mFloor.CreateInstance();
+	mFloor.MoveInstance(instance, q3Vec3(0,0,-10));
+	//mFloor.MoveInstance(instance, q3Vec3(0, 0, -10));
 }
 
 void Scene::Render()

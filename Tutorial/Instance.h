@@ -9,6 +9,7 @@ template <typename T>
 class Instance
 {
 public:
+	q3Vec3 mSize;			// control the object size, [x, y, z]
 	glm::mat4 transform;
 	q3Body* mBody;
 	bool mReady;			// flag indicate instance is completely created to draw

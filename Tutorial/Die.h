@@ -49,12 +49,6 @@ public:
 			m_ovFaces[i]->m_fpVertices = &m_fvVertices[i*VERTICES_COLUMN * 6];
 			m_ovFaces[i]->texture = m_opShaderManager->resources.textures[i];
 		}
-
-		m_oBodyDef.bodyType = q3BodyType::eDynamicBody;
-
-		q3Transform localSpace;
-		q3Identity(localSpace);
-		mBoxDef.Set(localSpace, q3Vec3(1.0, 1.0, 1.0));	// width, height, depth
 	}
 	~Die()
 	{
@@ -63,7 +57,7 @@ public:
 			delete m_ovFaces[i];
 		}
 	}
-	void CreateInstance()
+	Instance<RectangularPrism>* CreateInstance() override
 	{
 		// random generator
 		std::random_device rd;
@@ -71,15 +65,22 @@ public:
 		std::uniform_real_distribution<float> xyz(-10, 10);
 		std::uniform_real_distribution<float> rad(-3.14, 3.14);
 		// end of random generator		how to use: dist(mt);
-		RectangularPrism::CreateInstance();
-		Instance<RectangularPrism>* instance = mInstances.back();	// the instance just created
+		Instance<RectangularPrism>* instance 
+			= RectangularPrism::CreateInstance();
+
+		m_oBodyDef.bodyType = q3BodyType::eDynamicBody;
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, instance->mSize);	// width, height, depth
 
 		m_oBodyDef.position = q3Vec3(0, 0, 10);
-		m_oBodyDef.axis = q3Vec3(xyz(mt), xyz(mt), xyz(mt));
-		m_oBodyDef.angle = rad(mt);
+		//m_oBodyDef.axis = q3Vec3(xyz(mt), xyz(mt), xyz(mt));
+		//m_oBodyDef.angle = rad(mt);
 		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);
 		instance->mReady = true;
+
+		return instance;
 	}
 
 private:

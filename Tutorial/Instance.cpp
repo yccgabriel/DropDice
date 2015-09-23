@@ -4,6 +4,7 @@
 
 template <typename T> Instance<T>::Instance()
 {
+	mSize = q3Vec3(1.0f, 1.0f, 1.0f);
 	mReady = false;
 }
 

@@ -32,7 +32,6 @@
 #include "ShaderManager.h"
 #include "Scene.h"
 #include "SpawnMachine.h"
-#include "Floor.h"
 
 Camera camera;
 
@@ -140,9 +139,8 @@ int main()
 
 	q3scene.SetGravity(q3Vec3(0,0,-10));
 
-	Scene scene;
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
-	Floor floor;
+	Scene scene;
 
 	shaderManager->ActivateProgram();
 

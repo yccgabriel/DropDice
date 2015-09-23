@@ -35,7 +35,7 @@ public:
 
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
-	void CreateInstance();
+	virtual Instance<RectangularPrism>* CreateInstance();
 	virtual void DeleteInstance( Instance<RectangularPrism>* );		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
 	void DrawInstance( Instance<RectangularPrism>* );

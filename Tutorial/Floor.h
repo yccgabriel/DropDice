@@ -3,10 +3,10 @@
 #define FLOOR_H
 
 #define FLOOR_VERTICES {\
--1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
-1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
--1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
+0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
+0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
+-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
 
 #include "RectangularPrism.h"
 
@@ -19,24 +19,31 @@ public:
 		m_ovFaces[0]->m_fpVertices = &m_fvVertices[0];
 		m_ovFaces[0]->texture = NULL;
 		m_opShaderManager->DefineAttribs();		// why need this?
-
-		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
-		q3Transform localSpace;
-		q3Identity(localSpace);
-		mBoxDef.Set(localSpace, q3Vec3(1.0, 1.0, 0.0));	// x,y,z
 	}
 	~Floor()
 	{
 		delete m_ovFaces[0];
 	}
-	void CreateInstance() 
+	Instance<RectangularPrism>* CreateInstance() override
 	{
-		RectangularPrism::CreateInstance();
-		Instance<RectangularPrism>* instance = mInstances.back();	// the instance just created
+		Instance<RectangularPrism>* instance 
+			= RectangularPrism::CreateInstance();
 
+		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, q3Vec3(instance->mSize.x, instance->mSize.y, 0.0));	// set the size, ignore thickness
 		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);
 		instance->mReady = true;
+
+		return instance;
+	}
+	void MoveInstance(Instance<RectangularPrism>* instance, q3Vec3 translate)
+	{
+		const q3Transform prev = instance->mBody->GetTransform();
+		q3Transform updated = q3Transform(prev.position+translate, prev.rotation);
+		instance->mBody->SetTransform(updated.position, updated.rotation);
 	}
 
 private:

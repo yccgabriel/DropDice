@@ -355,6 +355,15 @@ void q3Body::SetTransform( const q3Vec3& position, const q3Vec3& axis, r32 angle
 }
 
 //--------------------------------------------------------------------------------------------------
+void q3Body::SetTransform(const q3Vec3& position, const q3Mat3& rotation)
+{
+	m_worldCenter = position;
+	m_tx.rotation = rotation;
+
+	SynchronizeProxies();
+}
+
+//--------------------------------------------------------------------------------------------------
 i32 q3Body::GetFlags( ) const
 {
 	return m_flags;
