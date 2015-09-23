@@ -36,11 +36,8 @@ void SpawnMachine::DrawAllDice()
 //	{
 //		mDie.DrawInstance(mDie.mInstances[i]);
 //	}
-	for (std::deque<Instance*>::iterator it = mDie.mInstances.begin(); it != mDie.mInstances.end(); ++it)
+	for (std::deque<Instance<RectangularPrism>*>::iterator it = mDie.mInstances.begin(); it != mDie.mInstances.end(); ++it)
 		mDie.DrawInstance(*it);
-//	std::deque<Instance*>::iterator it = mDie.mInstances.begin();
-//	while (it != mDie.mInstances.end())
-//		mDie.DrawInstance((*it++));
 }
 
 void SpawnMachine::CheckSpawn()

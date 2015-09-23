@@ -32,7 +32,7 @@ public:
 	void CreateInstance() 
 	{
 		RectangularPrism::CreateInstance();
-		Instance* instance = mInstances.back();	// the instance just created
+		Instance<RectangularPrism>* instance = mInstances.back();	// the instance just created
 
 		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);

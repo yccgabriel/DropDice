@@ -72,7 +72,7 @@ public:
 		std::uniform_real_distribution<float> rad(-3.14, 3.14);
 		// end of random generator		how to use: dist(mt);
 		RectangularPrism::CreateInstance();
-		Instance* instance = mInstances.back();	// the instance just created
+		Instance<RectangularPrism>* instance = mInstances.back();	// the instance just created
 
 		m_oBodyDef.position = q3Vec3(0, 0, 10);
 		m_oBodyDef.axis = q3Vec3(xyz(mt), xyz(mt), xyz(mt));

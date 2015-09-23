@@ -1,6 +1,7 @@
 #include "Scene.h"
 
 #include <deque>
+#include "RectangularPrism.h"
 
 Scene::Scene()
 {
@@ -18,6 +19,6 @@ void Scene::SetScene()
 
 void Scene::Render()
 {
-	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+	for (std::deque<Instance<RectangularPrism>*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
 		mFloor.DrawInstance(*it);
 }

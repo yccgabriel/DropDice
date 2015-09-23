@@ -17,10 +17,9 @@
 #include <qu3e/q3.h>
 
 #include "ShaderManager.h"
-#include "ShaderManager.h"
+#include "Instance.h"
 
 extern q3Scene q3scene;
-struct Instance;	// forward definition
 struct Face;		// forward definition
 class RectangularPrism
 {
@@ -30,47 +29,19 @@ public:
 	const q3Box* mBox;
 	std::vector<float>	m_fvVertices;
 	std::vector<Face*>	m_ovFaces;
-	std::deque<Instance*> mInstances;
+	std::deque< Instance<RectangularPrism>* > mInstances;
 	GLuint m_vbo;	// vertex buffer object
 	ShaderManager* m_opShaderManager;
 
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
 	void CreateInstance();
-	virtual void DeleteInstance(Instance*);		// this function called by DeleAllInstances()
+	virtual void DeleteInstance( Instance<RectangularPrism>* );		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
-	void DrawInstance(Instance*);
+	void DrawInstance( Instance<RectangularPrism>* );
 private:
 	void RectangleToTriangleVertices();
 	virtual void OpenGLDraw() = 0;
-};
-
-struct Instance	// default all to be public
-{
-	glm::mat4 transform;
-	q3Body* mBody;
-	bool mReady;		// flag indicate instance is completely created to draw
-
-	Instance() { mReady = false; }
-	~Instance(){}
-	void SetTransform()		// convert engine's transform to OpenGL's transform
-	{
-		const q3Transform& q3tran = mBody->GetTransform();
-		const q3Vec3& t = q3tran.position;
-		const q3Mat3& r = q3tran.rotation;
-		glm::mat4	rot(r.ex.x, r.ex.y, r.ex.z, 0,
-						r.ey.x, r.ey.y, r.ey.z, 0,
-						r.ez.x, r.ez.y, r.ez.z, 0,
-							 0,		 0,		 0, 1);
-		glm::mat4 trans = glm::translate(glm::mat4(1.0f), glm::vec3(t.x, t.y, t.z));
-		transform = trans * rot;
-
-		// debugging
-		//std::cout << r.ex.x << "\t" << r.ex.y << "\t" << r.ex.z << std::endl;
-		//std::cout << r.ey.x << "\t" << r.ey.y << "\t" << r.ey.z << std::endl;
-		//std::cout << r.ez.x << "\t" << r.ez.y << "\t" << r.ez.z << std::endl;
-		//std::cout << std::endl;
-	}
 };
 
 struct Face
