@@ -3,10 +3,10 @@
 #define FLOOR_H
 
 #define FLOOR_VERTICES {\
--2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
-2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
--2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
+1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
+1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
+-1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
 
 #include "RectangularPrism.h"
 
@@ -23,7 +23,7 @@ public:
 		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
 		q3Transform localSpace;
 		q3Identity(localSpace);
-		mBoxDef.Set(localSpace, q3Vec3(100.0, 100.0, 0.0));	// x,y,z
+		mBoxDef.Set(localSpace, q3Vec3(1.0, 1.0, 0.0));	// x,y,z
 	}
 	~Floor()
 	{
@@ -34,7 +34,7 @@ public:
 		RectangularPrism::CreateInstance();
 		Instance* instance = mInstances.back();	// the instance just created
 
-		instance->mBody = scene.CreateBody(m_oBodyDef);
+		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);
 		instance->mReady = true;
 	}

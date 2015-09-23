@@ -30,6 +30,7 @@
 #include "camera.h"
 
 #include "ShaderManager.h"
+#include "Scene.h"
 #include "SpawnMachine.h"
 #include "Floor.h"
 
@@ -79,7 +80,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 		camera.camera_position_delta -= camera.camera_up * .05f;
 }
 
-q3Scene scene(1.0 / 60.0);
+q3Scene q3scene(1.0 / 60.0);
 
 int main()
 {
@@ -137,8 +138,9 @@ int main()
 
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
-	scene.SetGravity(q3Vec3(0,0,-10));
+	q3scene.SetGravity(q3Vec3(0,0,-10));
 
+	Scene scene;
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
 	Floor floor;
 
@@ -157,12 +159,12 @@ int main()
 	camera.SetFOV(45);
 	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	floor.CreateInstance();
+	scene.SetScene();
 
 	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
 	{
-		scene.Step();
+		q3scene.Step();
 
 		//glEnable(GL_DEPTH_TEST);		// this will fill the depth buffer with zeros, black screen
 
@@ -180,8 +182,7 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			Instance* floor0 = floor.mInstances[0];
-			floor.DrawInstance(floor0);
+			scene.Render();
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
@@ -211,8 +212,6 @@ int main()
 	spawnMachine.Stop();
 
 	delete shaderManager;
-
-	floor.DeleteAllInstances();
 
 	glDeleteVertexArrays(1, &vao);
 

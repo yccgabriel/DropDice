@@ -28,7 +28,7 @@ void RectangularPrism::CreateInstance()
 void RectangularPrism::DeleteInstance(Instance* instance)
 {
 	//instance->mBody->RemoveBox(mBox);		// this line is problematic
-	scene.RemoveBody(instance->mBody);
+	q3scene.RemoveBody(instance->mBody);
 
 	mInstances.erase(std::remove(mInstances.begin(), mInstances.end(), instance), mInstances.end());
 	delete instance;

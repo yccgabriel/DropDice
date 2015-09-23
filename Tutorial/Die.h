@@ -35,7 +35,7 @@
 
 #include "RectangularPrism.h"
 
-extern q3Scene scene;
+extern q3Scene q3scene;
 
 class Die : public RectangularPrism
 {
@@ -77,7 +77,7 @@ public:
 		m_oBodyDef.position = q3Vec3(0, 0, 10);
 		m_oBodyDef.axis = q3Vec3(xyz(mt), xyz(mt), xyz(mt));
 		m_oBodyDef.angle = rad(mt);
-		instance->mBody = scene.CreateBody(m_oBodyDef);
+		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);
 		instance->mReady = true;
 	}

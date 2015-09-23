@@ -19,7 +19,7 @@
 #include "ShaderManager.h"
 #include "ShaderManager.h"
 
-extern q3Scene scene;
+extern q3Scene q3scene;
 struct Instance;	// forward definition
 struct Face;		// forward definition
 class RectangularPrism
