@@ -26,6 +26,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <imgui/imgui.h>
+#include "imgui_impl_glfw_gl3.h"
+
 #include "ShaderUtil.h"
 #include "camera.h"
 
@@ -116,10 +119,6 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	glfwSetCursorPosCallback(window, cursor_pos_callback);
-	glfwSetScrollCallback(window, scroll_callback);
 	
 	glewExperimental = GL_TRUE;
 	GLenum err=glewInit();
@@ -129,6 +128,15 @@ int main()
 		std::cout << "glewInit() failed, aborting. Code " << err << ". Error: " << glewGetErrorString(err) << std::endl;
 #endif
 	}
+
+	// Setup ImGui binding
+	ImGui_ImplGlfwGL3_Init(window, true);
+	ImVec4 clear_color = ImColor(114, 144, 154);
+
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetCursorPosCallback(window, cursor_pos_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 
 	// Vertex Array Objects, use to link VBO and attributes with raw vertex data
 	GLuint vao;
@@ -204,6 +212,24 @@ int main()
 		glUniformMatrix4fv(shaderManager->resources.uniforms.view  , 1, GL_FALSE, glm::value_ptr(view));
 
 
+		// ImGui
+		ImGui_ImplGlfwGL3_NewFrame();
+
+		static float f = 0.0f;
+		ImGui::Text("Hello, World!");
+		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+		ImGui::ColorEdit3("clear color", (float*)&clear_color);
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+		// rendering
+		int display_w, display_h;
+		glfwGetFramebufferSize(window, &display_w, &display_h);
+		glViewport(0, 0, display_w, display_h);
+		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		ImGui::Render();
+		// End of ImGui
+
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -213,6 +239,7 @@ int main()
 
 	glDeleteVertexArrays(1, &vao);
 
+	ImGui_ImplGlfwGL3_Shutdown();
 	glfwTerminate();
 #ifdef _DEBUG
 	_CrtDumpMemoryLeaks();

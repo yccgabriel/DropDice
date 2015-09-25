@@ -85,6 +85,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="include\GL3W\gl3w.c" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
     <ClCompile Include="Instance.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RectangularPrism.cpp" />
@@ -100,6 +105,12 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="Die.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="include\GL3W\gl3w.h" />
+    <ClInclude Include="include\GL3W\glcorearb.h" />
+    <ClInclude Include="include\imgui\imconfig.h" />
+    <ClInclude Include="include\imgui\imgui.h" />
+    <ClInclude Include="include\imgui\imgui_internal.h" />
     <ClInclude Include="Instance.h" />
     <ClInclude Include="RectangularPrism.h" />
     <ClInclude Include="Scene.h" />
