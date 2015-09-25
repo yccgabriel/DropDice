@@ -21,3 +21,4 @@ Tutorial/Debug/vc140.idb
 Tutorial/Debug/vc140.pdb
 *.obj
 *.tlog
+*.dat

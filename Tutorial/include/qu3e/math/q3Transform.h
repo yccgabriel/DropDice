@@ -37,6 +37,7 @@ struct q3Transform
 {
 	q3Vec3 position;
 	q3Mat3 rotation;
+	q3Transform() {}
 	q3Transform(q3Vec3 vec3, q3Mat3 mat3)
 	{
 		position = vec3;

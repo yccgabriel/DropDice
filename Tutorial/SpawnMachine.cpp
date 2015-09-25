@@ -62,11 +62,11 @@ void SpawnMachine::Timer()
 	mStartTime = Clock::now();
 	while (timerCont)
 	{
-		std::cout << "the time now is " 
-			<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
-			<< "milliseconds. Spawned dice: "
-			//<< mDie.mInstances.size() + 1
-			<< std::endl;
+		//std::cout << "the time now is " 
+		//	<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
+		//	<< "milliseconds. Spawned dice: "
+		//	//<< mDie.mInstances.size() + 1
+		//	<< std::endl;
 		tasks_mutex.lock();
 		tasks++;
 		tasks_mutex.unlock();

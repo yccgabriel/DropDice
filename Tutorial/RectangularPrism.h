@@ -38,7 +38,7 @@ public:
 	virtual Instance<RectangularPrism>* CreateInstance();
 	virtual void DeleteInstance( Instance<RectangularPrism>* );		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
-	void DrawInstance( Instance<RectangularPrism>* );
+	virtual void DrawInstance( Instance<RectangularPrism>* );
 private:
 	void RectangleToTriangleVertices();
 	virtual void OpenGLDraw() = 0;
