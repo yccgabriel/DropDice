@@ -5,7 +5,6 @@
 #include <glm/glm.hpp>
 #include <qu3e/q3.h>
 
-template <typename T>
 class Instance
 {
 public:

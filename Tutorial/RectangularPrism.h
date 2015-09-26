@@ -29,16 +29,16 @@ public:
 	const q3Box* mBox;
 	std::vector<float>	m_fvVertices;
 	std::vector<Face*>	m_ovFaces;
-	std::deque< Instance<RectangularPrism>* > mInstances;
+	std::deque< Instance* > mInstances;
 	GLuint m_vbo;	// vertex buffer object
 	ShaderManager* m_opShaderManager;
 
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
-	virtual Instance<RectangularPrism>* CreateInstance();
-	virtual void DeleteInstance( Instance<RectangularPrism>* );		// this function called by DeleAllInstances()
+	virtual Instance* CreateInstance();
+	virtual void DeleteInstance( Instance* );		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
-	virtual void DrawInstance( Instance<RectangularPrism>* );
+	virtual void DrawInstance( Instance* );
 private:
 	void RectangleToTriangleVertices();
 	virtual void OpenGLDraw() = 0;

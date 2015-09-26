@@ -33,14 +33,14 @@ SceneMachine::~SceneMachine()
 
 void SceneMachine::SetScene()
 {
-	Instance<RectangularPrism>* instance = mFloor.CreateInstance();
+	Instance* instance = mFloor.CreateInstance();
 	mFloor.MoveInstance(instance, q3Vec3(0,0,-10));
 	//mFloor.MoveInstance(instance, q3Vec3(0, 0, -10));
 }
 
 void SceneMachine::Render()
 {
-	for (std::deque<Instance<RectangularPrism>*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
 		mFloor.DrawInstance(*it);
 }
 

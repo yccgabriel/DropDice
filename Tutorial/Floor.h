@@ -24,9 +24,9 @@ public:
 	{
 		delete m_ovFaces[0];
 	}
-	Instance<RectangularPrism>* CreateInstance() override
+	Instance* CreateInstance() override
 	{
-		Instance<RectangularPrism>* instance 
+		Instance* instance 
 			= RectangularPrism::CreateInstance();
 
 		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
@@ -39,7 +39,7 @@ public:
 
 		return instance;
 	}
-	void MoveInstance(Instance<RectangularPrism>* instance, q3Vec3 translate)
+	void MoveInstance(Instance* instance, q3Vec3 translate)
 	{
 		const q3Transform prev = instance->mBody->GetTransform();
 		q3Transform updated = q3Transform(prev.position+translate, prev.rotation);

@@ -77,7 +77,9 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	double x, y;
 	glfwGetCursorPos(window, &x, &y);
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && cursor_in_background(window, x, y))
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS 
+	&& cursor_in_background(window, x, y)
+	&& ImGui::IsWindowFocused() == true		)
 		camera.move_camera = true;
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 		camera.move_camera = false;

@@ -52,6 +52,7 @@ public:
 	SceneConfigFile	mConfig;
 	Scene			mCurrentScene;
 	Floor			mFloor;
+	Instance* mActiveInstance;
 
 	SceneMachine();
 	~SceneMachine();

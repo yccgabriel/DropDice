@@ -57,7 +57,7 @@ public:
 			delete m_ovFaces[i];
 		}
 	}
-	Instance<RectangularPrism>* CreateInstance() override
+	Instance* CreateInstance() override
 	{
 		// random generator
 		std::random_device rd;
@@ -65,7 +65,7 @@ public:
 		std::uniform_real_distribution<float> xyz(-10, 10);
 		std::uniform_real_distribution<float> rad(-3.14, 3.14);
 		// end of random generator		how to use: dist(mt);
-		Instance<RectangularPrism>* instance 
+		Instance* instance 
 			= RectangularPrism::CreateInstance();
 
 		m_oBodyDef.bodyType = q3BodyType::eDynamicBody;

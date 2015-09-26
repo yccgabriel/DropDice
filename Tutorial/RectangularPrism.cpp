@@ -5,7 +5,6 @@
 #endif
 #include <algorithm>	// for std::remove
 #include "RectangularPrism.h"
-#include "Instance.cpp"
 
 RectangularPrism::RectangularPrism(const std::vector<float>& v) : m_fvVertices(v)
 {
@@ -21,13 +20,13 @@ RectangularPrism::~RectangularPrism()
 		delete mInstances[i];
 }
 
-Instance<RectangularPrism>* RectangularPrism::CreateInstance()
+Instance* RectangularPrism::CreateInstance()
 {
-	mInstances.push_back(new Instance<RectangularPrism>());
+	mInstances.push_back(new Instance());
 	return mInstances.back();
 }
 
-void RectangularPrism::DeleteInstance(Instance<RectangularPrism>* instance)
+void RectangularPrism::DeleteInstance(Instance* instance)
 {
 	//instance->mBody->RemoveBox(mBox);		// this line is problematic
 	q3scene.RemoveBody(instance->mBody);
@@ -45,11 +44,11 @@ void RectangularPrism::DeleteAllInstances()
 
 	// this following two lines not work because
 	// DeleteInstance() use iterator as well
-//	for (std::deque<Instance<RectangularPrism>*>::reverse_iterator it = mInstances.rbegin(); it != mInstances.rend(); ++it)
+//	for (std::deque<Instance*>::reverse_iterator it = mInstances.rbegin(); it != mInstances.rend(); ++it)
 //		DeleteInstance(*it);
 }
 
-void RectangularPrism::DrawInstance(Instance<RectangularPrism>* instance)
+void RectangularPrism::DrawInstance(Instance* instance)
 {
 	if (!instance->mReady)	return;
 	instance->SetTransform();

@@ -22,3 +22,4 @@ Tutorial/Debug/vc140.pdb
 *.obj
 *.tlog
 *.dat
+Tutorial/imgui.ini

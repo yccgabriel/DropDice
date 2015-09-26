@@ -1,18 +1,18 @@
 #include "Instance.h"
+#include <glm/gtx/transform.hpp>
 
 
-
-template <typename T> Instance<T>::Instance()
+Instance::Instance()
 {
 	mSize = q3Vec3(1.0f, 1.0f, 1.0f);
 	mReady = false;
 }
 
-template <typename T> Instance<T>::~Instance()
+Instance::~Instance()
 {
 }
 
-template <typename T> void Instance<T>::SetTransform()
+void Instance::SetTransform()
 {
 	const q3Transform& q3tran = mBody->GetTransform();
 	const q3Vec3& t = q3tran.position;
