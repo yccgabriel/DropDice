@@ -63,9 +63,21 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	else if (key == GLFW_KEY_E && action == GLFW_PRESS)
 		camera.Move(UP);
 }
+bool cursor_in_background(GLFWwindow* window, double x, double y)
+{
+	int window_width, window_height;
+	glfwGetFramebufferSize(window, &window_width, &window_height);
+
+	GLfloat depth;	// farthest = 1, nearest = 0;
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	return depth == 1 ? true: false;
+}
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && cursor_in_background(window, x, y))
 		camera.move_camera = true;
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 		camera.move_camera = false;
