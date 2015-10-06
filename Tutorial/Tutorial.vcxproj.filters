@@ -57,6 +57,9 @@
     <ClCompile Include="include\GL3W\gl3w.c">
       <Filter>gl3w</Filter>
     </ClCompile>
+    <ClCompile Include="RayTracer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="VertexShader.vert">
@@ -111,6 +114,9 @@
     </ClInclude>
     <ClInclude Include="include\GL3W\glcorearb.h">
       <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

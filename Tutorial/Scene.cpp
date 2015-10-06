@@ -3,6 +3,7 @@
 #include <deque>
 #include <fstream>
 #include "RectangularPrism.h"
+#include "RayTracer.h"
 
 SceneMachine::SceneMachine()
 {
@@ -35,7 +36,7 @@ void SceneMachine::SetScene()
 {
 	Instance* instance = mFloor.CreateInstance();
 	mFloor.MoveInstance(instance, q3Vec3(0,0,-10));
-	//mFloor.MoveInstance(instance, q3Vec3(0, 0, -10));
+	mFloor.MoveInstance(instance, q3Vec3(0, 0, -10));
 }
 
 void SceneMachine::Render()
@@ -43,6 +44,26 @@ void SceneMachine::Render()
 	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
 		mFloor.DrawInstance(*it);
 }
+
+Instance* SceneMachine::PickInstance(glm::vec3 ray_origin, glm::vec3 ray_direction)
+{
+	RayTracer::Ray ray(ray_origin, ray_direction);
+	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+	{
+		//for (int i = 0; i < 4; ++i)
+		//{
+		//	for (int j = 0; j < 4; ++j)
+		//		std::cout << (*it)->transform[i][j] << "\t";
+		//	std::cout << std::endl;
+		//}
+		if (RayTracer::RayBoxCollide(ray, glm::vec3(-0.5, -0.5, -0.001), glm::vec3(0.5, 0.5, 0.001), (*it)->transform) == true)
+		{
+			std::cout << "hit" << std::endl;
+		}
+	}
+	return nullptr;
+}
+
 
 
 

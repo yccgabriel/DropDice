@@ -73,14 +73,43 @@ bool cursor_in_background(GLFWwindow* window, double x, double y)
 
 	return depth == 1 ? true: false;
 }
+glm::vec3 ray_dir(GLFWwindow* window, double xx, double yy)
+{
+	int window_width, window_height;
+	glfwGetFramebufferSize(window, &window_width, &window_height);
+
+	float x = (2.0f * xx) / window_width - 1.0f;
+	float y = 1.0f - (2.0f * yy) / window_height;
+	float z = 1.0f;
+	glm::vec3 ray_nds = glm::vec3(x, y, z);		// normalized device coordinates
+
+	glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+	
+	glm::vec4 ray_eye = glm::inverse(camera.GetProjectionMatrix()) * ray_clip;
+	ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+
+	glm::vec4 ivxr = glm::inverse(camera.GetViewMatrix())*ray_eye;
+	glm::vec3 ray_wor = glm::vec3(ivxr.x, ivxr.y, ivxr.z);
+	ray_wor = glm::normalize(ray_wor);
+
+	return ray_wor;
+}
+SceneMachine* pSceneMachine;		//	this variable points to a stack!!!
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	double x, y;
 	glfwGetCursorPos(window, &x, &y);
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS 
-	&& cursor_in_background(window, x, y)
-	&& ImGui::IsWindowFocused() == true		)
+		&& cursor_in_background(window, x, y) == true
+		&& ImGui::IsWindowHovered() == true		)		// clicked in background
 		camera.move_camera = true;
+	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS
+		&& cursor_in_background(window, x, y) == false
+		&& ImGui::IsWindowHovered() == true)		// clicked in whatever object
+	{
+		glm::vec3 ray_direction = ray_dir(window, x, y);						// in world space
+		pSceneMachine->PickInstance(camera.camera_position, ray_direction);		// ray_origin and ray_direction
+	}
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 		camera.move_camera = false;
 }
@@ -163,6 +192,7 @@ int main()
 
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
 	SceneMachine sceneMachine;
+	pSceneMachine = &sceneMachine;
 
 	shaderManager->ActivateProgram();
 
@@ -173,7 +203,7 @@ int main()
 	// Camera Section
 	glm::mat4 model, view, proj;
 
-	camera.SetPosition(glm::vec3(2.0f, 2.0f, 5.0f));
+	camera.SetPosition(glm::vec3(0.01f, 0.0f, 5.0f));
 	camera.SetLookAt(glm::vec3(0, 0, 0));
 	camera.SetClipping(0.1, 1000);
 	camera.SetFOV(45);

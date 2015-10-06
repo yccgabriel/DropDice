@@ -52,12 +52,13 @@ public:
 	SceneConfigFile	mConfig;
 	Scene			mCurrentScene;
 	Floor			mFloor;
-	Instance* mActiveInstance;
+	Instance*		mActiveInstance;
 
 	SceneMachine();
 	~SceneMachine();
 	void SetScene();	// modify later to switch scene
 	void Render();
+	Instance* PickInstance(glm::vec3, glm::vec3);	// get by ray in world space
 };
 
 #endif SCENE
