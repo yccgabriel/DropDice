@@ -32,6 +32,7 @@ public:
 			GLuint view;
 			GLuint proj;
 
+			GLuint useTexture;
 			GLuint texture;
 		}uniforms;
 		struct{

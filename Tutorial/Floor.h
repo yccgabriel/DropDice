@@ -35,16 +35,20 @@ public:
 		mBoxDef.Set(localSpace, q3Vec3(instance->mSize.x, instance->mSize.y, 0.0));	// set the size, ignore thickness
 		instance->mBody = q3scene.CreateBody(m_oBodyDef);
 		mBox = instance->mBody->AddBox(mBoxDef);
-		instance->mReady = true;
 
+		instance->mBoxMinXYZ = glm::vec3(-0.5, -0.5, -0.001);
+		instance->mBoxMaxXYZ = glm::vec3(0.5, 0.5, 0.001);
+
+		instance->mReady = true;
 		return instance;
 	}
-	void MoveInstance(Instance* instance, q3Vec3 translate)
+	void TranslateInstance(Instance* instance, q3Vec3 translate)		// ray-tracing calculate the translate-vector
 	{
 		const q3Transform prev = instance->mBody->GetTransform();
 		q3Transform updated = q3Transform(prev.position+translate, prev.rotation);
 		instance->mBody->SetTransform(updated.position, updated.rotation);
 	}
+	void RotateInstance() {}
 
 private:
 	void OpenGLDraw()

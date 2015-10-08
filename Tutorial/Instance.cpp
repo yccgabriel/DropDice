@@ -12,7 +12,7 @@ Instance::~Instance()
 {
 }
 
-void Instance::SetTransform()
+void Instance::ConvertTransform()
 {
 	const q3Transform& q3tran = mBody->GetTransform();
 	const q3Vec3& t = q3tran.position;
@@ -23,10 +23,4 @@ void Instance::SetTransform()
 		0, 0, 0, 1);
 	glm::mat4 trans = glm::translate(glm::mat4(1.0f), glm::vec3(t.x, t.y, t.z));
 	transform = trans * rot;
-
-	// debugging
-	//std::cout << r.ex.x << "\t" << r.ex.y << "\t" << r.ex.z << std::endl;
-	//std::cout << r.ey.x << "\t" << r.ey.y << "\t" << r.ey.z << std::endl;
-	//std::cout << r.ez.x << "\t" << r.ez.y << "\t" << r.ez.z << std::endl;
-	//std::cout << std::endl;
 }

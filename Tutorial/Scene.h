@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "Floor.h"
+#include "RubiksCore.h"
 
 #include <cereal/cereal.hpp>
 #include <cereal/archives/binary.hpp>
@@ -49,16 +50,19 @@ private:
 class SceneMachine
 {
 public:
-	SceneConfigFile	mConfig;
-	Scene			mCurrentScene;
-	Floor			mFloor;
-	Instance*		mActiveInstance;
+	SceneConfigFile		mConfig;
+	Scene				mCurrentScene;
+	Floor				mFloor;
+	RubiksCore			mRubiksCore;
+	Instance*			mActiveInstance;
+	enum InstanceType   { FLOOR, ROD, CUBE };
 
 	SceneMachine();
 	~SceneMachine();
 	void SetScene();	// modify later to switch scene
 	void Render();
-	Instance* PickInstance(glm::vec3, glm::vec3);	// get by ray in world space
+	Instance* PickNearestInstance(glm::vec3, glm::vec3);	// Only pick Floor, Rod and Cube
+	int ClassifyInstance(Instance*);
 };
 
 #endif SCENE

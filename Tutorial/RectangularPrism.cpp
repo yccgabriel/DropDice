@@ -48,10 +48,10 @@ void RectangularPrism::DeleteAllInstances()
 //		DeleteInstance(*it);
 }
 
-void RectangularPrism::DrawInstance(Instance* instance)
+void RectangularPrism::DrawInstance(Instance* instance)		// virtual
 {
 	if (!instance->mReady)	return;
-	instance->SetTransform();
+	instance->ConvertTransform();
 	glUniformMatrix4fv(m_opShaderManager->resources.uniforms.model, 1, GL_FALSE, glm::value_ptr(instance->transform));
 	this->OpenGLDraw();
 }

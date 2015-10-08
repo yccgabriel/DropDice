@@ -35,33 +35,66 @@ SceneMachine::~SceneMachine()
 void SceneMachine::SetScene()
 {
 	Instance* instance = mFloor.CreateInstance();
-	mFloor.MoveInstance(instance, q3Vec3(0,0,-10));
-	mFloor.MoveInstance(instance, q3Vec3(0, 0, -10));
+	//mFloor.TranslateInstance(instance, q3Vec3(0, 0, -10));
 }
 
 void SceneMachine::Render()
 {
 	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
 		mFloor.DrawInstance(*it);
+
+	// draw Cubic Cross
+	if (mActiveInstance != nullptr)
+		mRubiksCore.Draw();
 }
 
-Instance* SceneMachine::PickInstance(glm::vec3 ray_origin, glm::vec3 ray_direction)
+Instance* SceneMachine::PickNearestInstance(glm::vec3 ray_origin, glm::vec3 ray_direction)
 {
 	RayTracer::Ray ray(ray_origin, ray_direction);
-	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+	std::vector<Instance*> skewer;
+	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)		// Scan Floors
 	{
-		//for (int i = 0; i < 4; ++i)
-		//{
-		//	for (int j = 0; j < 4; ++j)
-		//		std::cout << (*it)->transform[i][j] << "\t";
-		//	std::cout << std::endl;
-		//}
-		if (RayTracer::RayBoxCollide(ray, glm::vec3(-0.5, -0.5, -0.001), glm::vec3(0.5, 0.5, 0.001), (*it)->transform) == true)
+		if (RayTracer::RayBoxCollide(ray, (*it)->mBoxMinXYZ , (*it)->mBoxMaxXYZ, (*it)->transform) == true)
+			skewer.push_back(*it);
+	}
+	std::vector<Instance*> rods = {mRubiksCore.mXRod, mRubiksCore.mYRod, mRubiksCore.mZRod};
+	for (std::vector<Instance*>::iterator it = rods.begin(); it != rods.end(); ++it)								// Scan Rods
+	{
+		if (RayTracer::RayBoxCollide(ray, (*it)->mBoxMinXYZ, (*it)->mBoxMaxXYZ, (*it)->transform) == true) 
+			skewer.push_back(*it);
+	}
+	// find min distance of camera and object
+	Instance*	nearestInstance = nullptr;
+	double		nearestDistance = std::numeric_limits<double>::max();
+	glm::vec4 camPos = glm::vec4(ray_origin, 1);
+	for (std::vector<Instance*>::iterator it = skewer.begin(); it != skewer.end(); ++it)
+	{
+		double distance = glm::distance(camPos, ((*it)->transform)*glm::vec4(0, 0, 0, 1));
+		if (distance < nearestDistance)
 		{
-			std::cout << "hit" << std::endl;
+			nearestDistance = distance;
+			nearestInstance = *it;
 		}
 	}
-	return nullptr;
+	// set instance active flag for drawing and other action
+	if (nearestInstance != nullptr)
+	{
+		bool nearestInstanceState = nearestInstance->mActive;
+		for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+			(*it)->mActive = false;
+		nearestInstance->mActive = !nearestInstanceState;
+		nearestInstance->mActive ? mActiveInstance = nearestInstance : mActiveInstance = nullptr;		// set mActiveInstance
+		if (nearestInstance->mActive)	mRubiksCore.transform = nearestInstance->transform;				// move the rubik's core to the floor
+	}
+	return nearestInstance;
+}
+
+int SceneMachine::ClassifyInstance(Instance* instance)
+{
+	if (std::find(mRubiksCore.rod.mInstances.begin(), mRubiksCore.rod.mInstances.end(), instance) != mRubiksCore.rod.mInstances.end())
+		return SceneMachine::ROD;
+	else if (std::find(mFloor.mInstances.begin(), mFloor.mInstances.end(), instance) != mFloor.mInstances.end())
+		return SceneMachine::FLOOR;
 }
 
 

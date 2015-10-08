@@ -108,7 +108,16 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		&& ImGui::IsWindowHovered() == true)		// clicked in whatever object
 	{
 		glm::vec3 ray_direction = ray_dir(window, x, y);						// in world space
-		pSceneMachine->PickInstance(camera.camera_position, ray_direction);		// ray_origin and ray_direction
+		Instance* instance = pSceneMachine->PickNearestInstance(camera.camera_position, ray_direction);		// ray_origin and ray_direction
+		int type;
+		if ((type = pSceneMachine->ClassifyInstance(instance)) == SceneMachine::FLOOR)
+		{
+			std::cout << "is floor" << std::endl;
+		}
+		else if (type == SceneMachine::ROD)
+		{
+			std::cout << "is rod" << std::endl;
+		}
 	}
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 		camera.move_camera = false;
@@ -203,7 +212,7 @@ int main()
 	// Camera Section
 	glm::mat4 model, view, proj;
 
-	camera.SetPosition(glm::vec3(0.01f, 0.0f, 5.0f));
+	camera.SetPosition(glm::vec3(1.0f, 1.0f, 5.0f));
 	camera.SetLookAt(glm::vec3(0, 0, 0));
 	camera.SetClipping(0.1, 1000);
 	camera.SetFOV(45);

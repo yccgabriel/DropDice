@@ -6,11 +6,33 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
 
-// source: http://blogs.aerys.in/jeanmarc-leroux/2012/05/25/optimized-aabb-ray-intersection/
-bool RayTracer::RayBoxCollide(const Ray& ray, const glm::vec3& boxMin, const glm::vec3& boxMax, const glm::mat4& model)
+#ifdef _DEBUG
+std::ostream& operator<<(std::ostream& out, const glm::mat4& m)
 {
-	glm::mat4 invModel = glm::inverse(model);
-	Ray	localRay(invModel*ray.position, ray.direction);
+	out << m[0][0] << "\t" << m[0][1] << "\t" << m[0][2] << "\t" << m[0][3] << "\n";
+	out << m[1][0] << "\t" << m[1][1] << "\t" << m[1][2] << "\t" << m[1][3] << "\n";
+	out << m[2][0] << "\t" << m[2][1] << "\t" << m[2][2] << "\t" << m[2][3] << "\n";
+	out << m[3][0] << "\t" << m[3][1] << "\t" << m[3][2] << "\t" << m[3][3] << "\n";
+	return out;
+}
+#endif
+
+// source: http://blogs.aerys.in/jeanmarc-leroux/2012/05/25/optimized-aabb-ray-intersection/
+bool RayTracer::RayBoxCollide(const Ray& ray, const glm::vec3& boxMin, const glm::vec3& boxMax, const glm::mat4& m)
+{
+	glm::mat4 invTranslation = glm::inverse(glm::mat4(
+		1,	0,	0,	m[0][3],
+		0,	1,	0,	m[1][3],
+		0,	0,	1,	m[2][3],
+		0,	0,	0,	1
+	));
+	glm::mat4 invRotation = glm::inverse(glm::mat4(
+		m[0][0],	m[0][1],	m[0][2],	0,
+		m[1][0],	m[1][1],	m[1][2],	0,
+		m[2][0],	m[2][1],	m[2][2],	0,
+		0,			0,			0,			1
+	));
+	Ray	localRay(invRotation*invTranslation*ray.position, invRotation*ray.direction);
 	float ox = localRay.position.x;
 	float oy = localRay.position.y;
 	float oz = localRay.position.z;

@@ -9,13 +9,17 @@ class Instance
 {
 public:
 	q3Vec3 mSize;			// control the object size, [x, y, z]
-	glm::mat4 transform;
+	glm::mat4 localtrans;	// transform made within object space.
+	glm::mat4 transform;	// transform to model space
+	glm::vec3 mBoxMinXYZ;
+	glm::vec3 mBoxMaxXYZ;
 	q3Body* mBody;
 	bool mReady;			// flag indicate instance is completely created to draw
+	bool mActive = false;	// flag indicate instance is clicked and chosen
 
 	Instance();
 	~Instance();
-	void SetTransform();	// convert q3transform to glm::mat4 transform
+	void ConvertTransform();// convert q3transform to glm::mat4 transform
 };
 
 #endif // INSTANCE
