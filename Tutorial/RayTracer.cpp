@@ -6,33 +6,23 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
 
-#ifdef _DEBUG
-std::ostream& operator<<(std::ostream& out, const glm::mat4& m)
-{
-	out << m[0][0] << "\t" << m[0][1] << "\t" << m[0][2] << "\t" << m[0][3] << "\n";
-	out << m[1][0] << "\t" << m[1][1] << "\t" << m[1][2] << "\t" << m[1][3] << "\n";
-	out << m[2][0] << "\t" << m[2][1] << "\t" << m[2][2] << "\t" << m[2][3] << "\n";
-	out << m[3][0] << "\t" << m[3][1] << "\t" << m[3][2] << "\t" << m[3][3] << "\n";
-	return out;
-}
-#endif
-
 // source: http://blogs.aerys.in/jeanmarc-leroux/2012/05/25/optimized-aabb-ray-intersection/
 bool RayTracer::RayBoxCollide(const Ray& ray, const glm::vec3& boxMin, const glm::vec3& boxMax, const glm::mat4& m)
 {
-	glm::mat4 invTranslation = glm::inverse(glm::mat4(
-		1,	0,	0,	m[0][3],
-		0,	1,	0,	m[1][3],
-		0,	0,	1,	m[2][3],
-		0,	0,	0,	1
-	));
-	glm::mat4 invRotation = glm::inverse(glm::mat4(
-		m[0][0],	m[0][1],	m[0][2],	0,
-		m[1][0],	m[1][1],	m[1][2],	0,
-		m[2][0],	m[2][1],	m[2][2],	0,
-		0,			0,			0,			1
-	));
-	Ray	localRay(invRotation*invTranslation*ray.position, invRotation*ray.direction);
+	//glm::mat4 invTranslation = glm::inverse(glm::mat4(
+	//	1,	0,	0,	m[0][3],
+	//	0,	1,	0,	m[1][3],
+	//	0,	0,	1,	m[2][3],
+	//	0,	0,	0,	1
+	//));
+	//glm::mat4 invRotation = glm::inverse(glm::mat4(
+	//	m[0][0],	m[0][1],	m[0][2],	0,
+	//	m[1][0],	m[1][1],	m[1][2],	0,
+	//	m[2][0],	m[2][1],	m[2][2],	0,
+	//	0,			0,			0,			1
+	//));
+	//Ray	localRay(invRotation*invTranslation*ray.position, invRotation*ray.direction);
+	Ray	localRay(glm::inverse(m)*ray);
 	float ox = localRay.position.x;
 	float oy = localRay.position.y;
 	float oz = localRay.position.z;
@@ -74,4 +64,28 @@ bool RayTracer::RayBoxCollide(const Ray& ray, const glm::vec3& boxMin, const glm
 	tmax = tmax < max ? tmax : max;
 
 	return tmax >= std::max(0.0f, tmin) && tmin < std::numeric_limits<int>::max();
+}
+
+glm::vec3 RayTracer::SkewLinesNearestPoint(const RayTracer::Ray& L1, const RayTracer::Ray& L2)
+{
+	return RayTracer::SkewLinesNearestPoint(Line(L1), Line(L2));
+}
+
+glm::vec3 RayTracer::SkewLinesNearestPoint(const RayTracer::Line& L1, const RayTracer::Line& L2)
+{
+	return RayTracer::SkewLinesNearestPoint(L1, L2, glm::vec3());
+}
+
+glm::vec3 RayTracer::SkewLinesNearestPoint(const RayTracer::Line& L1, const RayTracer::Line& L2, glm::vec3& secondPoint)
+{
+	glm::vec3 N = glm::normalize(glm::cross(L1.d, L2.d));
+	//glm::mat3 A = glm::mat3(		// wrong!! I guess it's because glm is column-major
+	//	L1.d.x,	-L2.d.x, N.x,
+	//	L1.d.y, -L2.d.y, N.y,
+	//	L1.d.z, -L2.d.z, N.z
+	//);
+	glm::mat3 A = glm::mat3(L1.d, -L2.d, N);
+	glm::vec3 solution = glm::inverse(A) * (L2.p - L1.p);
+	secondPoint = L2.GetPoint(solution.y);
+	return L1.GetPoint(solution.x);
 }

@@ -26,7 +26,7 @@ void SpawnMachine::Start()
 void SpawnMachine::Stop()
 {
 	timerCont = false;
-	mTimerThread.join();
+	if(mInterval > 0)	mTimerThread.join();
 	mDie.DeleteAllInstances();
 }
 

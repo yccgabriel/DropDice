@@ -35,7 +35,7 @@ SceneMachine::~SceneMachine()
 void SceneMachine::SetScene()
 {
 	Instance* instance = mFloor.CreateInstance();
-	//mFloor.TranslateInstance(instance, q3Vec3(0, 0, -10));
+	Floor::TranslateInstance(instance, glm::vec3(0,0,0), glm::vec3(0,0.8,0));
 }
 
 void SceneMachine::Render()
@@ -77,15 +77,15 @@ Instance* SceneMachine::PickNearestInstance(glm::vec3 ray_origin, glm::vec3 ray_
 		}
 	}
 	// set instance active flag for drawing and other action
-	if (nearestInstance != nullptr)
-	{
-		bool nearestInstanceState = nearestInstance->mActive;
-		for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
-			(*it)->mActive = false;
-		nearestInstance->mActive = !nearestInstanceState;
-		nearestInstance->mActive ? mActiveInstance = nearestInstance : mActiveInstance = nullptr;		// set mActiveInstance
-		if (nearestInstance->mActive)	mRubiksCore.transform = nearestInstance->transform;				// move the rubik's core to the floor
-	}
+//	if (nearestInstance != nullptr)
+//	{
+//		bool nearestInstanceState = nearestInstance->mActive;
+//		for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+//			(*it)->mActive = false;
+//		nearestInstance->mActive = !nearestInstanceState;
+//		nearestInstance->mActive ? mActiveInstance = nearestInstance : mActiveInstance = nullptr;		// set mActiveInstance
+//		if (nearestInstance->mActive)	mRubiksCore.transform = nearestInstance->transform;				// move the rubik's core to the floor
+//	}
 	return nearestInstance;
 }
 
@@ -95,8 +95,39 @@ int SceneMachine::ClassifyInstance(Instance* instance)
 		return SceneMachine::ROD;
 	else if (std::find(mFloor.mInstances.begin(), mFloor.mInstances.end(), instance) != mFloor.mInstances.end())
 		return SceneMachine::FLOOR;
+	else
+		return SceneMachine::NTH;
 }
 
+void SceneMachine::ClickOnFloor(Instance* instance)
+{
+	// set instance active flag for drawing and other action
+	bool instanceState = instance->mActive;
+	for (std::deque<Instance*>::iterator it = mFloor.mInstances.begin(); it != mFloor.mInstances.end(); ++it)
+		(*it)->mActive = false;
+	instance->mActive = !instanceState;
+	instance->mActive ? mActiveInstance = instance : mActiveInstance = nullptr;		// set mActiveInstance
+	if (instance->mActive)
+	{
+		mRubiksCore.transform = instance->transform;				// move the rubik's core to the floor
+		mRubiksCore.mAttachedInstance = instance;
+	}
+	else
+		mRubiksCore.mAttachedInstance = nullptr;
+}
+
+void SceneMachine::ClickOnCore(Instance* instance, const int& type, const RayTracer::Line& cursor)
+{
+	if (type == SceneMachine::ROD)
+		mRubiksCore.ClickOnRod(instance, cursor);
+	else if (type == SceneMachine::CUBE)
+		mRubiksCore.ClickOnCube(instance, cursor);
+}
+
+void SceneMachine::ReleaseCore()
+{
+	mRubiksCore.Release();
+}
 
 
 

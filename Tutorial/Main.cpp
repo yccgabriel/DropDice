@@ -111,20 +111,21 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		Instance* instance = pSceneMachine->PickNearestInstance(camera.camera_position, ray_direction);		// ray_origin and ray_direction
 		int type;
 		if ((type = pSceneMachine->ClassifyInstance(instance)) == SceneMachine::FLOOR)
-		{
-			std::cout << "is floor" << std::endl;
-		}
-		else if (type == SceneMachine::ROD)
-		{
-			std::cout << "is rod" << std::endl;
-		}
+			pSceneMachine->ClickOnFloor(instance);
+		else if (type == SceneMachine::ROD || type == SceneMachine::CUBE)
+			pSceneMachine->ClickOnCore(instance, type, RayTracer::Line(camera.camera_position, ray_direction));
 	}
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+	{
 		camera.move_camera = false;
+		pSceneMachine->ReleaseCore();
+	}
 }
 void cursor_pos_callback(GLFWwindow* window, double x, double y)
 {
 	camera.Move2D(x, y);
+	if (pSceneMachine->mRubiksCore.mTranslateCore == true)
+		pSceneMachine->mRubiksCore.TranslateCore(camera.camera_position, ray_dir(window, x, y));
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {

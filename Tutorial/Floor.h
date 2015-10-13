@@ -42,10 +42,14 @@ public:
 		instance->mReady = true;
 		return instance;
 	}
-	void TranslateInstance(Instance* instance, q3Vec3 translate)		// ray-tracing calculate the translate-vector
+	static void TranslateInstance(Instance* instance, glm::vec3 f, glm::vec3 t)
+	{
+		TranslateInstance(instance, q3Vec3(f.x, f.y, f.z), q3Vec3(t.x, t.y, t.z));
+	}
+	static void TranslateInstance(Instance* instance, q3Vec3 from, q3Vec3 translate)		// ray-tracing calculate the translate-vector
 	{
 		const q3Transform prev = instance->mBody->GetTransform();
-		q3Transform updated = q3Transform(prev.position+translate, prev.rotation);
+		q3Transform updated = q3Transform(from+translate, prev.rotation);
 		instance->mBody->SetTransform(updated.position, updated.rotation);
 	}
 	void RotateInstance() {}

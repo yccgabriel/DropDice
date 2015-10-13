@@ -13,6 +13,7 @@ public:
 	glm::mat4 transform;	// transform to model space
 	glm::vec3 mBoxMinXYZ;
 	glm::vec3 mBoxMaxXYZ;
+	float lambda;			// the fraction [0,1] indicate ratio of boxMax-boxMin
 	q3Body* mBody;
 	bool mReady;			// flag indicate instance is completely created to draw
 	bool mActive = false;	// flag indicate instance is clicked and chosen

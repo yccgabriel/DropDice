@@ -5,6 +5,7 @@
 #include <vector>
 #include "Floor.h"
 #include "RubiksCore.h"
+#include "RayTracer.h"
 
 #include <cereal/cereal.hpp>
 #include <cereal/archives/binary.hpp>
@@ -55,7 +56,7 @@ public:
 	Floor				mFloor;
 	RubiksCore			mRubiksCore;
 	Instance*			mActiveInstance;
-	enum InstanceType   { FLOOR, ROD, CUBE };
+	enum InstanceType   { NTH, FLOOR, ROD, CUBE };
 
 	SceneMachine();
 	~SceneMachine();
@@ -63,6 +64,9 @@ public:
 	void Render();
 	Instance* PickNearestInstance(glm::vec3, glm::vec3);	// Only pick Floor, Rod and Cube
 	int ClassifyInstance(Instance*);
+	void ClickOnFloor(Instance*);
+	void ClickOnCore(Instance*, const int&, const RayTracer::Line&);
+	void ReleaseCore();
 };
 
 #endif SCENE
