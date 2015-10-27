@@ -24,3 +24,4 @@ Tutorial/Debug/vc140.pdb
 *.dat
 Tutorial/imgui.ini
 *.enc
+*.pdb

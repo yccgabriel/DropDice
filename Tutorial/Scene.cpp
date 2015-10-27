@@ -35,7 +35,7 @@ SceneMachine::~SceneMachine()
 void SceneMachine::SetScene()
 {
 	Instance* instance = mFloor.CreateInstance();
-	Floor::TranslateInstance(instance, glm::vec3(0,0,0), glm::vec3(0,0.8,0));
+	Floor::TranslateInstance(instance, glm::vec3(0,0,0), glm::vec3(0,0,0));
 }
 
 void SceneMachine::Render()
