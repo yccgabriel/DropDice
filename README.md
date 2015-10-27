@@ -4,14 +4,14 @@ Drop Dice
 Introduction
 ------------
 
-Drop Dice is a project Gabriel worked on in order to learn OpenGL and 3D graphics programming. The project is not yet considered finished as not all features are finished. This read-me is written for the purpose of showing the public that Gabriel's knowledge and skill set on computer graphics.
+Drop Dice is a project Gabriel worked on in order to learn OpenGL and 3D graphics programming. The project is not yet considered finished as not all features are written. This read-me is written for the purpose of showing the public that Gabriel's knowledge and skill set on computer graphics.
 
 
 Implemented Features
 --------------------
 * Camera move and rotate freely
 * Dash-board added with limited buttons added (buttons were not implemented because the logic behind was not ready)
-* A light-weight physics engine(qu3e) is applies
+* A light-weight physics engine(qu3e) is applied
 * Cubic objects dropped on regular intervals
 * Object-selection using cursor in 3D space(no external library were use)
 * Further extend object-selction to drag and move objects in 3D space(the black floor)
@@ -22,9 +22,9 @@ Implemented Features
 
 Planned Features
 ----------------
-* Rotation of floor (currently the floow can only do translation but not rotation)
+* Rotation of floor (currently the floow can only translate but no rotate)
 * Scaling of floor
-* Saving the scene (the saving function was written: serialize the objects position, i.e. the floors, and save it to a single file. Unfortunately the floor implementation was not complete so this function was delayed)
+* Saving and loading the scene (the saving function was written: serialize the objects position, i.e. the floors, and save it to a single file. Unfortunately the floor implementation was not complete so this feature was delayed)
 
 Outstanding Bug
 ---------------
@@ -33,7 +33,7 @@ Outstanding Bug
 Dependency
 ----------
 The Project was developed on Windows Platform with OpenGL and C++. Theoratically it could be modified to portable across platform but that was not a top priority.
-The following list summarized the libraries and software I used for development
+The following list summarized the libraries and software were used for development
 * Windows 7
 * Visual Studio 2015
 * GLEW
