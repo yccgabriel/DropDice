@@ -22,7 +22,7 @@ Implemented Features
 
 Planned Features
 ----------------
-* Rotation of floor (currently the floow can only translate but no rotate)
+* Rotation of floor (currently the floor can only translate but no rotate)
 * Scaling of floor
 * Saving and loading the scene (the saving function was written: serialize the objects position, i.e. the floors, and save it to a single file. Unfortunately the floor implementation was not complete so this feature was delayed)
 
