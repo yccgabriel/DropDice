@@ -3,14 +3,12 @@
 #define FLOOR_H
 
 #define FLOOR_VERTICES {\
--2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
-2.0f, -2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
-2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
--2.0f, 2.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
+-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,\
+0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,\
+0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,\
+-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
 
 #include "RectangularPrism.h"
-
-extern btDiscreteDynamicsWorld* dynamicsWorld;
 
 class Floor : public RectangularPrism
 {
@@ -21,24 +19,40 @@ public:
 		m_ovFaces[0]->m_fpVertices = &m_fvVertices[0];
 		m_ovFaces[0]->texture = NULL;
 		m_opShaderManager->DefineAttribs();		// why need this?
-
-		//m_CollisionShape = new btBoxShape(btVector3(10,10,0));
-		m_CollisionShape = new btStaticPlaneShape(btVector3(0, 0, 1), 1);
 	}
 	~Floor()
 	{
 		delete m_ovFaces[0];
-		delete m_CollisionShape;
 	}
-	void CreateInstance() 
+	Instance* CreateInstance() override
 	{
-		RectangularPrism::CreateInstance();
-		Instance* instance = mInstances.back();	// the instance just created
-		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 0)));
-		btRigidBody::btRigidBodyConstructionInfo floorRigidBodyCI(0, instance->mMotionState, m_CollisionShape);
-		instance->mRigidBody = new btRigidBody(floorRigidBodyCI);
-		dynamicsWorld->addRigidBody(instance->mRigidBody);
+		Instance* instance 
+			= RectangularPrism::CreateInstance();
+
+		m_oBodyDef.bodyType = q3BodyType::eStaticBody;
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, q3Vec3(instance->mSize.x, instance->mSize.y, 0.0));	// set the size, ignore thickness
+		instance->mBody = q3scene.CreateBody(m_oBodyDef);
+		mBox = instance->mBody->AddBox(mBoxDef);
+
+		instance->mBoxMinXYZ = glm::vec3(-0.5, -0.5, -0.001);
+		instance->mBoxMaxXYZ = glm::vec3(0.5, 0.5, 0.001);
+
+		instance->mReady = true;
+		return instance;
 	}
+	static void TranslateInstance(Instance* instance, glm::vec3 f, glm::vec3 t)
+	{
+		TranslateInstance(instance, q3Vec3(f.x, f.y, f.z), q3Vec3(t.x, t.y, t.z));
+	}
+	static void TranslateInstance(Instance* instance, q3Vec3 from, q3Vec3 translate)		// ray-tracing calculate the translate-vector
+	{
+		const q3Transform prev = instance->mBody->GetTransform();
+		q3Transform updated = q3Transform(from+translate, prev.rotation);
+		instance->mBody->SetTransform(updated.position, updated.rotation);
+	}
+	void RotateInstance() {}
 
 private:
 	void OpenGLDraw()

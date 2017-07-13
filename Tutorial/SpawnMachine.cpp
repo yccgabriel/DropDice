@@ -1,11 +1,15 @@
 #include "SpawnMachine.h"
 
+unsigned short tasks;
+std::mutex tasks_mutex;
+std::atomic<bool> timerCont;
+
 SpawnMachine::SpawnMachine(int mode = DROPDICE, int interval = 1000)
 {
 	mMode = mode;
 	mInterval = interval;
-	mTimerCont = true;
-	mMaxDice = 100;
+	timerCont = true;
+	mMaxDice = 50;
 }
 
 SpawnMachine::~SpawnMachine()
@@ -21,22 +25,34 @@ void SpawnMachine::Start()
 
 void SpawnMachine::Stop()
 {
-	mTimerCont = false;
-	mTimerThread.join();
+	timerCont = false;
+	if(mInterval > 0)	mTimerThread.join();
 	mDie.DeleteAllInstances();
 }
 
 void SpawnMachine::DrawAllDice()
 {
-	for (int i = 0; i < mDie.mInstances.size(); i++)
+//	for (int i = 0; i < mDie.mInstances.size(); i++)
+//	{
+//		mDie.DrawInstance(mDie.mInstances[i]);
+//	}
+	for (std::deque<Instance*>::iterator it = mDie.mInstances.begin(); it != mDie.mInstances.end(); ++it)
+		mDie.DrawInstance(*it);
+}
+
+void SpawnMachine::CheckSpawn()
+{
+	size_t tasks_count;
+	tasks_mutex.lock();
+	tasks_count = tasks;
+	tasks_mutex.unlock();
+	while (tasks_count > 0)
 	{
-		mDie.DrawInstance(mDie.mInstances[i]);
+		Spawn();
+		tasks_mutex.lock();
+		tasks_count = --tasks;
+		tasks_mutex.unlock();
 	}
-//	for (std::deque<Instance*>::iterator it = mDie.mInstances.begin(); it != mDie.mInstances.end(); ++it)
-//		mDie.DrawInstance(*it);
-//	std::deque<Instance*>::iterator it = mDie.mInstances.begin();
-//	while (it != mDie.mInstances.end())
-//		mDie.DrawInstance((*it++));
 }
 
 // private methods
@@ -44,12 +60,16 @@ void SpawnMachine::Timer()
 {
 	std::cout << "Timer Start" << std::endl;
 	mStartTime = Clock::now();
-	while (mTimerCont)	// mTimerCont has no mutex lock
+	while (timerCont)
 	{
-		std::cout << "the time now is " 
-			<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
-			<< "milliseconds" << std::endl;
-		Spawn();
+		//std::cout << "the time now is " 
+		//	<< std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - mStartTime).count()
+		//	<< "milliseconds. Spawned dice: "
+		//	//<< mDie.mInstances.size() + 1
+		//	<< std::endl;
+		tasks_mutex.lock();
+		tasks++;
+		tasks_mutex.unlock();
 		std::this_thread::sleep_for(std::chrono::milliseconds(mInterval));
 	}
 }

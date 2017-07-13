@@ -58,7 +58,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s_x86.lib;glfw3x86.lib;SOIL.lib;qu3e.lib;bullet/Bullet2FileLoader_vs2010_debug.lib;bullet/Bullet3Collision_vs2010_debug.lib;bullet/Bullet3Common_vs2010_debug.lib;bullet/Bullet3Dynamics_vs2010_debug.lib;bullet/Bullet3Geometry_vs2010_debug.lib;bullet/Bullet3OpenCL_clew_vs2010_debug.lib;bullet/BulletCollision_vs2010_debug.lib;bullet/BulletDynamics_vs2010_debug.lib;bullet/BulletFileLoader_vs2010_debug.lib;bullet/BulletSoftBody_vs2010_debug.lib;bullet/BulletWorldImporter_vs2010_debug.lib;bullet/ConvexDecomposition_vs2010_debug.lib;bullet/gtest_vs2010_debug.lib;bullet/gwen_vs2010_debug.lib;bullet/HACD_vs2010_debug.lib;bullet/LinearMath_vs2010_debug.lib;bullet/OpenGL_Window_vs2010_debug.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s_x86.lib;glfw3x86.lib;SOIL.lib;qu3e.lib;</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>opengl32.lib</IgnoreSpecificDefaultLibraries>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
@@ -80,13 +80,22 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s_x86.lib;glfw3x86.lib;SOIL.lib;bullet/Bullet2FileLoader_vs2010.lib;bullet/Bullet3Collision_vs2010.lib;bullet/Bullet3Common_vs2010.lib;bullet/Bullet3Dynamics_vs2010.lib;bullet/Bullet3Geometry_vs2010.lib;bullet/Bullet3OpenCL_clew_vs2010.lib;bullet/BulletCollision_vs2010.lib;bullet/BulletDynamics_vs2010.lib;bullet/BulletFileLoader_vs2010.lib;bullet/BulletSoftBody_vs2010.lib;bullet/BulletWorldImporter_vs2010.lib;bullet/ConvexDecomposition_vs2010.lib;bullet/gtest_vs2010.lib;bullet/gwen_vs2010.lib;bullet/HACD_vs2010.lib;bullet/LinearMath_vs2010.lib;bullet/OpenGL_Window_vs2010.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glew32s_x86.lib;glfw3x86.lib;SOIL.lib;qu3e.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="include\GL3W\gl3w.c" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Instance.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RayTracer.cpp" />
     <ClCompile Include="RectangularPrism.cpp" />
+    <ClCompile Include="RubiksCore.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="SpawnMachine.cpp" />
   </ItemGroup>
@@ -98,7 +107,18 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="Die.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="include\GL3W\gl3w.h" />
+    <ClInclude Include="include\GL3W\glcorearb.h" />
+    <ClInclude Include="include\imgui\imconfig.h" />
+    <ClInclude Include="include\imgui\imgui.h" />
+    <ClInclude Include="include\imgui\imgui_internal.h" />
+    <ClInclude Include="Instance.h" />
+    <ClInclude Include="RayTracer.h" />
     <ClInclude Include="RectangularPrism.h" />
+    <ClInclude Include="Rod.h" />
+    <ClInclude Include="RubiksCore.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="ShaderUtil.h" />
     <ClInclude Include="SpawnMachine.h" />

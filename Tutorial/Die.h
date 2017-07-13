@@ -35,21 +35,13 @@
 
 #include "RectangularPrism.h"
 
-extern btDiscreteDynamicsWorld* dynamicsWorld;
-extern q3Scene scene;
+extern q3Scene q3scene;
 
 class Die : public RectangularPrism
 {
 public:
-	q3BodyDef	m_oBodyDef;
-	q3Body*		m_opBody;
-	q3BoxDef	m_oBoxDef;
-	q3Transform	m_oLocalSpace;
 	Die() : RectangularPrism(DIE_VERTICES)
 	{
-		m_opBody = scene.CreateBody(m_oBodyDef);
-		q3Identity(m_oLocalSpace);
-		m_oBoxDef.Set(m_oLocalSpace, q3Vec3(1.0, 1.0, 1.0));
 		// map Faces vertices pointer to m_fvVertices
 		for (int i = 0; i < 6; i++)
 		{
@@ -57,8 +49,6 @@ public:
 			m_ovFaces[i]->m_fpVertices = &m_fvVertices[i*VERTICES_COLUMN * 6];
 			m_ovFaces[i]->texture = m_opShaderManager->resources.textures[i];
 		}
-
-		m_CollisionShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
 	}
 	~Die()
 	{
@@ -66,25 +56,31 @@ public:
 		{
 			delete m_ovFaces[i];
 		}
-		delete m_CollisionShape;
 	}
-	void CreateInstance()
+	Instance* CreateInstance() override
 	{
 		// random generator
 		std::random_device rd;
 		std::mt19937 mt(rd());
-		std::uniform_real_distribution<float> dist(0, 1);
-		// end of random generator
-		RectangularPrism::CreateInstance();
-		Instance* instance = mInstances.back();	// the instance just created
-		instance->mMotionState = new btDefaultMotionState(btTransform(btQuaternion(dist(mt), dist(mt), dist(mt), 1), btVector3(0, 0, 50)));
-		// calculate inertia
-		btScalar mass = 100;
-		btVector3 dieInertia(0, 0, 0);
-		m_CollisionShape->calculateLocalInertia(mass, dieInertia);	// mass and inertia vector
-		btRigidBody::btRigidBodyConstructionInfo dieRigidBodyCI(mass, instance->mMotionState, m_CollisionShape, dieInertia);
-		instance->mRigidBody = new btRigidBody(dieRigidBodyCI);
-		dynamicsWorld->addRigidBody(instance->mRigidBody);
+		std::uniform_real_distribution<float> xyz(-10, 10);
+		std::uniform_real_distribution<float> rad(-3.14, 3.14);
+		// end of random generator		how to use: dist(mt);
+		Instance* instance 
+			= RectangularPrism::CreateInstance();
+
+		m_oBodyDef.bodyType = q3BodyType::eDynamicBody;
+		q3Transform localSpace;
+		q3Identity(localSpace);
+		mBoxDef.Set(localSpace, instance->mSize);	// width, height, depth
+
+		m_oBodyDef.position = q3Vec3(0, 0, 10);
+		//m_oBodyDef.axis = q3Vec3(xyz(mt), xyz(mt), xyz(mt));
+		//m_oBodyDef.angle = rad(mt);
+		instance->mBody = q3scene.CreateBody(m_oBodyDef);
+		mBox = instance->mBody->AddBox(mBoxDef);
+		instance->mReady = true;
+
+		return instance;
 	}
 
 private:
@@ -94,11 +90,6 @@ private:
 		{
 			m_ovFaces[i]->Draw();
 		}
-	}
-	void CreateInstance()
-	{
-		RectangularPrism::CreateInstance();
-		m_opvInstances.back()->m_opBox = m_opBody->AddBox(m_oBoxDef);
 	}
 };
 

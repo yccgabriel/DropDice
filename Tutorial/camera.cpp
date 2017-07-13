@@ -183,8 +183,37 @@ void Camera::GetViewport(int &loc_x, int &loc_y, int &width, int &height) {
 	height = window_height;
 }
 
+void Camera::GetViewport(int* ret)
+{
+	if (sizeof(ret) != 4)		return;
+	ret[0] = viewport_x;
+	ret[1] = viewport_y;
+	ret[2] = window_width;
+	ret[3] = window_height;
+}
+
 void Camera::GetMatricies(glm::mat4 &P, glm::mat4 &V, glm::mat4 &M) {
 	P = projection;
 	V = view;
 	M = model;
+}
+
+glm::mat4 Camera::GetModelMatrix()
+{
+	return model;
+}
+
+glm::mat4 Camera::GetViewMatrix()
+{
+	return view;
+}
+
+glm::mat4 Camera::GetProjectionMatrix()
+{
+	return projection;
+}
+
+glm::mat4 Camera::GetModelViewMatrix()
+{
+	return view*model;
 }

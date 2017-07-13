@@ -12,57 +12,36 @@
 #include <random>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/transform.hpp>
 #include <GL/glew.h>
-#include <bullet/btBulletDynamicsCommon.h>
 #include <qu3e/q3.h>
 
 #include "ShaderManager.h"
-#include "ShaderManager.h"
+#include "Instance.h"
 
-extern btDiscreteDynamicsWorld* dynamicsWorld;
-struct Instance;	// forward definition
+extern q3Scene q3scene;
 struct Face;		// forward definition
 class RectangularPrism
 {
 public:
+	q3BodyDef	m_oBodyDef;
+	q3BoxDef	mBoxDef;
+	const q3Box* mBox;
 	std::vector<float>	m_fvVertices;
 	std::vector<Face*>	m_ovFaces;
-	std::deque<Instance*> mInstances;
+	std::deque< Instance* > mInstances;
 	GLuint m_vbo;	// vertex buffer object
 	ShaderManager* m_opShaderManager;
-	btCollisionShape* m_CollisionShape;
 
 	RectangularPrism(const std::vector<float>& v);
 	~RectangularPrism();
-	void CreateInstance();
-	virtual void DeleteInstance(Instance*);		// this function called by DeleAllInstances()
+	virtual Instance* CreateInstance();
+	virtual void DeleteInstance( Instance* );		// this function called by DeleAllInstances()
 	void DeleteAllInstances();
-	void DrawInstance(Instance*);
+	virtual void DrawInstance( Instance* );
 private:
 	void RectangleToTriangleVertices();
 	virtual void OpenGLDraw() = 0;
-};
-
-struct Instance	// default all to be public
-{
-	glm::mat4 transform;
-	btDefaultMotionState*	mMotionState;
-	btRigidBody*			mRigidBody;
-
-	~Instance()
-	{
-		std::cout << mMotionState << " " << mRigidBody->getMotionState() << std::endl;
-		delete mMotionState;
-		delete mRigidBody;
-	}
-	void SetTransform()
-	{
-		btTransform btTrans;
-		mRigidBody->getMotionState()->getWorldTransform(btTrans);
-		btScalar glTrans[16];
-		btTrans.getOpenGLMatrix(glTrans);
-		transform = glm::make_mat4(glTrans);
-	}
 };
 
 struct Face

@@ -13,3 +13,15 @@ Tutorial/Debug/Tutorial.tlog/link.command.1.tlog
 Tutorial/Debug/Tutorial.tlog/link.read.1.tlog
 Tutorial/Debug/vc120.idb
 Tutorial/Debug/vc120.pdb
+.vs/Tutorial/v14/.suo
+Tutorial/Debug/ShaderManager.obj
+Tutorial/Debug/SpawnMachine.obj
+Tutorial/Debug/camera.obj
+Tutorial/Debug/vc140.idb
+Tutorial/Debug/vc140.pdb
+*.obj
+*.tlog
+*.dat
+Tutorial/imgui.ini
+*.enc
+*.pdb

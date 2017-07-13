@@ -20,27 +20,23 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
-#include <bullet/btBulletDynamicsCommon.h>
 #include <qu3e/q3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <imgui/imgui.h>
+#include "imgui_impl_glfw_gl3.h"
+
 #include "ShaderUtil.h"
 #include "camera.h"
 
 #include "ShaderManager.h"
+#include "Scene.h"
 #include "SpawnMachine.h"
-#include "Floor.h"
 
 Camera camera;
-
-btBroadphaseInterface* broadphase;
-btDefaultCollisionConfiguration* collisionConfiguration;
-btCollisionDispatcher* dispatcher;
-btSequentialImpulseConstraintSolver* solver;
-btDiscreteDynamicsWorld* dynamicsWorld;
 
 void glfw_error_callback(int error, const char* description)
 {
@@ -67,16 +63,69 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	else if (key == GLFW_KEY_E && action == GLFW_PRESS)
 		camera.Move(UP);
 }
+bool cursor_in_background(GLFWwindow* window, double x, double y)
+{
+	int window_width, window_height;
+	glfwGetFramebufferSize(window, &window_width, &window_height);
+
+	GLfloat depth;	// farthest = 1, nearest = 0;
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	return depth == 1 ? true: false;
+}
+glm::vec3 ray_dir(GLFWwindow* window, double xx, double yy)
+{
+	int window_width, window_height;
+	glfwGetFramebufferSize(window, &window_width, &window_height);
+
+	float x = (2.0f * xx) / window_width - 1.0f;
+	float y = 1.0f - (2.0f * yy) / window_height;
+	float z = 1.0f;
+	glm::vec3 ray_nds = glm::vec3(x, y, z);		// normalized device coordinates
+
+	glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+	
+	glm::vec4 ray_eye = glm::inverse(camera.GetProjectionMatrix()) * ray_clip;
+	ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+
+	glm::vec4 ivxr = glm::inverse(camera.GetViewMatrix())*ray_eye;
+	glm::vec3 ray_wor = glm::vec3(ivxr.x, ivxr.y, ivxr.z);
+	ray_wor = glm::normalize(ray_wor);
+
+	return ray_wor;
+}
+SceneMachine* pSceneMachine;		//	this variable points to a stack!!!
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS 
+		&& cursor_in_background(window, x, y) == true
+		&& ImGui::IsWindowHovered() == true		)		// clicked in background
 		camera.move_camera = true;
+	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS
+		&& cursor_in_background(window, x, y) == false
+		&& ImGui::IsWindowHovered() == true)		// clicked in whatever object
+	{
+		glm::vec3 ray_direction = ray_dir(window, x, y);						// in world space
+		Instance* instance = pSceneMachine->PickNearestInstance(camera.camera_position, ray_direction);		// ray_origin and ray_direction
+		int type;
+		if ((type = pSceneMachine->ClassifyInstance(instance)) == SceneMachine::FLOOR)
+			pSceneMachine->ClickOnFloor(instance);
+		else if (type == SceneMachine::ROD || type == SceneMachine::CUBE)
+			pSceneMachine->ClickOnCore(instance, type, RayTracer::Line(camera.camera_position, ray_direction));
+	}
 	else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+	{
 		camera.move_camera = false;
+		pSceneMachine->ReleaseCore();
+	}
 }
 void cursor_pos_callback(GLFWwindow* window, double x, double y)
 {
 	camera.Move2D(x, y);
+	if (pSceneMachine->mRubiksCore.mTranslateCore == true)
+		pSceneMachine->mRubiksCore.TranslateCore(camera.camera_position, ray_dir(window, x, y));
 }
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
@@ -86,8 +135,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 		camera.camera_position_delta -= camera.camera_up * .05f;
 }
 
-q3Scene scene(1.0 / 60.0);
-
+q3Scene q3scene(1.0 / 60.0);
 
 int main()
 {
@@ -124,10 +172,6 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	glfwSetCursorPosCallback(window, cursor_pos_callback);
-	glfwSetScrollCallback(window, scroll_callback);
 	
 	glewExperimental = GL_TRUE;
 	GLenum err=glewInit();
@@ -138,14 +182,14 @@ int main()
 #endif
 	}
 
-	//** Bullet Physics Engine
-	broadphase = new btDbvtBroadphase();
-	collisionConfiguration = new btDefaultCollisionConfiguration();
-	dispatcher = new btCollisionDispatcher(collisionConfiguration);
-	solver = new btSequentialImpulseConstraintSolver;
-	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+	// Setup ImGui binding
+	ImGui_ImplGlfwGL3_Init(window, true);
+	ImVec4 clear_color = ImColor(114, 144, 154);
 
-	dynamicsWorld->setGravity(btVector3(0, 0, -10));
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetCursorPosCallback(window, cursor_pos_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 
 	// Vertex Array Objects, use to link VBO and attributes with raw vertex data
 	GLuint vao;
@@ -154,8 +198,11 @@ int main()
 
 	ShaderManager *shaderManager = ShaderManager::GetInstance();
 
+	q3scene.SetGravity(q3Vec3(0,0,-10));
+
 	SpawnMachine spawnMachine(SpawnMachine::DROPDICE, 1000);
-	Floor* floor = new Floor();;
+	SceneMachine sceneMachine;
+	pSceneMachine = &sceneMachine;
 
 	shaderManager->ActivateProgram();
 
@@ -166,18 +213,18 @@ int main()
 	// Camera Section
 	glm::mat4 model, view, proj;
 
-	camera.SetPosition(glm::vec3(2.0f, 2.0f, 5.0f));
+	camera.SetPosition(glm::vec3(1.0f, 1.0f, 5.0f));
 	camera.SetLookAt(glm::vec3(0, 0, 0));
 	camera.SetClipping(0.1, 1000);
 	camera.SetFOV(45);
 	camera.SetViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	floor->CreateInstance();
+	sceneMachine.SetScene();
 
 	spawnMachine.Start();
 	while (!glfwWindowShouldClose(window))
 	{
-		dynamicsWorld->stepSimulation(1 / 60.f, 10);
+		q3scene.Step();
 
 		//glEnable(GL_DEPTH_TEST);		// this will fill the depth buffer with zeros, black screen
 
@@ -185,6 +232,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		spawnMachine.CheckSpawn();
 		spawnMachine.DrawAllDice();
 
 	//	glEnable(GL_STENCIL_TEST);
@@ -194,8 +242,7 @@ int main()
 	//		glStencilMask(0xFF); // Write to stencil buffer
 	//		glDepthMask(GL_FALSE); // Don't write to depth buffer
 	//		glClear(GL_STENCIL_BUFFER_BIT); // Clear stencil buffer (0 by default)
-			Instance* floor0 = floor->mInstances[0];
-			floor->DrawInstance(floor0);
+			sceneMachine.Render();
 	//	
 	//		// Draw cube reflection
 	//		glStencilFunc(GL_EQUAL, 1, 0xFF);
@@ -219,7 +266,22 @@ int main()
 		glUniformMatrix4fv(shaderManager->resources.uniforms.view  , 1, GL_FALSE, glm::value_ptr(view));
 
 
-		scene.Step();
+		// ImGui
+		ImGui_ImplGlfwGL3_NewFrame();
+
+		static float f = 0.0f;
+		ImGui::Text("Hello, World!");
+		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+		ImGui::ColorEdit3("clear color", (float*)&clear_color);
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+		// rendering
+		int display_w, display_h;
+		glfwGetFramebufferSize(window, &display_w, &display_h);
+		glViewport(0, 0, display_w, display_h);
+		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		ImGui::Render();
+		// End of ImGui
 
 
 		glfwSwapBuffers(window);
@@ -229,22 +291,13 @@ int main()
 
 	delete shaderManager;
 
-	floor->DeleteAllInstances();
-	delete floor;
-
-	// Clean up Bullet Physics Engine
-	delete dynamicsWorld;
-	delete solver;
-	delete dispatcher;
-	delete collisionConfiguration;
-	delete broadphase;
-
 	glDeleteVertexArrays(1, &vao);
 
+	ImGui_ImplGlfwGL3_Shutdown();
 	glfwTerminate();
 #ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
+	//getchar();
 #endif
-	getchar();
 	return 0;
 }

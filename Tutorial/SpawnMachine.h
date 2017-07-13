@@ -3,8 +3,17 @@
 #define SPAWNMACHINE
 
 #include <chrono>
+#include <atomic>
+#include <deque>
+#include <mutex>
+#include <future>
 #include <thread>
 #include "Die.h"
+
+// shared variables
+extern unsigned short tasks;
+extern std::mutex tasks_mutex;
+extern std::atomic<bool> timerCont;
 
 typedef std::chrono::high_resolution_clock Clock;
 
@@ -24,10 +33,10 @@ public:
 	void Start();
 	void Stop();
 	void DrawAllDice();
+	void CheckSpawn();
 
 private:
 	std::thread mTimerThread;
-	bool mTimerCont;	// no mutex lock for this variable
 	void Timer();
 	void Spawn();
 	void Settings();

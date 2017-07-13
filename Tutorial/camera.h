@@ -67,7 +67,12 @@ class Camera {
 		//Getting Functions
 		CameraType GetMode();
 		void GetViewport(int &loc_x, int &loc_y, int &width, int &height);
+		void GetViewport(int*);		// array of four element
 		void GetMatricies(glm::mat4 &P, glm::mat4 &V, glm::mat4 &M);
+		glm::mat4 GetModelMatrix();
+		glm::mat4 GetViewMatrix();
+		glm::mat4 GetProjectionMatrix();
+		glm::mat4 GetModelViewMatrix();
 
 		CameraType camera_mode;
 

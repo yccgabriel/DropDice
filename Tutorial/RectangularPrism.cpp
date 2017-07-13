@@ -20,14 +20,17 @@ RectangularPrism::~RectangularPrism()
 		delete mInstances[i];
 }
 
-void RectangularPrism::CreateInstance()
+Instance* RectangularPrism::CreateInstance()
 {
 	mInstances.push_back(new Instance());
+	return mInstances.back();
 }
 
 void RectangularPrism::DeleteInstance(Instance* instance)
 {
-	dynamicsWorld->removeRigidBody(instance->mRigidBody);
+	//instance->mBody->RemoveBox(mBox);		// this line is problematic
+	q3scene.RemoveBody(instance->mBody);
+
 	mInstances.erase(std::remove(mInstances.begin(), mInstances.end(), instance), mInstances.end());
 	delete instance;
 }
@@ -38,13 +41,17 @@ void RectangularPrism::DeleteAllInstances()
 	{
 		DeleteInstance(mInstances[i]);
 	}
+
+	// this following two lines not work because
+	// DeleteInstance() use iterator as well
 //	for (std::deque<Instance*>::reverse_iterator it = mInstances.rbegin(); it != mInstances.rend(); ++it)
 //		DeleteInstance(*it);
 }
 
-void RectangularPrism::DrawInstance(Instance* instance)
+void RectangularPrism::DrawInstance(Instance* instance)		// virtual
 {
-	instance->SetTransform();
+	if (!instance->mReady)	return;
+	instance->ConvertTransform();
 	glUniformMatrix4fv(m_opShaderManager->resources.uniforms.model, 1, GL_FALSE, glm::value_ptr(instance->transform));
 	this->OpenGLDraw();
 }
